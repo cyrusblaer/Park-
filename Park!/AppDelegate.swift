@@ -8,17 +8,34 @@
 
 import UIKit
 import AMapFoundationKit
+import Wilddog
+import QCloudCore
+import QCloudCOSXML
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
+        //  高德地图初始化
         AMapServices.shared().apiKey = "17d6e6bfd8ff307c18483da6280cf1c6"
+        //  WildDog初始化
+        let options = WDGOptions.init(syncURL: "https://wd8986093797xenueg.wilddogio.com")
+        WDGApp.configure(with: options)
+        let auth = WDGAuth.auth()
+        
+        //  腾讯云对象存储初始化
+        var configuration = QCloudServiceConfiguration()
+        configuration.appID = "1254251493"
+        configuration.signatureProvider = self as! QCloudSignatureProvider
+        var endpoint = QCloudCOSXMLEndPoint()
+        endpoint.regionName = "ap-guangzhou"
+        configuration.endpoint = endpoint;
+        
+        QCloudCOSXMLService.registerDefaultCOSXML(with: configuration)
+        QCloudCOSTransferMangerService.registerDefaultCOSTransferManger(with: configuration)
         
         return true
     }

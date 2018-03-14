@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		34EDB16B0B81F193615E7AFF /* Pods_Park_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5F5E147AF90C65D6DC222D /* Pods_Park_.framework */; };
+		8834B83F2057708600D22E31 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B83E2057708600D22E31 /* LoginViewController.swift */; };
+		8834B8412057709400D22E31 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B8402057709400D22E31 /* WelcomeViewController.swift */; };
+		8834B8432057713700D22E31 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B8422057713700D22E31 /* LandingViewController.swift */; };
+		8834B8452057756D00D22E31 /* Helper Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B8442057756D00D22E31 /* Helper Files.swift */; };
+		8834B848205778EA00D22E31 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B847205778EA00D22E31 /* Users.swift */; };
+		8834B84A2057A86600D22E31 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B8492057A86600D22E31 /* HomeViewController.swift */; };
+		8834B84C20581DC600D22E31 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B84B20581DC600D22E31 /* AccountViewController.swift */; };
+		8834B84E20581DDE00D22E31 /* ParkManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B84D20581DDE00D22E31 /* ParkManagerViewController.swift */; };
 		885D2CEE203FFB290095D581 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885D2CED203FFB290095D581 /* AppDelegate.swift */; };
 		885D2CF3203FFB290095D581 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885D2CF1203FFB290095D581 /* Main.storyboard */; };
 		885D2CF5203FFB290095D581 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 885D2CF4203FFB290095D581 /* Assets.xcassets */; };
@@ -19,6 +27,14 @@
 		3A51C939DBCACB710F5F9FE6 /* Pods-Park!.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Park!.release.xcconfig"; path = "Pods/Target Support Files/Pods-Park!/Pods-Park!.release.xcconfig"; sourceTree = "<group>"; };
 		48DB69C426D4E2C9A3D88CB9 /* Pods-Park!.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Park!.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Park!/Pods-Park!.debug.xcconfig"; sourceTree = "<group>"; };
 		6D5F5E147AF90C65D6DC222D /* Pods_Park_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Park_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8834B83E2057708600D22E31 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8834B8402057709400D22E31 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		8834B8422057713700D22E31 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		8834B8442057756D00D22E31 /* Helper Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper Files.swift"; sourceTree = "<group>"; };
+		8834B847205778EA00D22E31 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		8834B8492057A86600D22E31 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8834B84B20581DC600D22E31 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		8834B84D20581DDE00D22E31 /* ParkManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkManagerViewController.swift; sourceTree = "<group>"; };
 		885D2CEA203FFB290095D581 /* Park!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Park!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		885D2CED203FFB290095D581 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		885D2CF2203FFB290095D581 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -49,6 +65,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8834B83C20576F8500D22E31 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8834B83D20576F9300D22E31 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				88EDCD3920567543006E6119 /* AMap-Bridge-Header.h */,
+				8834B8442057756D00D22E31 /* Helper Files.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8834B846205778C600D22E31 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8834B847205778EA00D22E31 /* Users.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		885D2CE1203FFB290095D581 = {
 			isa = PBXGroup;
 			children = (
@@ -70,45 +110,15 @@
 		885D2CEC203FFB290095D581 /* Park! */ = {
 			isa = PBXGroup;
 			children = (
-				885D2CFF203FFD950095D581 /* Users */,
-				885D2D02203FFDD50095D581 /* UsageManagement */,
-				885D2D01203FFDBA0095D581 /* SpacesManagement */,
-				885D2D00203FFDA60095D581 /* Maps */,
 				885D2CED203FFB290095D581 /* AppDelegate.swift */,
 				885D2CF1203FFB290095D581 /* Main.storyboard */,
+				88EDCD312056718E006E6119 /* Controllers */,
+				8834B846205778C600D22E31 /* Models */,
+				8834B83C20576F8500D22E31 /* Views */,
+				8834B83D20576F9300D22E31 /* Helpers */,
 				885D2D03203FFE280095D581 /* Supporting Files */,
 			);
 			path = "Park!";
-			sourceTree = "<group>";
-		};
-		885D2CFF203FFD950095D581 /* Users */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Users;
-			sourceTree = "<group>";
-		};
-		885D2D00203FFDA60095D581 /* Maps */ = {
-			isa = PBXGroup;
-			children = (
-				88EDCD32205671A0006E6119 /* Services */,
-				88EDCD312056718E006E6119 /* Controllers */,
-			);
-			path = Maps;
-			sourceTree = "<group>";
-		};
-		885D2D01203FFDBA0095D581 /* SpacesManagement */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SpacesManagement;
-			sourceTree = "<group>";
-		};
-		885D2D02203FFDD50095D581 /* UsageManagement */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UsageManagement;
 			sourceTree = "<group>";
 		};
 		885D2D03203FFE280095D581 /* Supporting Files */ = {
@@ -125,16 +135,14 @@
 			isa = PBXGroup;
 			children = (
 				88EDCD3720567309006E6119 /* MapViewController.swift */,
+				8834B83E2057708600D22E31 /* LoginViewController.swift */,
+				8834B8402057709400D22E31 /* WelcomeViewController.swift */,
+				8834B8422057713700D22E31 /* LandingViewController.swift */,
+				8834B8492057A86600D22E31 /* HomeViewController.swift */,
+				8834B84B20581DC600D22E31 /* AccountViewController.swift */,
+				8834B84D20581DDE00D22E31 /* ParkManagerViewController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		88EDCD32205671A0006E6119 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				88EDCD3920567543006E6119 /* AMap-Bridge-Header.h */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		C6EE28D3E0BB6A293DA3B4F4 /* Pods */ = {
@@ -224,11 +232,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Park!/Pods-Park!-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/QCloudCOSXML/QCloudCOSXML.framework",
+				"${BUILT_PRODUCTS_DIR}/QCloudCore/QCloudCore.framework",
 				"${BUILT_PRODUCTS_DIR}/RAMAnimatedTabBarController/RAMAnimatedTabBarController.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QCloudCOSXML.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QCloudCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RAMAnimatedTabBarController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
@@ -280,8 +292,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8834B83F2057708600D22E31 /* LoginViewController.swift in Sources */,
+				8834B8412057709400D22E31 /* WelcomeViewController.swift in Sources */,
+				8834B8452057756D00D22E31 /* Helper Files.swift in Sources */,
+				8834B84A2057A86600D22E31 /* HomeViewController.swift in Sources */,
+				8834B84E20581DDE00D22E31 /* ParkManagerViewController.swift in Sources */,
 				88EDCD3820567309006E6119 /* MapViewController.swift in Sources */,
+				8834B8432057713700D22E31 /* LandingViewController.swift in Sources */,
 				885D2CEE203FFB290095D581 /* AppDelegate.swift in Sources */,
+				8834B848205778EA00D22E31 /* Users.swift in Sources */,
+				8834B84C20581DC600D22E31 /* AccountViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,7 +446,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cyrusblaer.Park-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Park!/Maps/Services/AMap-Bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Park!/Helpers/AMap-Bridge-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -444,7 +464,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cyrusblaer.Park-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Park!/Maps/Services/AMap-Bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Park!/Helpers/AMap-Bridge-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

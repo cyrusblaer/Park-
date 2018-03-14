@@ -1,26 +1,19 @@
 //
-//  MapViewController.swift
+//  ParkManagerViewController.swift
 //  Park!
 //
-//  Created by Blaer on 12/03/2018.
+//  Created by Blaer on 13/03/2018.
 //  Copyright © 2018 Blaer. All rights reserved.
 //
 
 import UIKit
 
-class MapViewController: UIViewController {
+class ParkManagerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        AMapServices.shared().enableHTTPS = true
-        
-        let mapView = MAMapView(frame: self.view.bounds)
-        // mapView.delegate = self
-        mapView.isShowsUserLocation = true
-        mapView.userTrackingMode = .follow
-        self.view.addSubview(mapView)
 
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

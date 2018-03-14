@@ -12,4 +12,7 @@
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 
+//#import <QCloudCore/QCloudCore.h>
+//#import <QCloudCOSXML/QCloudCOSXML.h>
+
 #endif /* AMap_Bridge_Header_h */
