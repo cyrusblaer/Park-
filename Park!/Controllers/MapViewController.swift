@@ -9,19 +9,21 @@
 import UIKit
 
 class MapViewController: UIViewController {
-
-    @IBOutlet weak var logoutButton: UIButton!
     
-    @IBAction func logoutAction(_ sender: Any) {
-        
-        User.logOutUser { (true) in
-            self.dismiss(animated: true, completion: nil)
-        }
-        
-    }
+    var searchController: UISearchController!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "查找指定车场"
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+        searchController.searchBar.sizeToFit()
+        
+        self.navigationItem.searchController = searchController
         
         AMapServices.shared().enableHTTPS = true
         
@@ -30,7 +32,6 @@ class MapViewController: UIViewController {
         mapView.isShowsUserLocation = true
         mapView.userTrackingMode = .follow
         self.view.addSubview(mapView)
-        self.view.addSubview(logoutButton)
 
     }
 
@@ -39,7 +40,9 @@ class MapViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
+    @IBAction func locateCurrentLocation(_ sender: Any) {
+    }
     /*
     // MARK: - Navigation
 
@@ -49,5 +52,11 @@ class MapViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+extension MapViewController : UISearchBarDelegate,UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    
 }

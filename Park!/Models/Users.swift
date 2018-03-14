@@ -115,7 +115,7 @@ class User: NSObject {
         WDGAuth.auth()?.signIn(withPhone: withPhone, password: password, completion: { (user, error) in
             if error == nil {
                 let userInfo = ["phone": withPhone, "password": password]
-                UserDefaults.standard.set(userInfo, forKey: "userInfomation")
+                UserDefaults.standard.set(userInfo, forKey: "userInformation")
                 completion(true)
             } else {
                 completion(false)

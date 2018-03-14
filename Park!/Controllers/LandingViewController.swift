@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RAMAnimatedTabBarController
 
 class LandingViewController: UIViewController {
     
@@ -20,11 +21,23 @@ class LandingViewController: UIViewController {
     //MARK: Push to relevant ViewController
     func pushTo(viewController: ViewControllerType)  {
         switch viewController {
+        case .tabVC:
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "TabBarVC") as! RAMAnimatedTabBarController
+            self.present(vc, animated: false, completion: nil)
         case .home:
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeNavVC") as! UINavigationController
             self.present(vc, animated: false, completion: nil)
         case .welcome:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "Welcome") as! WelcomeViewController
+            self.present(vc, animated: false, completion: nil)
+        case .park:
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ParkNavVC") as! UINavigationController
+            self.present(vc, animated: false, completion: nil)
+        case .account:
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "AccountNavVC") as! UINavigationController
+            self.present(vc, animated: false, completion: nil)
+        case .map:
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MapNavVC") as! UINavigationController
             self.present(vc, animated: false, completion: nil)
         }
     }
@@ -33,12 +46,12 @@ class LandingViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
-            let email = userInformation["phone"] as! String
+            let phone = userInformation["phone"] as! String
             let password = userInformation["password"] as! String
-            User.loginUser(withEmail: email, password: password, completion: { [weak weakSelf = self] (status) in
+            User.loginUser(withPhone: phone, password: password, completion: { [weak weakSelf = self] (status) in
                 DispatchQueue.main.async {
                     if status == true {
-                        weakSelf?.pushTo(viewController: .home)
+                        weakSelf?.pushTo(viewController: .tabVC)
                     } else {
                         weakSelf?.pushTo(viewController: .welcome)
                     }

@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 import Wilddog
+import RAMAnimatedTabBarController
 
 class WelcomeViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -93,7 +94,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UINavigation
     }
     
     func pushTomainView() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "TabBarVC") as! RAMAnimatedTabBarController
         self.show(vc, sender: nil)
     }
     

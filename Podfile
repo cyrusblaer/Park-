@@ -10,5 +10,6 @@ pod 'Wilddog/Auth'
 pod 'AMap2DMap' #2D地图SDK
 pod 'AMapSearch' #搜索功能
 pod 'QCloudCOSXML'
-    
+pod 'FoldingCell'
+
 end

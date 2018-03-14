@@ -26,16 +26,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         WDGApp.configure(with: options)
         let auth = WDGAuth.auth()
         
-        //  腾讯云对象存储初始化
-        var configuration = QCloudServiceConfiguration()
-        configuration.appID = "1254251493"
-        configuration.signatureProvider = self as! QCloudSignatureProvider
-        var endpoint = QCloudCOSXMLEndPoint()
-        endpoint.regionName = "ap-guangzhou"
-        configuration.endpoint = endpoint;
-        
-        QCloudCOSXMLService.registerDefaultCOSXML(with: configuration)
-        QCloudCOSTransferMangerService.registerDefaultCOSTransferManger(with: configuration)
+//        //  腾讯云对象存储初始化
+//        var configuration = QCloudServiceConfiguration()
+//        configuration.appID = "1254251493"
+//        configuration.signatureProvider = self as! QCloudSignatureProvider
+//        var endpoint = QCloudCOSXMLEndPoint()
+//        endpoint.regionName = "ap-guangzhou"
+//        configuration.endpoint = endpoint;
+//
+//        QCloudCOSXMLService.registerDefaultCOSXML(with: configuration)
+//        QCloudCOSTransferMangerService.registerDefaultCOSTransferManger(with: configuration)
         
         return true
     }
