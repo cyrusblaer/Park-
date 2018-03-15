@@ -151,7 +151,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="470"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cUi-IQ-pPa" customClass="RoundedImageView" customModule="QuickChat" customModuleProvider="target">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cUi-IQ-pPa" customClass="RoundedImageView" customModule="Park_" customModuleProvider="target">
                             <rect key="frame" x="93" y="41" width="190" height="190"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="cUi-IQ-pPa" secondAttribute="height" multiplier="1:1" id="Fh3-mN-lGP"/>
@@ -175,7 +175,7 @@
                             <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ltY-qp-BmL" customClass="RoundedButton" customModule="QuickChat" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ltY-qp-BmL" customClass="RoundedButton" customModule="Park_" customModuleProvider="target">
                             <rect key="frame" x="128" y="337" width="120" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Oht-My-lUY"/>
@@ -188,7 +188,7 @@
                                 <action selector="resetPwdAction:" destination="3VA-8U-lCb" eventType="touchUpInside" id="VCm-sn-Zoo"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNh-7S-3Mo" customClass="RoundedButton" customModule="QuickChat" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNh-7S-3Mo" customClass="RoundedButton" customModule="Park_" customModuleProvider="target">
                             <rect key="frame" x="128" y="389" width="120" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="unu-X3-fgm"/>
@@ -404,7 +404,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9h-wa-nsh" customClass="RoundedButton" customModule="Park_" customModuleProvider="target">
-                            <rect key="frame" x="251" y="461" width="120" height="40"/>
+                            <rect key="frame" x="251" y="421" width="120" height="40"/>
                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                             <state key="normal" title="确认修改" backgroundImage="button">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -415,20 +415,23 @@
                             </connections>
                         </button>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请重试" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RmR-bD-VuN">
-                            <rect key="frame" x="45" y="379" width="532" height="18"/>
+                            <rect key="frame" x="45" y="389" width="532" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="1" green="0.30980392159999998" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="vep-Ov-X4x">
-                            <rect key="frame" x="45" y="32" width="532" height="335"/>
+                            <rect key="frame" x="45" y="32" width="532" height="345"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Glr-6L-l5F">
-                                    <rect key="frame" x="0.0" y="0.0" width="532" height="335"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="532" height="345"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xrr-Sc-K5j">
-                                            <rect key="frame" x="0.0" y="320" width="532" height="1"/>
+                                            <rect key="frame" x="0.0" y="330" width="532" height="1"/>
                                             <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="kTq-uV-LPY"/>
+                                            </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择您的角色" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hyw-Vl-IMM">
                                             <rect key="frame" x="203" y="144" width="127" height="21"/>
@@ -441,7 +444,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hZS-7p-fDB">
-                                            <rect key="frame" x="0.0" y="181" width="532" height="29"/>
+                                            <rect key="frame" x="0.0" y="181" width="532" height="39"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="38" id="0OV-NT-1NZ"/>
+                                            </constraints>
                                             <segments>
                                                 <segment title="车位使用者"/>
                                                 <segment title="车位出租者"/>
@@ -449,7 +455,7 @@
                                             </segments>
                                         </segmentedControl>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="角色说明：" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQV-mE-aWo">
-                                            <rect key="frame" x="0.0" y="217" width="532" height="95"/>
+                                            <rect key="frame" x="0.0" y="227" width="532" height="95"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="95" id="xEQ-9n-TXS"/>
@@ -484,6 +490,7 @@
                                             <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="FwJ-bm-bHG"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="O5O-rt-y76"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -541,7 +548,6 @@
                         <constraint firstItem="RmR-bD-VuN" firstAttribute="top" secondItem="vep-Ov-X4x" secondAttribute="bottom" constant="12" id="Bwj-IJ-NNv"/>
                         <constraint firstItem="RmR-bD-VuN" firstAttribute="centerX" secondItem="b9h-wa-nsh" secondAttribute="centerX" id="Ck5-yj-dw5"/>
                         <constraint firstItem="vep-Ov-X4x" firstAttribute="trailing" secondItem="RmR-bD-VuN" secondAttribute="trailing" id="Gu5-Ke-SCd"/>
-                        <constraint firstItem="ey2-QU-lGD" firstAttribute="bottom" secondItem="b9h-wa-nsh" secondAttribute="bottom" constant="35" id="UMG-eH-sQr"/>
                         <constraint firstItem="ey2-QU-lGD" firstAttribute="trailing" secondItem="zQ0-1e-ut6" secondAttribute="trailing" constant="16" id="agM-L2-vA6"/>
                         <constraint firstItem="vep-Ov-X4x" firstAttribute="top" secondItem="ey2-QU-lGD" secondAttribute="top" constant="12" id="fUs-Qr-1rD"/>
                         <constraint firstItem="vep-Ov-X4x" firstAttribute="centerX" secondItem="n8P-tB-QBs" secondAttribute="centerX" id="gAf-nO-bYA"/>
@@ -549,7 +555,7 @@
                         <constraint firstItem="v1h-sZ-73Y" firstAttribute="top" secondItem="n8P-tB-QBs" secondAttribute="top" constant="16" id="l0b-AZ-aSZ"/>
                         <constraint firstItem="zQ0-1e-ut6" firstAttribute="top" secondItem="n8P-tB-QBs" secondAttribute="top" constant="16" id="sts-De-lqJ"/>
                         <constraint firstItem="vep-Ov-X4x" firstAttribute="leading" secondItem="ey2-QU-lGD" secondAttribute="leading" constant="45" id="xNF-0I-FE3"/>
-                        <constraint firstItem="b9h-wa-nsh" firstAttribute="top" secondItem="RmR-bD-VuN" secondAttribute="bottom" constant="64" id="zRR-70-Vgj"/>
+                        <constraint firstItem="b9h-wa-nsh" firstAttribute="top" secondItem="RmR-bD-VuN" secondAttribute="bottom" constant="14" id="zRR-70-Vgj"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="ey2-QU-lGD"/>
                 </view>
@@ -1002,7 +1008,10 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZR-hj-deh" customClass="RoundedButton" customModule="Park_" customModuleProvider="target">
-                            <rect key="frame" x="251" y="461" width="120" height="40"/>
+                            <rect key="frame" x="251" y="421" width="120" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="foP-cq-xXM"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                             <state key="normal" title="确认" backgroundImage="button">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1014,20 +1023,23 @@
                             </connections>
                         </button>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请重试" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MLS-U6-CZm">
-                            <rect key="frame" x="45" y="379" width="532" height="18"/>
+                            <rect key="frame" x="45" y="389" width="532" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="1" green="0.30980392159999998" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="loW-Zm-x0N">
-                            <rect key="frame" x="45" y="32" width="532" height="335"/>
+                            <rect key="frame" x="45" y="32" width="532" height="345"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZ0-pL-faS">
-                                    <rect key="frame" x="0.0" y="0.0" width="532" height="335"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="532" height="345"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZN-yb-haF">
-                                            <rect key="frame" x="0.0" y="320" width="532" height="1"/>
+                                            <rect key="frame" x="0.0" y="330" width="532" height="1"/>
                                             <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="P1u-xh-6BE"/>
+                                            </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择您的角色" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQ3-62-BpM">
                                             <rect key="frame" x="203" y="50" width="127" height="21"/>
@@ -1040,7 +1052,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="B3k-xl-pbO">
-                                            <rect key="frame" x="0.0" y="128" width="532" height="29"/>
+                                            <rect key="frame" x="0.0" y="128" width="532" height="39"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="38" id="yEa-HU-d4b"/>
+                                            </constraints>
                                             <segments>
                                                 <segment title="车位使用者"/>
                                                 <segment title="车位出租者"/>
@@ -1048,7 +1063,7 @@
                                             </segments>
                                         </segmentedControl>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="角色说明：" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TlW-4s-HvO">
-                                            <rect key="frame" x="0.0" y="189" width="532" height="95"/>
+                                            <rect key="frame" x="0.0" y="199" width="532" height="95"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="95" id="aS2-FK-Vjr"/>
@@ -1089,10 +1104,9 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="G1b-r0-SbB" firstAttribute="bottom" secondItem="IZR-hj-deh" secondAttribute="bottom" constant="35" id="7kb-w4-PpW"/>
                         <constraint firstItem="loW-Zm-x0N" firstAttribute="trailing" secondItem="MLS-U6-CZm" secondAttribute="trailing" id="Dcf-zk-e6q"/>
                         <constraint firstItem="MLS-U6-CZm" firstAttribute="centerX" secondItem="IZR-hj-deh" secondAttribute="centerX" id="Dtd-DV-9FV"/>
-                        <constraint firstItem="IZR-hj-deh" firstAttribute="top" secondItem="MLS-U6-CZm" secondAttribute="bottom" constant="64" id="Iea-lH-Tps"/>
+                        <constraint firstItem="IZR-hj-deh" firstAttribute="top" secondItem="MLS-U6-CZm" secondAttribute="bottom" constant="14" id="Iea-lH-Tps"/>
                         <constraint firstItem="evf-wK-vjW" firstAttribute="top" secondItem="fz1-95-C7E" secondAttribute="top" constant="16" id="K9L-E5-24O"/>
                         <constraint firstItem="loW-Zm-x0N" firstAttribute="top" secondItem="G1b-r0-SbB" secondAttribute="top" constant="12" id="L53-pw-432"/>
                         <constraint firstItem="G1b-r0-SbB" firstAttribute="trailing" secondItem="evf-wK-vjW" secondAttribute="trailing" constant="16" id="as6-eP-7J0"/>

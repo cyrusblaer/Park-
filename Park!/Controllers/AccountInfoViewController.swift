@@ -8,7 +8,7 @@
 
 import UIKit
 import Photos
-import WilddogAuth
+import Wilddog
 
 class AccountInfoViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
@@ -70,6 +70,28 @@ class AccountInfoViewController: UIViewController, UITextFieldDelegate, UINaviga
         self.userTypeView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.6).isActive = true
         self.userTypeView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1).isActive = true
         self.userTypeView.layer.cornerRadius = 8
+    }
+    
+    func loadProfileInfo() {
+        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
+            self.phoneLabel.text = (userInformation["phone"] as! String)
+            self.displayNameLabel.text = (userInformation["displayName"] as! String)
+            if let userType = userInformation["userType"] as? Int {
+                switch userType {
+                case 3:
+                    self.userTypeLabel.text = "管理员"
+                case 2:
+                    self.userTypeLabel.text = "物业公司"
+                case 1:
+                    self.userTypeLabel.text = "车位出租者"
+                case 0:
+                    self.userTypeLabel.text = "车位使用者"
+                default:
+                    self.userTypeLabel.text = ""
+            }
+            
+            }
+        }
     }
     
     @IBAction func resetPwdAction(_ sender: UIButton) {
@@ -168,6 +190,7 @@ class AccountInfoViewController: UIViewController, UITextFieldDelegate, UINaviga
     override func viewDidLoad() {
         super.viewDidLoad()
         self.customization()
+        self.loadProfileInfo()
         
     }
     func openPhotoPickerWith(source: PhotoSource) {

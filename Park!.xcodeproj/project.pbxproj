@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		34EDB16B0B81F193615E7AFF /* Pods_Park_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5F5E147AF90C65D6DC222D /* Pods_Park_.framework */; };
+		8816DEEA205AB0DA00CC8219 /* ParkingSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816DEE9205AB0DA00CC8219 /* ParkingSpace.swift */; };
+		8816DEEC205ABF6600CC8219 /* ParkingLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816DEEB205ABF6600CC8219 /* ParkingLot.swift */; };
+		8816DEEE205ABF7200CC8219 /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816DEED205ABF7200CC8219 /* Orders.swift */; };
 		8834B83F2057708600D22E31 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B83E2057708600D22E31 /* LoginViewController.swift */; };
 		8834B8412057709400D22E31 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B8402057709400D22E31 /* WelcomeViewController.swift */; };
 		8834B8432057713700D22E31 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B8422057713700D22E31 /* LandingViewController.swift */; };
@@ -30,6 +33,9 @@
 		3A51C939DBCACB710F5F9FE6 /* Pods-Park!.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Park!.release.xcconfig"; path = "Pods/Target Support Files/Pods-Park!/Pods-Park!.release.xcconfig"; sourceTree = "<group>"; };
 		48DB69C426D4E2C9A3D88CB9 /* Pods-Park!.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Park!.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Park!/Pods-Park!.debug.xcconfig"; sourceTree = "<group>"; };
 		6D5F5E147AF90C65D6DC222D /* Pods_Park_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Park_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8816DEE9205AB0DA00CC8219 /* ParkingSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingSpace.swift; sourceTree = "<group>"; };
+		8816DEEB205ABF6600CC8219 /* ParkingLot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLot.swift; sourceTree = "<group>"; };
+		8816DEED205ABF7200CC8219 /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
 		8834B83E2057708600D22E31 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8834B8402057709400D22E31 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		8834B8422057713700D22E31 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +99,9 @@
 			isa = PBXGroup;
 			children = (
 				8834B847205778EA00D22E31 /* Users.swift */,
+				8816DEE9205AB0DA00CC8219 /* ParkingSpace.swift */,
+				8816DEEB205ABF6600CC8219 /* ParkingLot.swift */,
+				8816DEED205ABF7200CC8219 /* Orders.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -304,16 +313,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				8834B83F2057708600D22E31 /* LoginViewController.swift in Sources */,
+				8816DEEA205AB0DA00CC8219 /* ParkingSpace.swift in Sources */,
 				8834B8412057709400D22E31 /* WelcomeViewController.swift in Sources */,
 				88566BB12059481700C9141D /* AccountTableViewController.swift in Sources */,
 				8834B8452057756D00D22E31 /* Helper Files.swift in Sources */,
 				8834B855205A58EB00D22E31 /* AccountInfoViewController.swift in Sources */,
+				8816DEEE205ABF7200CC8219 /* Orders.swift in Sources */,
 				8834B84A2057A86600D22E31 /* HomeTableViewController.swift in Sources */,
 				8834B84E20581DDE00D22E31 /* ParkTableViewController.swift in Sources */,
 				88EDCD3820567309006E6119 /* MapViewController.swift in Sources */,
 				8834B8432057713700D22E31 /* LandingViewController.swift in Sources */,
 				88B6774920592D000035A0E7 /* HomeTableViewCell.swift in Sources */,
 				8834B853205A4AF500D22E31 /* AccountTableViewCell.swift in Sources */,
+				8816DEEC205ABF6600CC8219 /* ParkingLot.swift in Sources */,
 				885D2CEE203FFB290095D581 /* AppDelegate.swift in Sources */,
 				8834B848205778EA00D22E31 /* Users.swift in Sources */,
 			);

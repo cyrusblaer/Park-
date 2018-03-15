@@ -111,7 +111,7 @@ class User: NSObject {
                     }
                 }
                 
-                let userInfo = ["phone" : phone, "password" : password, "displayName": withName]
+                let userInfo = ["phone" : phone, "password" : password, "displayName": withName, "userType": nil]
                 UserDefaults.standard.set(userInfo, forKey: "userInformation")
                 completion(true)
             }
@@ -122,15 +122,16 @@ class User: NSObject {
     class func createUserInDatabaseWith(uid: String, phone: String, userType: Int, completion: @escaping (Bool) -> Swift.Void) {
         let usersRef = WDGSync.sync().reference().child("users")
         
-        if usersRef.accessibilityElementCount() == 0 {
-            WDGSync.sync().reference().setValue(["users" : nil])
-        }
+//        if usersRef.accessibilityElementCount() == 0 {
+//            WDGSync.sync().reference().setValue(["users" : nil])
+//        }
         
-        let userInfo = [phone : ["uid": uid, "userType": userType]]
+        let userInfo = ["uid": uid, "userType": userType] as [String : Any]
         
-        usersRef.setValue(userInfo) { (error, ref) in
+        usersRef.child(phone).setValue(userInfo) { (error, ref) in
             if error == nil {
                 completion(true)
+                UserDefaults.standard.set(userType, forKey: "userType")
             }
             else {
                  completion(false)
@@ -162,6 +163,7 @@ class User: NSObject {
                         }
                         else {
                             completion(true)
+                            UserDefaults.standard.set(userType, forKey: "userType")
                         }
                     })
                     
@@ -190,9 +192,17 @@ class User: NSObject {
         
         WDGAuth.auth()?.signIn(withPhone: withPhone, password: password, completion: { (user, error) in
             if error == nil {
-                let userInfo = ["phone": withPhone, "password": password, "displayName": user?.displayName]
-                UserDefaults.standard.set(userInfo, forKey: "userInformation")
-                completion(true)
+                let currentUserRef =  WDGSync.sync().reference().child("users").child((user?.phone)!)
+                
+                //  读取key对应value使用以下方法
+                currentUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                    let values = snapshot.value as? NSDictionary
+                    let userType = values!["userType"] as! Int
+                    let userInfo = ["phone": withPhone, "password": password, "displayName": (user?.displayName)!, "userType" : userType] as [String : Any]
+                    UserDefaults.standard.set(userInfo, forKey: "userInformation")
+                    completion(true)
+                })
+                
             } else {
                 completion(false)
             }
