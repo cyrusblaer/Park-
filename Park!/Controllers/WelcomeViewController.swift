@@ -18,6 +18,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UINavigation
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet var registerView: UIView!
     @IBOutlet var loginView: UIView!
+    @IBOutlet var userTypeView: UIView!
     @IBOutlet weak var profilePicView: RoundedImageView!
     @IBOutlet weak var registerNameField: UITextField!
     @IBOutlet weak var registerEmailField: UITextField!
@@ -30,10 +31,14 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UINavigation
     @IBOutlet weak var cloudsViewLeading: NSLayoutConstraint!
     @IBOutlet var inputFields: [UITextField]!
     
+    @IBOutlet weak var userTypeSeg: UISegmentedControl!
+    
+    @IBOutlet weak var switchButton: UIButton!
     var registerUser: WDGUser!
     
     var loginViewTopConstraint: NSLayoutConstraint!
     var registerTopConstraint: NSLayoutConstraint!
+    var userTypeViewTopConstraint: NSLayoutConstraint!
     let imagePicker = UIImagePickerController()
     var isLoginViewVisible = true
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -66,6 +71,18 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UINavigation
         self.registerView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.6).isActive = true
         self.registerView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
         self.registerView.layer.cornerRadius = 8
+        
+        //UserTypeView Customization
+        
+        
+        self.view.insertSubview(self.userTypeView, belowSubview: self.registerView)
+        self.userTypeView.translatesAutoresizingMaskIntoConstraints = false
+        self.userTypeView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.userTypeViewTopConstraint = NSLayoutConstraint.init(item: self.userTypeView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 1000)
+        self.userTypeViewTopConstraint.isActive = true
+        self.userTypeView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.6).isActive = true
+        self.userTypeView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1).isActive = true
+        self.userTypeView.layer.cornerRadius = 8
     }
     
     func cloundsAnimation() {
@@ -96,6 +113,21 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UINavigation
     func pushTomainView() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "TabBarVC") as! RAMAnimatedTabBarController
         self.show(vc, sender: nil)
+    }
+    
+    func pushUserTypeView() {
+        self.isLoginViewVisible = false
+        self.switchButton.isHidden = true
+        self.loginViewTopConstraint.constant = 1000
+        self.registerTopConstraint.constant = 1000
+        self.userTypeViewTopConstraint.constant = 60
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        })
+        for item in self.waringLabels {
+            item.isHidden = true
+        }
     }
     
     func openPhotoPickerWith(source: PhotoSource) {
@@ -150,8 +182,10 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UINavigation
                     item.text = ""
                 }
                 if status == true {
-                    weakSelf?.pushTomainView()
+//                    weakSelf?.pushTomainView()
+                    weakSelf?.pushUserTypeView()
                     weakSelf?.profilePicView.image = UIImage.init(named: "profile pic")
+                    
                 } else {
                     for item in (weakSelf?.waringLabels)! {
                         item.isHidden = false
@@ -200,6 +234,22 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UINavigation
 //                weakSelf = nil
 //            }
 //        }
+    }
+    
+    @IBAction func comfirmUserTypeAction(_ sender: Any) {
+        
+        User.updateUserInfoWith(userType: self.userTypeSeg.selectedSegmentIndex, name: (WDGAuth.auth()?.currentUser?.displayName)!) { [weak weakSelf = self](state) in
+            if state {
+                // pop out
+                weakSelf?.pushTomainView()
+            }
+            else {
+                for item in (weakSelf?.waringLabels)! {
+                    item.isHidden = false
+                }
+            }
+            weakSelf = nil
+        }
     }
     
     @IBAction func selectPic(_ sender: Any) {

@@ -15,9 +15,15 @@ class AccountTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "您好,"
+        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
+            let displayName = userInformation["displayName"] as! String
+            self.navigationItem.title = "您好," + displayName
+        }
+        else {
+            self.navigationItem.title = "您好"
+        }
         
-        self.logoutButton = RoundedButton.init(frame: CGRect.init(x: 10, y: GlobalVariables.kScreenHeight - 59 - 96 - 40 - 20, width: 120, height: 40))
+        self.logoutButton = RoundedButton.init(frame: CGRect.init(x: 10, y: GlobalVariables.kScreenHeight - 109 - 96 - 40 - 20, width: 120, height: 40))
         self.logoutButton.titleLabel?.font = UIFont.init(name: "Avenir Book", size: 17)
         self.logoutButton.setTitle("登出", for: .normal)
         self.logoutButton.setTitleColor(.white, for: .normal)
@@ -50,10 +56,20 @@ class AccountTableViewController: UITableViewController {
         self.present(vc, animated: true, completion: nil)
     }
     
+    
+    
 }
 extension AccountTableViewController {
     
-   
+    override func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard case let cell as AccountTableViewCell = cell else {
+            return
+        }
+        cell.backgroundColor = .clear
+        cell.type = indexPath.row
+        
+    }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -71,11 +87,23 @@ extension AccountTableViewController {
      
         // Configure the cell...
         
+        if indexPath.row == 0 {
+            
+        }
+        
         return cell
      }
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        switch indexPath.row {
+        case 0:
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "userInfo") as! UIViewController
+            self.present(vc, animated: true, completion: nil)
+        default:
+            print("default")
+        }
         
     }
     

@@ -15,6 +15,8 @@
 		8834B848205778EA00D22E31 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B847205778EA00D22E31 /* Users.swift */; };
 		8834B84A2057A86600D22E31 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B8492057A86600D22E31 /* HomeTableViewController.swift */; };
 		8834B84E20581DDE00D22E31 /* ParkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B84D20581DDE00D22E31 /* ParkTableViewController.swift */; };
+		8834B853205A4AF500D22E31 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B852205A4AF500D22E31 /* AccountTableViewCell.swift */; };
+		8834B855205A58EB00D22E31 /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B854205A58EB00D22E31 /* AccountInfoViewController.swift */; };
 		88566BB12059481700C9141D /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88566BB02059481700C9141D /* AccountTableViewController.swift */; };
 		885D2CEE203FFB290095D581 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885D2CED203FFB290095D581 /* AppDelegate.swift */; };
 		885D2CF3203FFB290095D581 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885D2CF1203FFB290095D581 /* Main.storyboard */; };
@@ -35,6 +37,8 @@
 		8834B847205778EA00D22E31 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		8834B8492057A86600D22E31 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		8834B84D20581DDE00D22E31 /* ParkTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkTableViewController.swift; sourceTree = "<group>"; };
+		8834B852205A4AF500D22E31 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
+		8834B854205A58EB00D22E31 /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
 		88566BB02059481700C9141D /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
 		885D2CEA203FFB290095D581 /* Park!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Park!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		885D2CED203FFB290095D581 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				88B6774820592D000035A0E7 /* HomeTableViewCell.swift */,
+				8834B852205A4AF500D22E31 /* AccountTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 				8834B8492057A86600D22E31 /* HomeTableViewController.swift */,
 				8834B84D20581DDE00D22E31 /* ParkTableViewController.swift */,
 				88566BB02059481700C9141D /* AccountTableViewController.swift */,
+				8834B854205A58EB00D22E31 /* AccountInfoViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -283,7 +289,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -301,11 +307,13 @@
 				8834B8412057709400D22E31 /* WelcomeViewController.swift in Sources */,
 				88566BB12059481700C9141D /* AccountTableViewController.swift in Sources */,
 				8834B8452057756D00D22E31 /* Helper Files.swift in Sources */,
+				8834B855205A58EB00D22E31 /* AccountInfoViewController.swift in Sources */,
 				8834B84A2057A86600D22E31 /* HomeTableViewController.swift in Sources */,
 				8834B84E20581DDE00D22E31 /* ParkTableViewController.swift in Sources */,
 				88EDCD3820567309006E6119 /* MapViewController.swift in Sources */,
 				8834B8432057713700D22E31 /* LandingViewController.swift in Sources */,
 				88B6774920592D000035A0E7 /* HomeTableViewCell.swift in Sources */,
+				8834B853205A4AF500D22E31 /* AccountTableViewCell.swift in Sources */,
 				885D2CEE203FFB290095D581 /* AppDelegate.swift in Sources */,
 				8834B848205778EA00D22E31 /* Users.swift in Sources */,
 			);

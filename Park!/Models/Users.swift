@@ -88,7 +88,6 @@ class User: NSObject {
                 
                 if let user = user {
                     let changeRequest = user.profileChangeRequest()
-                    
                     changeRequest.displayName = withName
 //                    changeRequest.photoURL =
 //                        NSURL(string: "https://example.com/jane-q-user/profile.jpg") as URL?
@@ -98,11 +97,21 @@ class User: NSObject {
                             print(error.localizedDescription)
                         } else {
                             // 更新成功
+                            print("更新成功")
+                            
+                            createUserInDatabaseWith(uid: user.uid, phone: user.phone!, userType: 0, completion: { (state) in
+                                if state {
+                                    print("database insert successed")
+                                }
+                                else {
+                                    print("Database insert error")
+                                }
+                            })
                         }
                     }
                 }
                 
-                let userInfo = ["phone" : phone, "password" : password]
+                let userInfo = ["phone" : phone, "password" : password, "displayName": withName]
                 UserDefaults.standard.set(userInfo, forKey: "userInformation")
                 completion(true)
             }
@@ -110,11 +119,78 @@ class User: NSObject {
         
     }
     
+    class func createUserInDatabaseWith(uid: String, phone: String, userType: Int, completion: @escaping (Bool) -> Swift.Void) {
+        let usersRef = WDGSync.sync().reference().child("users")
+        
+        if usersRef.accessibilityElementCount() == 0 {
+            WDGSync.sync().reference().setValue(["users" : nil])
+        }
+        
+        let userInfo = [phone : ["uid": uid, "userType": userType]]
+        
+        usersRef.setValue(userInfo) { (error, ref) in
+            if error == nil {
+                completion(true)
+            }
+            else {
+                 completion(false)
+            }
+        }
+    }
+    
+    class func updateUserInfoWith(userType: Int, name: String, completion: @escaping (Bool) -> Swift.Void) {
+        let currentUser = WDGAuth.auth()?.currentUser
+        if let user = currentUser {
+            let changeRequest = user.profileChangeRequest()
+            changeRequest.displayName = name
+            //                    changeRequest.photoURL =
+            //                        NSURL(string: "https://example.com/jane-q-user/profile.jpg") as URL?
+            changeRequest.commitChanges { error in
+                if let error = error {
+                    // 发生错误
+                    print(error.localizedDescription)
+                    completion(false)
+                }
+                else {
+                    let currentUserRef = WDGSync.sync().reference().child("users").child((currentUser?.phone)!)
+                    let values = ["userType": userType]
+                    currentUserRef.updateChildValues(values, withCompletionBlock: { (error, ref) in
+                        if let error = error {
+                            // 发生错误
+                            print(error.localizedDescription)
+                            completion(false)
+                        }
+                        else {
+                            completion(true)
+                        }
+                    })
+                    
+                }
+            }
+        }
+    }
+    
+    class func changePwd(newPassword: String, completion: @escaping (Bool) -> Swift.Void) {
+        let user = WDGAuth.auth()?.currentUser
+        let newPassword = newPassword
+        user?.updatePassword(newPassword) { error in
+            if let error = error {
+                // 发生错误
+                print(error.localizedDescription)
+                completion(false)
+            } else {
+                // 更新成功
+                print("Password update success")
+                completion(true)
+            }
+        }
+    }
+    
     class func loginUser(withPhone: String, password: String, completion: @escaping (Bool) -> Swift.Void) {
         
         WDGAuth.auth()?.signIn(withPhone: withPhone, password: password, completion: { (user, error) in
             if error == nil {
-                let userInfo = ["phone": withPhone, "password": password]
+                let userInfo = ["phone": withPhone, "password": password, "displayName": user?.displayName]
                 UserDefaults.standard.set(userInfo, forKey: "userInformation")
                 completion(true)
             } else {
