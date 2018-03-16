@@ -20,7 +20,7 @@ class AccountTableViewCell: UITableViewCell {
             case 0:
                 titleTextLabel.text = "个人信息"
             case 1:
-                titleTextLabel.text = "消费记录"
+                titleTextLabel.text = "使用记录"
             case 2:
                 titleTextLabel.text = "设置"
             case 3:

@@ -20,19 +20,66 @@ class ParkingSpace {
     var isRent: Bool
     var tenantId: String?
     
-    class func addParkingSpaceWith(ownerId: String, lotId: String, createTime: String, completion: @escaping (Bool) -> Swift.Void) {
+    class func addParkingSpaceWith(ownerId: String, lotId: String, isReady: Bool, completion: @escaping (Bool) -> Swift.Void) {
         
-        let parkingSpaceRef = WDGSync.sync().reference().child("parkingspaces")
+        let parkingSpaceRef = WDGSync.sync().reference().child("spaces")
         
-        let spaceId = "1"
+        var spaceId : String?
+        parkingSpaceRef.queryOrderedByKey().observeSingleEvent(of: .value, with: { (snap) in
+            let values = snap.value as? NSDictionary
+            if values?.count == 0 {
+                print("Database Failure")
+            }
+            else {
+                spaceId = String(format: "%6d", (values?.count)!+1)
+                spaceId = spaceId?.replacingOccurrences(of: " ", with: "0")
+            }
+            let spaceInfo = ["owner": ownerId, "lotId": lotId, "isRent": false, "isReady": isReady] as [String : Any]
+            
+            parkingSpaceRef.child(spaceId!).setValue(spaceInfo) { (error, ref) in
+                if let error = error{
+                    print(error.localizedDescription)
+                    completion(false)
+                }
+                else {
+                    completion(true)
+                    let currentUserSpaceRef = WDGSync.sync().reference().child("users").child(ownerId).child("spaces").child(spaceId!)
+                    currentUserSpaceRef.setValue([spaceId! : spaceId!])
+                }
+            }
         
-        let spaceInfo = [spaceId :["ownerId": ownerId, createTime: createTime]] as [String : Any]
-        
-        parkingSpaceRef.setValue(spaceInfo)
+        })
         
     }
     
+    class func changeSpaceStatus(spaceId: String, isReady: Bool, completion: @escaping (Bool) -> Swift.Void) {
+        
+        let currentSpaceRef = WDGSync.sync().reference().child("spaces").child(spaceId)
+        
+        currentSpaceRef.updateChildValues(["isReady" : isReady]) { (error, ref) in
+            if let error = error {
+                print(error.localizedDescription)
+                completion(false)
+            }
+            else {
+                completion(true)
+            }
+        }
+        
+    }
     
+    class func deleteSpace(ownerId: String, spaceId: String, completion: @escaping (Bool) -> Swift.Void) {
+        
+        let parkingSpaceRef = WDGSync.sync().reference().child("spaces").child(spaceId)
+        parkingSpaceRef.removeValue()
+        
+        let currentUserSpaceRef = WDGSync.sync().reference().child("users").child(ownerId).child("spaces").child(spaceId)
+        
+        currentUserSpaceRef.removeValue()
+        
+        completion(true)
+        
+    }
     
     init(ownerId: String?, lotId: String?, createTime: String?, isRent: Bool, tenantId: String?) {
         self.ownerId = ownerId

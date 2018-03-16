@@ -27,7 +27,17 @@ class ParkTableViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.backgroundColor = UIColor.clear
     }
-
+    @IBAction func addSpaceAction(_ sender: Any) {
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddSpaceVC") as! AddParkSpaceViewController
+        self.present(vc, animated: true, completion: nil)
+        
+    }
+    
+    func pushToAddSpaceVC() {
+        
+    }
+    
 }
 
 // MARK: - TableView

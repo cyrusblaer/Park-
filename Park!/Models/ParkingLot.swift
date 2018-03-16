@@ -11,6 +11,7 @@ import UIKit
 import Wilddog
 
 class ParkingLot {
+    
     var lotId: String?
     var numberOfSpace: Int?
     var rentNumber: Int?

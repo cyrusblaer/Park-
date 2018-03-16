@@ -240,7 +240,6 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UINavigation
         
         User.updateUserInfoWith(userType: self.userTypeSeg.selectedSegmentIndex, name: (WDGAuth.auth()?.currentUser?.displayName)!) { [weak weakSelf = self](state) in
             if state {
-                // pop out
                 weakSelf?.pushTomainView()
             }
             else {
