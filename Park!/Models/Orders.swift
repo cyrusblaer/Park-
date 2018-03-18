@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import Wilddog
+import FirebaseDatabase
 
 class Orders {
     
@@ -35,7 +35,7 @@ class Orders {
         if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
             let owner = userInformation["phone"] as! String
             
-            let orderRef = WDGSync.sync().reference().child("orders")
+            let orderRef = Database.database().reference().child("orders")
             
             let orderInfo = ["orderId" : orderId, "isFinished" : false, "tenantId": tenantId, "spaceId" : spaceId, "fromTime": timeString, "owner": owner] as [String : Any]
             orderRef.setValue(orderInfo, withCompletionBlock: { (error, ref) in

@@ -8,7 +8,6 @@
 
 import UIKit
 import Photos
-import Wilddog
 import RAMAnimatedTabBarController
 
 class WelcomeViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -34,7 +33,6 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UINavigation
     @IBOutlet weak var userTypeSeg: UISegmentedControl!
     
     @IBOutlet weak var switchButton: UIButton!
-    var registerUser: WDGUser!
     
     var loginViewTopConstraint: NSLayoutConstraint!
     var registerTopConstraint: NSLayoutConstraint!
@@ -238,16 +236,20 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UINavigation
     
     @IBAction func comfirmUserTypeAction(_ sender: Any) {
         
-        User.updateUserInfoWith(userType: self.userTypeSeg.selectedSegmentIndex, name: (WDGAuth.auth()?.currentUser?.displayName)!) { [weak weakSelf = self](state) in
-            if state {
-                weakSelf?.pushTomainView()
-            }
-            else {
-                for item in (weakSelf?.waringLabels)! {
-                    item.isHidden = false
+        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
+            let name = userInformation["name"] as! String
+            
+            User.updateUserInfoWith(userType: self.userTypeSeg.selectedSegmentIndex, name: name) { [weak weakSelf = self](state) in
+                if state {
+                    weakSelf?.pushTomainView()
                 }
+                else {
+                    for item in (weakSelf?.waringLabels)! {
+                        item.isHidden = false
+                    }
+                }
+                weakSelf = nil
             }
-            weakSelf = nil
         }
     }
     

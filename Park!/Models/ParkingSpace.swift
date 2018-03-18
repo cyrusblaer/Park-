@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import Wilddog
 import UIKit
+import FirebaseDatabase
 
 class ParkingSpace {
     
@@ -22,7 +22,7 @@ class ParkingSpace {
     
     class func addParkingSpaceWith(ownerId: String, lotId: String, isReady: Bool, completion: @escaping (Bool) -> Swift.Void) {
         
-        let parkingSpaceRef = WDGSync.sync().reference().child("spaces")
+        let parkingSpaceRef = Database.database().reference().child("spaces")
         
         var spaceId : String?
         parkingSpaceRef.queryOrderedByKey().observeSingleEvent(of: .value, with: { (snap) in
@@ -43,7 +43,7 @@ class ParkingSpace {
                 }
                 else {
                     completion(true)
-                    let currentUserSpaceRef = WDGSync.sync().reference().child("users").child(ownerId).child("spaces").child(spaceId!)
+                    let currentUserSpaceRef = Database.database().reference().child("users").child(ownerId).child("spaces").child(spaceId!)
                     currentUserSpaceRef.setValue([spaceId! : spaceId!])
                 }
             }
@@ -54,7 +54,7 @@ class ParkingSpace {
     
     class func changeSpaceStatus(spaceId: String, isReady: Bool, completion: @escaping (Bool) -> Swift.Void) {
         
-        let currentSpaceRef = WDGSync.sync().reference().child("spaces").child(spaceId)
+        let currentSpaceRef = Database.database().reference().child("spaces").child(spaceId)
         
         currentSpaceRef.updateChildValues(["isReady" : isReady]) { (error, ref) in
             if let error = error {
@@ -70,10 +70,10 @@ class ParkingSpace {
     
     class func deleteSpace(ownerId: String, spaceId: String, completion: @escaping (Bool) -> Swift.Void) {
         
-        let parkingSpaceRef = WDGSync.sync().reference().child("spaces").child(spaceId)
+        let parkingSpaceRef = Database.database().reference().child("spaces").child(spaceId)
         parkingSpaceRef.removeValue()
         
-        let currentUserSpaceRef = WDGSync.sync().reference().child("users").child(ownerId).child("spaces").child(spaceId)
+        let currentUserSpaceRef = Database.database().reference().child("users").child(ownerId).child("spaces").child(spaceId)
         
         currentUserSpaceRef.removeValue()
         

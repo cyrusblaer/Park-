@@ -8,9 +8,7 @@
 
 import UIKit
 import AMapFoundationKit
-import Wilddog
-import QCloudCore
-import QCloudCOSXML
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,11 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //  高德地图初始化
         AMapServices.shared().apiKey = "17d6e6bfd8ff307c18483da6280cf1c6"
-        //  WildDog初始化
-        let options = WDGOptions.init(syncURL: "https://wd8986093797xenueg.wilddogio.com")
-        WDGApp.configure(with: options)
-        let auth = WDGAuth.auth()
+//        //  WildDog初始化
+//        let options = WDGOptions.init(syncURL: "https://wd8986093797xenueg.wilddogio.com")
+//        WDGApp.configure(with: options)
+//        let auth = WDGAuth.auth()
         
+        FirebaseApp.configure()
 //        //  腾讯云对象存储初始化
 //        var configuration = QCloudServiceConfiguration()
 //        configuration.appID = "1254251493"

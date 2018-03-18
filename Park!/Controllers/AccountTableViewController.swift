@@ -16,7 +16,7 @@ class AccountTableViewController: UITableViewController {
         super.viewDidLoad()
         
         if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
-            let displayName = userInformation["displayName"] as! String
+            let displayName = userInformation["name"] as! String
             self.navigationItem.title = "您好," + displayName
         }
         else {

@@ -8,7 +8,6 @@
 
 import UIKit
 import Photos
-import Wilddog
 
 class AccountInfoViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
@@ -61,7 +60,7 @@ class AccountInfoViewController: UIViewController, UITextFieldDelegate, UINaviga
         self.passwordView.layer.cornerRadius = 8
         //UserTypeView Customization
         
-        self.displayNameTextField.text = WDGAuth.auth()?.currentUser?.displayName
+        self.displayNameTextField.text = ""
         self.view.insertSubview(self.userTypeView, belowSubview: self.profileView)
         self.userTypeView.translatesAutoresizingMaskIntoConstraints = false
         self.userTypeView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true

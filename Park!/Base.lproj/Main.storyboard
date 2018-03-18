@@ -81,22 +81,115 @@
                     <view key="view" contentMode="scaleToFill" id="8Dj-O0-r10">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view hidden="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="596-4v-iII">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="JSh-4E-uhG">
+                                        <rect key="frame" x="178" y="324" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="JSh-4E-uhG" firstAttribute="centerY" secondItem="596-4v-iII" secondAttribute="centerY" id="T3n-hT-QZC"/>
+                                    <constraint firstItem="JSh-4E-uhG" firstAttribute="centerX" secondItem="596-4v-iII" secondAttribute="centerX" id="xgX-rL-gvy"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="596-4v-iII" secondAttribute="trailing" id="PRr-2z-yFv"/>
+                            <constraint firstItem="596-4v-iII" firstAttribute="leading" secondItem="8Dj-O0-r10" secondAttribute="leading" id="aD7-Rg-XSr"/>
+                            <constraint firstItem="596-4v-iII" firstAttribute="top" secondItem="8Dj-O0-r10" secondAttribute="top" id="osi-ed-Pzl"/>
+                            <constraint firstAttribute="bottom" secondItem="596-4v-iII" secondAttribute="bottom" id="p0P-e3-mju"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="qpR-dr-lz2"/>
                     </view>
                     <navigationItem key="navigationItem" id="ONu-jr-fA8"/>
                     <connections>
-                        <outlet property="spaceIdInputTextField" destination="MXL-Ix-QJA" id="MzW-cZ-reL"/>
-                        <outlet property="startParkView" destination="Z93-Wc-Yxa" id="2SC-88-wL4"/>
+                        <outlet property="darkView" destination="596-4v-iII" id="VJ3-BE-zOS"/>
+                        <outlet property="parkTimeLabel" destination="PcM-FR-nd8" id="i0a-7R-rLI"/>
+                        <outlet property="parkTimeView" destination="Z93-Wc-Yxa" id="ueA-S6-7H5"/>
+                        <outlet property="spaceIdInputTextField" destination="DNp-Vu-LZY" id="5je-yw-GE8"/>
+                        <outlet property="spinner" destination="JSh-4E-uhG" id="4xp-Re-Zcm"/>
+                        <outlet property="startParkView" destination="4ZY-k8-B6v" id="Ze6-zU-y3U"/>
                     </connections>
                 </viewController>
+                <view contentMode="scaleToFill" id="4ZY-k8-B6v">
+                    <rect key="frame" x="0.0" y="0.0" width="372" height="368"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入车位识别码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1VZ-qG-pod">
+                            <rect key="frame" x="106" y="44" width="161" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="34" id="VbZ-hI-UD0"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                            <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DNp-Vu-LZY">
+                            <rect key="frame" x="54" y="94" width="263" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiG-p8-BmG" customClass="RoundedButton" customModule="Park_" customModuleProvider="target">
+                            <rect key="frame" x="125" y="252" width="120" height="40"/>
+                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                            <state key="normal" title="确认" backgroundImage="button">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="startPark:" destination="msT-c9-FqS" eventType="touchUpInside" id="HVm-vy-mB1"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="DNp-Vu-LZY" firstAttribute="top" secondItem="1VZ-qG-pod" secondAttribute="bottom" constant="16" id="1fD-WZ-GAW"/>
+                        <constraint firstItem="DNp-Vu-LZY" firstAttribute="centerX" secondItem="4ZY-k8-B6v" secondAttribute="centerX" id="2jJ-cR-Sk8"/>
+                        <constraint firstItem="1VZ-qG-pod" firstAttribute="leading" secondItem="LL3-ho-OGu" secondAttribute="leading" constant="106" id="Ptk-ku-a2O"/>
+                        <constraint firstItem="1VZ-qG-pod" firstAttribute="top" secondItem="LL3-ho-OGu" secondAttribute="top" constant="44" id="SfY-K5-o7W"/>
+                        <constraint firstItem="DNp-Vu-LZY" firstAttribute="leading" secondItem="LL3-ho-OGu" secondAttribute="leading" constant="54" id="aAp-04-UKZ"/>
+                        <constraint firstItem="1VZ-qG-pod" firstAttribute="centerX" secondItem="4ZY-k8-B6v" secondAttribute="centerX" id="b7M-PI-VNB"/>
+                        <constraint firstItem="DNp-Vu-LZY" firstAttribute="centerX" secondItem="IiG-p8-BmG" secondAttribute="centerX" id="lzZ-jN-gE3"/>
+                        <constraint firstItem="LL3-ho-OGu" firstAttribute="bottom" secondItem="IiG-p8-BmG" secondAttribute="bottom" constant="76" id="u1R-Eb-LaF"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="LL3-ho-OGu"/>
+                </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Xu-oa-saK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="Z93-Wc-Yxa">
                     <rect key="frame" x="0.0" y="0.0" width="372" height="368"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入车位识别码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxo-bk-YdX">
-                            <rect key="frame" x="106" y="44" width="161" height="34"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EN-t0-ebf" customClass="RoundedButton" customModule="Park_" customModuleProvider="target">
+                            <rect key="frame" x="126" y="252" width="120" height="40"/>
+                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                            <state key="normal" title="结束停放" backgroundImage="button">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="startPark:" destination="msT-c9-FqS" eventType="touchUpInside" id="WrS-j0-YMe"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcM-FR-nd8">
+                            <rect key="frame" x="120" y="94" width="132" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="70" id="euy-IO-h0a"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="注意：" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="W08-wJ-cF5">
+                            <rect key="frame" x="93" y="146" width="186" height="106"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前使用车位" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxo-bk-YdX">
+                            <rect key="frame" x="122" y="52" width="127" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="bL5-FO-XgN"/>
                             </constraints>
@@ -104,35 +197,21 @@
                             <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MXL-Ix-QJA">
-                            <rect key="frame" x="54" y="94" width="263" height="30"/>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EN-t0-ebf" customClass="RoundedButton" customModule="Park_" customModuleProvider="target">
-                            <rect key="frame" x="125" y="252" width="120" height="40"/>
-                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                            <state key="normal" title="确认" backgroundImage="button">
-                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="confirmChangePwd:" destination="3VA-8U-lCb" eventType="touchUpInside" id="M9j-Qr-alE"/>
-                                <action selector="login:" destination="7Za-9i-7tb" eventType="touchUpInside" id="aDu-W0-Zq1"/>
-                                <action selector="startPark:" destination="msT-c9-FqS" eventType="touchUpInside" id="2uZ-BA-8NA"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="MXL-Ix-QJA" firstAttribute="leading" secondItem="RHj-Ak-ZTb" secondAttribute="leading" constant="54" id="1qe-2a-JsA"/>
+                        <constraint firstItem="W08-wJ-cF5" firstAttribute="leading" secondItem="RHj-Ak-ZTb" secondAttribute="leading" constant="93" id="1Pp-Hy-TRf"/>
                         <constraint firstItem="RHj-Ak-ZTb" firstAttribute="bottom" secondItem="9EN-t0-ebf" secondAttribute="bottom" constant="76" id="2cW-i9-ihU"/>
-                        <constraint firstItem="kxo-bk-YdX" firstAttribute="centerX" secondItem="Z93-Wc-Yxa" secondAttribute="centerX" id="3Iy-CB-G2e"/>
-                        <constraint firstItem="MXL-Ix-QJA" firstAttribute="centerX" secondItem="Z93-Wc-Yxa" secondAttribute="centerX" id="BRV-sR-vBE"/>
-                        <constraint firstItem="kxo-bk-YdX" firstAttribute="top" secondItem="RHj-Ak-ZTb" secondAttribute="top" constant="44" id="F7O-2S-8oc"/>
-                        <constraint firstItem="MXL-Ix-QJA" firstAttribute="centerX" secondItem="9EN-t0-ebf" secondAttribute="centerX" id="NOi-6I-nMr"/>
-                        <constraint firstItem="MXL-Ix-QJA" firstAttribute="top" secondItem="kxo-bk-YdX" secondAttribute="bottom" constant="16" id="PFF-dA-MSE"/>
-                        <constraint firstItem="kxo-bk-YdX" firstAttribute="leading" secondItem="RHj-Ak-ZTb" secondAttribute="leading" constant="106" id="X6o-Uj-PQb"/>
+                        <constraint firstItem="kxo-bk-YdX" firstAttribute="centerX" secondItem="Z93-Wc-Yxa" secondAttribute="centerX" constant="-0.5" id="3Iy-CB-G2e"/>
+                        <constraint firstItem="W08-wJ-cF5" firstAttribute="centerX" secondItem="PcM-FR-nd8" secondAttribute="centerX" id="7ke-ef-IJJ"/>
+                        <constraint firstItem="kxo-bk-YdX" firstAttribute="top" secondItem="RHj-Ak-ZTb" secondAttribute="top" constant="52" id="F7O-2S-8oc"/>
+                        <constraint firstItem="PcM-FR-nd8" firstAttribute="top" secondItem="kxo-bk-YdX" secondAttribute="bottom" constant="8" id="KHC-AY-bEv"/>
+                        <constraint firstItem="PcM-FR-nd8" firstAttribute="centerX" secondItem="kxo-bk-YdX" secondAttribute="centerX" constant="0.5" id="T4Y-kV-su1"/>
+                        <constraint firstItem="9EN-t0-ebf" firstAttribute="top" secondItem="W08-wJ-cF5" secondAttribute="bottom" id="VUx-J7-aaH"/>
+                        <constraint firstItem="kxo-bk-YdX" firstAttribute="leading" secondItem="RHj-Ak-ZTb" secondAttribute="leading" constant="122" id="X6o-Uj-PQb"/>
+                        <constraint firstItem="9EN-t0-ebf" firstAttribute="centerX" secondItem="RHj-Ak-ZTb" secondAttribute="centerX" id="Yl3-IV-qYF"/>
+                        <constraint firstItem="W08-wJ-cF5" firstAttribute="top" secondItem="kxo-bk-YdX" secondAttribute="bottom" constant="60" id="pym-B2-Pu0"/>
+                        <constraint firstItem="PcM-FR-nd8" firstAttribute="leading" secondItem="RHj-Ak-ZTb" secondAttribute="leading" constant="120" id="xoX-4W-ILM"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="RHj-Ak-ZTb"/>
                 </view>
@@ -324,7 +403,6 @@
                             </state>
                             <connections>
                                 <action selector="confirmChangePwd:" destination="3VA-8U-lCb" eventType="touchUpInside" id="HTJ-1u-6ZM"/>
-                                <action selector="login:" destination="7Za-9i-7tb" eventType="touchUpInside" id="ADt-Ab-3CN"/>
                             </connections>
                         </button>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="旧密码错误，请重试" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="WHI-Sx-yiO">
@@ -476,7 +554,6 @@
                             </state>
                             <connections>
                                 <action selector="confirmChangeUserInfo:" destination="3VA-8U-lCb" eventType="touchUpInside" id="owg-T3-iB7"/>
-                                <action selector="login:" destination="7Za-9i-7tb" eventType="touchUpInside" id="lwz-7c-HDm"/>
                             </connections>
                         </button>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请重试" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RmR-bD-VuN">
@@ -980,7 +1057,7 @@
                                             </constraints>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="phonePad" keyboardAppearance="alert"/>
                                             <connections>
                                                 <outlet property="delegate" destination="7Za-9i-7tb" id="dMK-A5-JS5"/>
                                             </connections>
@@ -1083,8 +1160,6 @@
                             </state>
                             <connections>
                                 <action selector="comfirmUserTypeAction:" destination="7Za-9i-7tb" eventType="touchUpInside" id="tfC-ID-ZoY"/>
-                                <action selector="confirmChangeUserInfo:" destination="3VA-8U-lCb" eventType="touchUpInside" id="b2n-ls-5Jg"/>
-                                <action selector="login:" destination="7Za-9i-7tb" eventType="touchUpInside" id="l5s-hE-RA7"/>
                             </connections>
                         </button>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请重试" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MLS-U6-CZm">
@@ -1229,7 +1304,7 @@
                                             </constraints>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="phonePad" keyboardAppearance="alert"/>
                                             <connections>
                                                 <outlet property="delegate" destination="7Za-9i-7tb" id="wbz-Qe-CSr"/>
                                             </connections>
