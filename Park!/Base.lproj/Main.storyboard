@@ -1553,13 +1553,31 @@
                                                             <constraint firstAttribute="height" constant="411" id="bK9-GZ-8Gk"/>
                                                         </constraints>
                                                         <prototypes>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchLotTableViewCell" id="wIa-Os-ft9">
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SearchLotTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchLotTableViewCell" id="wIa-Os-ft9" customClass="SearchLotTableViewCell" customModule="Park_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="28" width="328" height="44"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wIa-Os-ft9" id="v1l-xe-4Sl">
                                                                     <rect key="frame" x="0.0" y="0.0" width="328" height="43.5"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zw8-Uw-yjD">
+                                                                            <rect key="frame" x="29" y="10" width="250" height="19.5"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="250" id="ahF-NO-qLv"/>
+                                                                            </constraints>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstItem="Zw8-Uw-yjD" firstAttribute="leading" secondItem="v1l-xe-4Sl" secondAttribute="leading" constant="29" id="GXR-VA-4E6"/>
+                                                                        <constraint firstItem="Zw8-Uw-yjD" firstAttribute="top" secondItem="v1l-xe-4Sl" secondAttribute="top" constant="10" id="MWR-Ct-ags"/>
+                                                                    </constraints>
                                                                 </tableViewCellContentView>
+                                                                <connections>
+                                                                    <outlet property="titleTextLabel" destination="Zw8-Uw-yjD" id="tDe-YP-7Ox"/>
+                                                                </connections>
                                                             </tableViewCell>
                                                         </prototypes>
                                                     </tableView>
@@ -1608,7 +1626,7 @@
                     <connections>
                         <outlet property="lotNameTextField" destination="end-sQ-9Wr" id="ufP-4j-WND"/>
                         <outlet property="numberOfSpaceTextField" destination="P6s-C3-Hpz" id="2Np-8a-fwg"/>
-                        <outlet property="searchResultTableVIew" destination="0yY-Ld-GWd" id="YWm-Ls-f72"/>
+                        <outlet property="searchResultTableView" destination="0yY-Ld-GWd" id="tMP-BV-E9u"/>
                         <outlet property="supervisorPhoneTextField" destination="vW8-6C-d6a" id="OzY-hN-Y5v"/>
                         <outletCollection property="inputFields" destination="end-sQ-9Wr" collectionClass="NSMutableArray" id="dSm-n6-AOz"/>
                         <outletCollection property="inputFields" destination="P6s-C3-Hpz" collectionClass="NSMutableArray" id="tLi-wV-Hdh"/>
@@ -1617,7 +1635,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tgZ-oy-Cwt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3400.8000000000002" y="976.46176911544239"/>
+            <point key="canvasLocation" x="-2911" y="918"/>
         </scene>
         <!--Add Park Space View Controller-->
         <scene sceneID="neY-Pj-S5l">
@@ -1816,7 +1834,7 @@
                 </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CJP-5V-jAq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2190" y="935"/>
+            <point key="canvasLocation" x="-2015" y="918"/>
         </scene>
         <!--Park Table View Controller-->
         <scene sceneID="HCc-m3-bk7">

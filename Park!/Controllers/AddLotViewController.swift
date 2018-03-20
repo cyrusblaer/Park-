@@ -11,6 +11,7 @@ import UIKit
 class AddLotViewController: UIViewController {
 
     var amapSearch = AMapSearchAPI()
+    var annos = Array<MAPointAnnotation>()
     
     @IBOutlet weak var lotNameTextField: UITextField!
     @IBOutlet weak var numberOfSpaceTextField: UITextField!
@@ -18,12 +19,14 @@ class AddLotViewController: UIViewController {
     
     @IBOutlet var inputFields: [UITextField]!
     
-    @IBOutlet weak var searchResultTableVIew: UITableView!
+    @IBOutlet weak var searchResultTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.title = "车场信息登记"
+        self.searchResultTableView.delegate = self
+        self.searchResultTableView.dataSource = self
         self.initAmap()
 
         // Do any additional setup after loading the view.
@@ -66,15 +69,16 @@ extension AddLotViewController: UITextFieldDelegate,AMapSearchDelegate, MAMapVie
     //MARK: - TableView Delegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return annos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchLotTableViewCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchLotTableViewCell", for: indexPath) as! SearchLotTableViewCell
+        
+        cell.title = annos[indexPath.row].title
         
         return cell
     }
-    
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.tag == 3 {
@@ -83,7 +87,9 @@ extension AddLotViewController: UITextFieldDelegate,AMapSearchDelegate, MAMapVie
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        
+//        self.searchResultTableView.isHidden = false
+//        self.searchByKeyword(textField.text!)
+//        self.searchResultTableView.reloadData()
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
@@ -98,7 +104,9 @@ extension AddLotViewController: UITextFieldDelegate,AMapSearchDelegate, MAMapVie
             item.resignFirstResponder()
         }
         if textField.tag == 3 {
-            self.searchResultTableVIew.isHidden = false
+            self.searchResultTableView.isHidden = false
+            self.searchByKeyword(textField.text!)
+            
         }
         else if textField.tag == 4
         {
@@ -121,8 +129,7 @@ extension AddLotViewController: UITextFieldDelegate,AMapSearchDelegate, MAMapVie
         if response.count == 0 {
             return
         }
-        
-        var annos = Array<MAPointAnnotation>()
+        annos.removeAll()
         
         for aPOI in response.pois {
             let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(aPOI.location.latitude), longitude: CLLocationDegrees(aPOI.location.longitude))
@@ -132,6 +139,7 @@ extension AddLotViewController: UITextFieldDelegate,AMapSearchDelegate, MAMapVie
             anno.subtitle = aPOI.address
             annos.append(anno)
         }
+        self.searchResultTableView.reloadData()
     }
     
     

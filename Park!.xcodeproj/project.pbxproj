@@ -31,6 +31,7 @@
 		88AE23642060AF510051DBC5 /* AddLotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE23632060AF510051DBC5 /* AddLotViewController.swift */; };
 		88E829E1205E9C9E00DC4CE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88E829E0205E9C9D00DC4CE7 /* GoogleService-Info.plist */; };
 		88EDCD3820567309006E6119 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EDCD3720567309006E6119 /* MapViewController.swift */; };
+		88F7CE2520611CB800FD7067 /* SearchLotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F7CE2420611CB800FD7067 /* SearchLotTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		88E829E0205E9C9D00DC4CE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88EDCD3720567309006E6119 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		88EDCD3920567543006E6119 /* AMap-Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AMap-Bridge-Header.h"; sourceTree = "<group>"; };
+		88F7CE2420611CB800FD7067 /* SearchLotTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLotTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				8834B852205A4AF500D22E31 /* AccountTableViewCell.swift */,
 				8834B85A205BB4FD00D22E31 /* HomeTableViewCell.swift */,
 				8834B858205BB0BB00D22E31 /* HomePageTableViewCell.swift */,
+				88F7CE2420611CB800FD7067 /* SearchLotTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				8834B855205A58EB00D22E31 /* AccountInfoViewController.swift in Sources */,
 				8816DEEE205ABF7200CC8219 /* Orders.swift in Sources */,
 				8834B84A2057A86600D22E31 /* HomeViewController.swift in Sources */,
+				88F7CE2520611CB800FD7067 /* SearchLotTableViewCell.swift in Sources */,
 				8834B84E20581DDE00D22E31 /* ParkTableViewController.swift in Sources */,
 				88AE23642060AF510051DBC5 /* AddLotViewController.swift in Sources */,
 				88EDCD3820567309006E6119 /* MapViewController.swift in Sources */,
@@ -485,6 +489,7 @@
 			baseConfigurationReference = 48DB69C426D4E2C9A3D88CB9 /* Pods-Park!.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GH9HGGE8DT;
 				INFOPLIST_FILE = "$(SRCROOT)/Park!/Supporting Files/Info.plist";
@@ -492,6 +497,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cyrusblaer.Park-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Park!/Helpers/AMap-Bridge-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -503,6 +509,7 @@
 			baseConfigurationReference = 3A51C939DBCACB710F5F9FE6 /* Pods-Park!.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GH9HGGE8DT;
 				INFOPLIST_FILE = "$(SRCROOT)/Park!/Supporting Files/Info.plist";
@@ -510,6 +517,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cyrusblaer.Park-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Park!/Helpers/AMap-Bridge-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
