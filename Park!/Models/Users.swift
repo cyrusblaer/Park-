@@ -23,6 +23,7 @@ class User: NSObject {
     //MARK: Methods
     
     class func registerUser(withName: String, phone: String, password: String,  profilePic: UIImage, completion: @escaping (Bool) -> Swift.Void) {
+        
         let storageRef = Storage.storage().reference().child("usersProfilePics").child(phone)
         let imageData = UIImageJPEGRepresentation(profilePic, 0.1)
         storageRef.putData(imageData!, metadata: nil, completion: { (metadata, err) in
@@ -47,82 +48,8 @@ class User: NSObject {
         })
     
     }
-    
-   /**
-    //  register new user with phone number
-    class func registerUser(withName: String, phone: String, password: String, profilePic: UIImage, completion: @escaping (Bool) -> Swift.Void) {
-        
-        WDGAuth.auth()?.createUser(withPhone: phone, password: password, completion: { (user, error) in
-            if error == nil {
-//                user?.sendPhoneVerification(completion: nil)
-                
-                if let user = user {
-                    let changeRequest = user.profileChangeRequest()
-                    changeRequest.displayName = withName
-//                    changeRequest.photoURL =
-//                        NSURL(string: "https://example.com/jane-q-user/profile.jpg") as URL?
-                    changeRequest.commitChanges { error in
-                        if let error = error {
-                            // 发生错误
-                            print(error.localizedDescription)
-                        } else {
-                            // 更新成功
-                            print("更新成功")
-                            
-                            createUserInDatabaseWith(uid: user.uid, phone: user.phone!, userType: 0, completion: { (state) in
-                                if state {
-                                    print("database insert successed")
-                                }
-                                else {
-                                    print("Database insert error")
-                                }
-                            })
-                        }
-                    }
-                }
-                
-                let userInfo = ["phone" : phone, "password" : password, "displayName": withName, "userType": nil]
-                UserDefaults.standard.set(userInfo, forKey: "userInformation")
-                completion(true)
-            }
-        })
-        
-    }
- 
-    class func createUserInDatabaseWith(uid: String, phone: String, userType: Int, completion: @escaping (Bool) -> Swift.Void) {
-        let usersRef = WDGSync.sync().reference().child("users")
-        
-//        if usersRef.accessibilityElementCount() == 0 {
-//            WDGSync.sync().reference().setValue(["users" : nil])
-//        }
-        
-        let userInfo = ["uid": uid, "userType": userType] as [String : Any]
-        
-        usersRef.child(phone).setValue(userInfo) { (error, ref) in
-            if error == nil {
-                completion(true)
-                UserDefaults.standard.set(userType, forKey: "userType")
-            }
-            else {
-                 completion(false)
-            }
-        }
-    }
-    */
+
     class func updateUserInfoWith(userType: Int, name: String,  completion: @escaping (Bool) -> Swift.Void) {
-//        let currentUser = WDGAuth.auth()?.currentUser
-//        if let user = currentUser {
-//            let changeRequest = user.profileChangeRequest()
-//            changeRequest.displayName = name
-//            //                    changeRequest.photoURL =
-//            //                        NSURL(string: "https://example.com/jane-q-user/profile.jpg") as URL?
-//            changeRequest.commitChanges { error in
-//                if let error = error {
-//                    // 发生错误
-//                    print(error.localizedDescription)
-//                    completion(false)
-//                }
-//                else {
         
         if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
             let phone = userInformation["phone"] as! String

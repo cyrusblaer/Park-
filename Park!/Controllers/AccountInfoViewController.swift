@@ -45,7 +45,7 @@ class AccountInfoViewController: UIViewController, UITextFieldDelegate, UINaviga
         self.profileView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         self.profileViewTopConstraint = NSLayoutConstraint.init(item: self.profileView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 60)
         self.profileViewTopConstraint.isActive = true
-        self.profileView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.45).isActive = true
+        self.profileView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.8).isActive = true
         self.profileView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
         self.profileView.layer.cornerRadius = 8
         
@@ -55,7 +55,7 @@ class AccountInfoViewController: UIViewController, UITextFieldDelegate, UINaviga
         self.passwordView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         self.passwordViewTopConstraint = NSLayoutConstraint.init(item: self.passwordView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 1000)
         self.passwordViewTopConstraint.isActive = true
-        self.passwordView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.6).isActive = true
+        self.passwordView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.8).isActive = true
         self.passwordView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
         self.passwordView.layer.cornerRadius = 8
         //UserTypeView Customization
@@ -66,15 +66,15 @@ class AccountInfoViewController: UIViewController, UITextFieldDelegate, UINaviga
         self.userTypeView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         self.userTypeViewTopConstraint = NSLayoutConstraint.init(item: self.userTypeView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 1000)
         self.userTypeViewTopConstraint.isActive = true
-        self.userTypeView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.6).isActive = true
-        self.userTypeView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1).isActive = true
+        self.userTypeView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.8).isActive = true
+        self.userTypeView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
         self.userTypeView.layer.cornerRadius = 8
     }
     
     func loadProfileInfo() {
         if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
             self.phoneLabel.text = (userInformation["phone"] as! String)
-            self.displayNameLabel.text = (userInformation["displayName"] as! String)
+            self.displayNameLabel.text = (userInformation["name"] as! String)
             if let userType = userInformation["userType"] as? Int {
                 switch userType {
                 case 3:
@@ -98,11 +98,15 @@ class AccountInfoViewController: UIViewController, UITextFieldDelegate, UINaviga
         if self.isProfileViewVisible {
             self.isProfileViewVisible = false
             
+            self.profileView.alpha = 0.0
+            self.passwordView.alpha = 1.0
             self.profileViewTopConstraint.constant = 1000
             self.passwordViewTopConstraint.constant = 60
         } else {
             self.isProfileViewVisible = true
             
+            self.profileView.alpha = 1.0
+            self.passwordView.alpha = 0.0
             self.profileViewTopConstraint.constant = 60
             self.passwordViewTopConstraint.constant = 1000
         }
@@ -188,10 +192,16 @@ class AccountInfoViewController: UIViewController, UITextFieldDelegate, UINaviga
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.prefersLargeTitles = false
         self.customization()
         self.loadProfileInfo()
         
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     func openPhotoPickerWith(source: PhotoSource) {
         switch source {
         case .camera:

@@ -29,8 +29,19 @@ class ParkTableViewController: UITableViewController {
     }
     @IBAction func addSpaceAction(_ sender: Any) {
         
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddSpaceVC") as! AddParkSpaceViewController
-        self.present(vc, animated: true, completion: nil)
+        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
+            let userType = userInformation["userType"] as! Int
+            
+            if userType == 1 {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddSpaceVC") as! AddParkSpaceViewController
+                self.present(vc, animated: true, completion: nil)
+            }
+            else if userType == 2 {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddLotVC") as! AddLotViewController
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
+        
         
     }
     

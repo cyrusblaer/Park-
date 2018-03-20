@@ -34,6 +34,9 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UINavigation
     
     @IBOutlet weak var switchButton: UIButton!
     
+    @IBOutlet weak var registerWarningLabel: UILabel!
+    @IBOutlet weak var loginWarningLabel: UILabel!
+    
     var loginViewTopConstraint: NSLayoutConstraint!
     var registerTopConstraint: NSLayoutConstraint!
     var userTypeViewTopConstraint: NSLayoutConstraint!
@@ -171,22 +174,36 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UINavigation
         for item in self.inputFields {
             item.resignFirstResponder()
         }
-        self.showLoading(state: true)
+        
+        if (self.registerNameField.text?.isEmpty)! {
+            self.registerWarningLabel.text = "用户名不能为空"
+            self.registerWarningLabel.isHidden = false
+        } else if (self.registerEmailField.text?.isEmpty)! && self.registerEmailField.text?.count != 11 {
+            self.registerWarningLabel.text = "手机号不能为空"
+            self.registerWarningLabel.isHidden = false
+        } else if (self.registerPasswordField.text?.isEmpty)! {
+            self.registerWarningLabel.text = "密码不能为空"
+            self.registerWarningLabel.isHidden = false
+        }
+        else {
 
-        User.registerUser(withName: self.registerNameField.text!, phone: self.registerEmailField.text!, password: self.registerPasswordField.text!, profilePic: self.profilePicView.image!) { [weak weakSelf = self] (status) in
-            DispatchQueue.main.async {
-                weakSelf?.showLoading(state: false)
-                for item in self.inputFields {
-                    item.text = ""
-                }
-                if status == true {
-//                    weakSelf?.pushTomainView()
-                    weakSelf?.pushUserTypeView()
-                    weakSelf?.profilePicView.image = UIImage.init(named: "profile pic")
-                    
-                } else {
-                    for item in (weakSelf?.waringLabels)! {
-                        item.isHidden = false
+            self.showLoading(state: true)
+            User.registerUser(withName: self.registerNameField.text!, phone: self.registerEmailField.text!, password: self.registerPasswordField.text!, profilePic: self.profilePicView.image!) { [weak weakSelf = self] (status) in
+                DispatchQueue.main.async {
+                    weakSelf?.showLoading(state: false)
+                    for item in self.inputFields {
+                        item.text = ""
+                    }
+                    if status == true {
+                        //                    weakSelf?.pushTomainView()
+                        weakSelf?.pushUserTypeView()
+                        weakSelf?.profilePicView.image = UIImage.init(named: "profile pic")
+                        
+                    } else {
+                        for item in (weakSelf?.waringLabels)! {
+                            self.registerWarningLabel.text = "请输入合法字符，点击注册重试"
+                            item.isHidden = false
+                        }
                     }
                 }
             }
@@ -197,41 +214,37 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UINavigation
         for item in self.inputFields {
             item.resignFirstResponder()
         }
-        self.showLoading(state: true)
         
-        User.loginUser(withPhone: self.loginEmailField.text!, password: self.loginPasswordField.text!) { [weak weakSelf = self](status) in
-            DispatchQueue.main.async {
-                weakSelf?.showLoading(state: false)
-                for item in self.inputFields {
-                    item.text = ""
-                }
-                if status == true {
-                    weakSelf?.pushTomainView()
-                } else {
-                    for item in (weakSelf?.waringLabels)! {
-                        item.isHidden = false
+        if (self.loginEmailField.text?.isEmpty)! || self.loginEmailField.text?.count != 11 {
+            self.loginWarningLabel.text = "手机号不能为空"
+            self.loginWarningLabel.isHidden = false
+        } else if (self.loginPasswordField.text?.isEmpty)! {
+            self.loginWarningLabel.text = "密码不能为空"
+            self.loginWarningLabel.isHidden = false
+        }
+        else {
+        
+            self.showLoading(state: true)
+            
+            User.loginUser(withPhone: self.loginEmailField.text!, password: self.loginPasswordField.text!) { [weak weakSelf = self](status) in
+                DispatchQueue.main.async {
+                    weakSelf?.showLoading(state: false)
+                    for item in self.inputFields {
+                        item.text = ""
                     }
+                    if status == true {
+                        weakSelf?.pushTomainView()
+                    } else {
+                        for item in (weakSelf?.waringLabels)! {
+                            self.loginWarningLabel.text = "登录失败，请重试"
+                            item.isHidden = false
+                        }
+                    }
+                    weakSelf = nil
                 }
-                weakSelf = nil
             }
         }
-        
-//        User.loginUser(withEmail: self.loginEmailField.text!, password: self.loginPasswordField.text!) { [weak weakSelf = self](status) in
-//            DispatchQueue.main.async {
-//                weakSelf?.showLoading(state: false)
-//                for item in self.inputFields {
-//                    item.text = ""
-//                }
-//                if status == true {
-//                    weakSelf?.pushTomainView()
-//                } else {
-//                    for item in (weakSelf?.waringLabels)! {
-//                        item.isHidden = false
-//                    }
-//                }
-//                weakSelf = nil
-//            }
-//        }
+
     }
     
     @IBAction func comfirmUserTypeAction(_ sender: Any) {

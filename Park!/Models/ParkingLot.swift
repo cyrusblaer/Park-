@@ -18,4 +18,10 @@ class ParkingLot {
     var latitude: String?
     var longitidue: String?
     
+    class func registerParkingLot(withUid: String, name: String, address: String,   completion: @escaping (Bool) -> Swift.Void) {
+        
+        
+        
+    }
+    
 }

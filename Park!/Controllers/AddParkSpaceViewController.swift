@@ -63,6 +63,12 @@ class AddParkSpaceViewController: UIViewController,  UITextFieldDelegate, UINavi
         
     }
     
+    @IBAction func closeVC(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
     func pushTomainView() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "TabBarVC") as! RAMAnimatedTabBarController
         self.show(vc, sender: nil)

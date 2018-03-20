@@ -15,6 +15,8 @@ class AccountTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        
         if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
             let displayName = userInformation["name"] as! String
             self.navigationItem.title = "您好," + displayName
@@ -100,7 +102,9 @@ extension AccountTableViewController {
         switch indexPath.row {
         case 0:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "userInfo") as! UIViewController
-            self.present(vc, animated: true, completion: nil)
+            vc.modalPresentationStyle = .overFullScreen
+            
+            self.navigationController?.tabBarController?.present(vc, animated: true, completion: nil)
         default:
             print("default")
         }
