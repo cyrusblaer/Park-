@@ -8,8 +8,11 @@
 
 import UIKit
 import RAMAnimatedTabBarController
+import ChameleonFramework
 
 class LandingViewController: UIViewController {
+    
+    @IBOutlet weak var launchView: UIView!
     
     //MARK: Properties
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -23,22 +26,22 @@ class LandingViewController: UIViewController {
         switch viewController {
         case .tabVC:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "TabBarVC") as! RAMAnimatedTabBarController
-            self.present(vc, animated: false, completion: nil)
+            self.present(vc, animated: true, completion: nil)
         case .home:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeNavVC") as! UINavigationController
-            self.present(vc, animated: false, completion: nil)
+            self.present(vc, animated: true, completion: nil)
         case .welcome:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "Welcome") as! WelcomeViewController
-            self.present(vc, animated: false, completion: nil)
+            self.present(vc, animated: true, completion: nil)
         case .park:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ParkNavVC") as! UINavigationController
-            self.present(vc, animated: false, completion: nil)
+            self.present(vc, animated: true, completion: nil)
         case .account:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "AccountNavVC") as! UINavigationController
-            self.present(vc, animated: false, completion: nil)
+            self.present(vc, animated: true, completion: nil)
         case .map:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "MapNavVC") as! UINavigationController
-            self.present(vc, animated: false, completion: nil)
+            self.present(vc, animated: true, completion: nil)
         }
     }
     
@@ -65,6 +68,8 @@ class LandingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.launchView.backgroundColor = FlatOrange()
     }
 
     override func didReceiveMemoryWarning() {

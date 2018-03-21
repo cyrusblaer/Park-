@@ -11,6 +11,10 @@
 		8816DEEA205AB0DA00CC8219 /* ParkingSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816DEE9205AB0DA00CC8219 /* ParkingSpace.swift */; };
 		8816DEEC205ABF6600CC8219 /* ParkingLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816DEEB205ABF6600CC8219 /* ParkingLot.swift */; };
 		8816DEEE205ABF7200CC8219 /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816DEED205ABF7200CC8219 /* Orders.swift */; };
+		88180E962062492100A64A83 /* ic_shuffle_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88180E932062492100A64A83 /* ic_shuffle_2x.png */; };
+		88180E972062492100A64A83 /* ic_shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = 88180E942062492100A64A83 /* ic_shuffle.png */; };
+		88180E982062492100A64A83 /* ic_shuffle_3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88180E952062492100A64A83 /* ic_shuffle_3x.png */; };
+		88180E9A2062592E00A64A83 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88180E992062592E00A64A83 /* HomePageViewController.swift */; };
 		8834B83F2057708600D22E31 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B83E2057708600D22E31 /* LoginViewController.swift */; };
 		8834B8412057709400D22E31 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B8402057709400D22E31 /* WelcomeViewController.swift */; };
 		8834B8432057713700D22E31 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B8422057713700D22E31 /* LandingViewController.swift */; };
@@ -27,7 +31,6 @@
 		885D2CEE203FFB290095D581 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885D2CED203FFB290095D581 /* AppDelegate.swift */; };
 		885D2CF3203FFB290095D581 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885D2CF1203FFB290095D581 /* Main.storyboard */; };
 		885D2CF5203FFB290095D581 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 885D2CF4203FFB290095D581 /* Assets.xcassets */; };
-		885D2CF8203FFB290095D581 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885D2CF6203FFB290095D581 /* LaunchScreen.storyboard */; };
 		88AE23642060AF510051DBC5 /* AddLotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE23632060AF510051DBC5 /* AddLotViewController.swift */; };
 		88E829E1205E9C9E00DC4CE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88E829E0205E9C9D00DC4CE7 /* GoogleService-Info.plist */; };
 		88EDCD3820567309006E6119 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EDCD3720567309006E6119 /* MapViewController.swift */; };
@@ -41,6 +44,10 @@
 		8816DEE9205AB0DA00CC8219 /* ParkingSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingSpace.swift; sourceTree = "<group>"; };
 		8816DEEB205ABF6600CC8219 /* ParkingLot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLot.swift; sourceTree = "<group>"; };
 		8816DEED205ABF7200CC8219 /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
+		88180E932062492100A64A83 /* ic_shuffle_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_shuffle_2x.png; sourceTree = "<group>"; };
+		88180E942062492100A64A83 /* ic_shuffle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_shuffle.png; sourceTree = "<group>"; };
+		88180E952062492100A64A83 /* ic_shuffle_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_shuffle_3x.png; sourceTree = "<group>"; };
+		88180E992062592E00A64A83 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		8834B83E2057708600D22E31 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8834B8402057709400D22E31 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		8834B8422057713700D22E31 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -58,7 +65,6 @@
 		885D2CED203FFB290095D581 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		885D2CF2203FFB290095D581 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		885D2CF4203FFB290095D581 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		885D2CF7203FFB290095D581 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		885D2CF9203FFB290095D581 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88AE23632060AF510051DBC5 /* AddLotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLotViewController.swift; sourceTree = "<group>"; };
 		88E829E0205E9C9D00DC4CE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -110,6 +116,9 @@
 		8834B846205778C600D22E31 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				88180E932062492100A64A83 /* ic_shuffle_2x.png */,
+				88180E952062492100A64A83 /* ic_shuffle_3x.png */,
+				88180E942062492100A64A83 /* ic_shuffle.png */,
 				8834B847205778EA00D22E31 /* Users.swift */,
 				8816DEE9205AB0DA00CC8219 /* ParkingSpace.swift */,
 				8816DEEB205ABF6600CC8219 /* ParkingLot.swift */,
@@ -155,7 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				885D2CF4203FFB290095D581 /* Assets.xcassets */,
-				885D2CF6203FFB290095D581 /* LaunchScreen.storyboard */,
 				885D2CF9203FFB290095D581 /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -174,6 +182,7 @@
 				8834B854205A58EB00D22E31 /* AccountInfoViewController.swift */,
 				8834B856205B931A00D22E31 /* AddParkSpaceViewController.swift */,
 				88AE23632060AF510051DBC5 /* AddLotViewController.swift */,
+				88180E992062592E00A64A83 /* HomePageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -249,8 +258,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				885D2CF8203FFB290095D581 /* LaunchScreen.storyboard in Resources */,
 				88E829E1205E9C9E00DC4CE7 /* GoogleService-Info.plist in Resources */,
+				88180E962062492100A64A83 /* ic_shuffle_2x.png in Resources */,
+				88180E982062492100A64A83 /* ic_shuffle_3x.png in Resources */,
+				88180E972062492100A64A83 /* ic_shuffle.png in Resources */,
 				885D2CF5203FFB290095D581 /* Assets.xcassets in Resources */,
 				885D2CF3203FFB290095D581 /* Main.storyboard in Resources */,
 			);
@@ -266,9 +277,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Park!/Pods-Park!-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/FoldingCell/FoldingCell.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/RAMAnimatedTabBarController/RAMAnimatedTabBarController.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -276,9 +290,12 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FoldingCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RAMAnimatedTabBarController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -340,6 +357,7 @@
 				88566BB12059481700C9141D /* AccountTableViewController.swift in Sources */,
 				8834B85B205BB4FD00D22E31 /* HomeTableViewCell.swift in Sources */,
 				8834B8452057756D00D22E31 /* Helper Files.swift in Sources */,
+				88180E9A2062592E00A64A83 /* HomePageViewController.swift in Sources */,
 				8834B855205A58EB00D22E31 /* AccountInfoViewController.swift in Sources */,
 				8816DEEE205ABF7200CC8219 /* Orders.swift in Sources */,
 				8834B84A2057A86600D22E31 /* HomeViewController.swift in Sources */,
@@ -364,14 +382,6 @@
 				885D2CF2203FFB290095D581 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		885D2CF6203FFB290095D581 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				885D2CF7203FFB290095D581 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

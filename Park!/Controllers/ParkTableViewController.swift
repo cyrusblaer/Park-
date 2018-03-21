@@ -25,7 +25,8 @@ class ParkTableViewController: UITableViewController {
         cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
         tableView.estimatedRowHeight = kCloseCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = UIColor.lightGray
+        
     }
     @IBAction func addSpaceAction(_ sender: Any) {
         
@@ -36,10 +37,10 @@ class ParkTableViewController: UITableViewController {
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddSpaceVC") as! AddParkSpaceViewController
                 self.present(vc, animated: true, completion: nil)
             }
-            else if userType == 2 {
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddLotVC") as! AddLotViewController
-                self.present(vc, animated: true, completion: nil)
-            }
+//            else if userType == 2 {
+//                let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddLotVC") as! AddLotViewController
+//                self.present(vc, animated: true, completion: nil)
+//            }
         }
         
         

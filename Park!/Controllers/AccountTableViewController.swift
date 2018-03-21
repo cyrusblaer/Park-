@@ -106,7 +106,11 @@ extension AccountTableViewController {
             
             self.navigationController?.tabBarController?.present(vc, animated: true, completion: nil)
         default:
-            print("default")
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "RedView") as! UIViewController
+            
+            DispatchQueue.main.async {
+                self.present(vc, animated: true, completion: nil)
+            }
         }
         
     }

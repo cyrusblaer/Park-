@@ -88,7 +88,8 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "主页"
+        
+        
         self.customization()
     }
     
