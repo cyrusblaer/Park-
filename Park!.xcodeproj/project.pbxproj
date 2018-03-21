@@ -11,9 +11,6 @@
 		8816DEEA205AB0DA00CC8219 /* ParkingSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816DEE9205AB0DA00CC8219 /* ParkingSpace.swift */; };
 		8816DEEC205ABF6600CC8219 /* ParkingLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816DEEB205ABF6600CC8219 /* ParkingLot.swift */; };
 		8816DEEE205ABF7200CC8219 /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816DEED205ABF7200CC8219 /* Orders.swift */; };
-		88180E962062492100A64A83 /* ic_shuffle_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88180E932062492100A64A83 /* ic_shuffle_2x.png */; };
-		88180E972062492100A64A83 /* ic_shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = 88180E942062492100A64A83 /* ic_shuffle.png */; };
-		88180E982062492100A64A83 /* ic_shuffle_3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88180E952062492100A64A83 /* ic_shuffle_3x.png */; };
 		88180E9A2062592E00A64A83 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88180E992062592E00A64A83 /* HomePageViewController.swift */; };
 		8834B83F2057708600D22E31 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B83E2057708600D22E31 /* LoginViewController.swift */; };
 		8834B8412057709400D22E31 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B8402057709400D22E31 /* WelcomeViewController.swift */; };
@@ -31,6 +28,12 @@
 		885D2CEE203FFB290095D581 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885D2CED203FFB290095D581 /* AppDelegate.swift */; };
 		885D2CF3203FFB290095D581 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885D2CF1203FFB290095D581 /* Main.storyboard */; };
 		885D2CF5203FFB290095D581 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 885D2CF4203FFB290095D581 /* Assets.xcassets */; };
+		888A263520628C7400C45ED4 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A263320628C7400C45ED4 /* Conversation.swift */; };
+		888A263620628C7400C45ED4 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A263420628C7400C45ED4 /* Message.swift */; };
+		888A263820628D1300C45ED4 /* VCCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A263720628D1300C45ED4 /* VCCells.swift */; };
+		888A263C20628EB000C45ED4 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A263920628EB000C45ED4 /* ChatVC.swift */; };
+		888A263D20628EB000C45ED4 /* ConversationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A263A20628EB000C45ED4 /* ConversationsVC.swift */; };
+		888A263E20628EB000C45ED4 /* NavVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A263B20628EB000C45ED4 /* NavVC.swift */; };
 		88AE23642060AF510051DBC5 /* AddLotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE23632060AF510051DBC5 /* AddLotViewController.swift */; };
 		88E829E1205E9C9E00DC4CE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88E829E0205E9C9D00DC4CE7 /* GoogleService-Info.plist */; };
 		88EDCD3820567309006E6119 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EDCD3720567309006E6119 /* MapViewController.swift */; };
@@ -44,9 +47,6 @@
 		8816DEE9205AB0DA00CC8219 /* ParkingSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingSpace.swift; sourceTree = "<group>"; };
 		8816DEEB205ABF6600CC8219 /* ParkingLot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLot.swift; sourceTree = "<group>"; };
 		8816DEED205ABF7200CC8219 /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
-		88180E932062492100A64A83 /* ic_shuffle_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_shuffle_2x.png; sourceTree = "<group>"; };
-		88180E942062492100A64A83 /* ic_shuffle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_shuffle.png; sourceTree = "<group>"; };
-		88180E952062492100A64A83 /* ic_shuffle_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_shuffle_3x.png; sourceTree = "<group>"; };
 		88180E992062592E00A64A83 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		8834B83E2057708600D22E31 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8834B8402057709400D22E31 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +66,12 @@
 		885D2CF2203FFB290095D581 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		885D2CF4203FFB290095D581 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		885D2CF9203FFB290095D581 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		888A263320628C7400C45ED4 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		888A263420628C7400C45ED4 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		888A263720628D1300C45ED4 /* VCCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCCells.swift; sourceTree = "<group>"; };
+		888A263920628EB000C45ED4 /* ChatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		888A263A20628EB000C45ED4 /* ConversationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsVC.swift; sourceTree = "<group>"; };
+		888A263B20628EB000C45ED4 /* NavVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavVC.swift; sourceTree = "<group>"; };
 		88AE23632060AF510051DBC5 /* AddLotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLotViewController.swift; sourceTree = "<group>"; };
 		88E829E0205E9C9D00DC4CE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88EDCD3720567309006E6119 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +102,7 @@
 		8834B83C20576F8500D22E31 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				888A263720628D1300C45ED4 /* VCCells.swift */,
 				8834B852205A4AF500D22E31 /* AccountTableViewCell.swift */,
 				8834B85A205BB4FD00D22E31 /* HomeTableViewCell.swift */,
 				8834B858205BB0BB00D22E31 /* HomePageTableViewCell.swift */,
@@ -116,9 +123,8 @@
 		8834B846205778C600D22E31 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				88180E932062492100A64A83 /* ic_shuffle_2x.png */,
-				88180E952062492100A64A83 /* ic_shuffle_3x.png */,
-				88180E942062492100A64A83 /* ic_shuffle.png */,
+				888A263320628C7400C45ED4 /* Conversation.swift */,
+				888A263420628C7400C45ED4 /* Message.swift */,
 				8834B847205778EA00D22E31 /* Users.swift */,
 				8816DEE9205AB0DA00CC8219 /* ParkingSpace.swift */,
 				8816DEEB205ABF6600CC8219 /* ParkingLot.swift */,
@@ -172,6 +178,9 @@
 		88EDCD312056718E006E6119 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				888A263920628EB000C45ED4 /* ChatVC.swift */,
+				888A263A20628EB000C45ED4 /* ConversationsVC.swift */,
+				888A263B20628EB000C45ED4 /* NavVC.swift */,
 				88EDCD3720567309006E6119 /* MapViewController.swift */,
 				8834B83E2057708600D22E31 /* LoginViewController.swift */,
 				8834B8402057709400D22E31 /* WelcomeViewController.swift */,
@@ -259,9 +268,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				88E829E1205E9C9E00DC4CE7 /* GoogleService-Info.plist in Resources */,
-				88180E962062492100A64A83 /* ic_shuffle_2x.png in Resources */,
-				88180E982062492100A64A83 /* ic_shuffle_3x.png in Resources */,
-				88180E972062492100A64A83 /* ic_shuffle.png in Resources */,
 				885D2CF5203FFB290095D581 /* Assets.xcassets in Resources */,
 				885D2CF3203FFB290095D581 /* Main.storyboard in Resources */,
 			);
@@ -352,12 +358,14 @@
 				8834B83F2057708600D22E31 /* LoginViewController.swift in Sources */,
 				8834B859205BB0BB00D22E31 /* HomePageTableViewCell.swift in Sources */,
 				8834B857205B931A00D22E31 /* AddParkSpaceViewController.swift in Sources */,
+				888A263D20628EB000C45ED4 /* ConversationsVC.swift in Sources */,
 				8816DEEA205AB0DA00CC8219 /* ParkingSpace.swift in Sources */,
 				8834B8412057709400D22E31 /* WelcomeViewController.swift in Sources */,
 				88566BB12059481700C9141D /* AccountTableViewController.swift in Sources */,
 				8834B85B205BB4FD00D22E31 /* HomeTableViewCell.swift in Sources */,
 				8834B8452057756D00D22E31 /* Helper Files.swift in Sources */,
 				88180E9A2062592E00A64A83 /* HomePageViewController.swift in Sources */,
+				888A263C20628EB000C45ED4 /* ChatVC.swift in Sources */,
 				8834B855205A58EB00D22E31 /* AccountInfoViewController.swift in Sources */,
 				8816DEEE205ABF7200CC8219 /* Orders.swift in Sources */,
 				8834B84A2057A86600D22E31 /* HomeViewController.swift in Sources */,
@@ -365,8 +373,12 @@
 				8834B84E20581DDE00D22E31 /* ParkTableViewController.swift in Sources */,
 				88AE23642060AF510051DBC5 /* AddLotViewController.swift in Sources */,
 				88EDCD3820567309006E6119 /* MapViewController.swift in Sources */,
+				888A263E20628EB000C45ED4 /* NavVC.swift in Sources */,
+				888A263520628C7400C45ED4 /* Conversation.swift in Sources */,
+				888A263620628C7400C45ED4 /* Message.swift in Sources */,
 				8834B8432057713700D22E31 /* LandingViewController.swift in Sources */,
 				8834B853205A4AF500D22E31 /* AccountTableViewCell.swift in Sources */,
+				888A263820628D1300C45ED4 /* VCCells.swift in Sources */,
 				8816DEEC205ABF6600CC8219 /* ParkingLot.swift in Sources */,
 				885D2CEE203FFB290095D581 /* AppDelegate.swift in Sources */,
 				8834B848205778EA00D22E31 /* Users.swift in Sources */,
