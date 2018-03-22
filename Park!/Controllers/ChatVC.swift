@@ -9,7 +9,7 @@ import Firebase
 import CoreLocation
 
 class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate,  UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate {
-    
+
     //MARK: Properties
     @IBOutlet var inputBar: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -50,7 +50,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     
     //Downloads messages
     func fetchData() {
-        Message.downloadAllMessages(forUserID: self.currentUser!.id, completion: {[weak weakSelf = self] (message) in
+        Message.downloadAllMessages(forUserID: self.currentUser!.phone, completion: {[weak weakSelf = self] (message) in
             weakSelf?.items.append(message)
             weakSelf?.items.sort{ $0.timestamp < $1.timestamp }
             DispatchQueue.main.async {
@@ -60,7 +60,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
                 }
             }
         })
-        Message.markMessagesRead(forUserID: self.currentUser!.id)
+        Message.markMessagesRead(forUserID: self.currentUser!.phone)
     }
     
     //Hides current viewcontroller
@@ -72,7 +72,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     
     func composeMessage(type: MessageType, content: Any)  {
         let message = Message.init(type: type, content: content, owner: .sender, timestamp: Int(Date().timeIntervalSince1970), isRead: false)
-        Message.send(message: message, toID: self.currentUser!.id, completion: {(_) in
+        Message.send(message: message, toID: self.currentUser!.phone, completion: {(_) in
         })
     }
     
@@ -272,7 +272,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
             if self.canSendLocation {
                 let coordinate = String(lastLocation.coordinate.latitude) + ":" + String(lastLocation.coordinate.longitude)
                 let message = Message.init(type: .location, content: coordinate, owner: .sender, timestamp: Int(Date().timeIntervalSince1970), isRead: false)
-                Message.send(message: message, toID: self.currentUser!.id, completion: {(_) in
+                Message.send(message: message, toID: self.currentUser!.phone, completion: {(_) in
                 })
                 self.canSendLocation = false
             }
@@ -290,7 +290,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
-        Message.markMessagesRead(forUserID: self.currentUser!.id)
+        Message.markMessagesRead(forUserID: self.currentUser!.phone)
     }
     
     override func viewDidLoad() {
@@ -298,6 +298,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
         self.customization()
         self.fetchData()
     }
+ 
 }
 
 

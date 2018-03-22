@@ -7,17 +7,41 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class HomePageViewController: UIViewController {
 
+    @IBOutlet weak var firstView: UIView!
+    @IBOutlet weak var secondView: UIView!
+    @IBOutlet weak var thirdView: UIView!
+    @IBOutlet weak var fourthView: UIView!
+    
     @IBOutlet var  myScrollView: UIScrollView!
+    
+    func customization() {
+        
+        self.firstView.backgroundColor = FlatBlackDark()
+        self.secondView.backgroundColor = FlatWhite()
+        self.thirdView.backgroundColor = FlatWhite()
+        self.fourthView.backgroundColor = FlatWhite()
+        
+    }
+
+    func setupNavBar() {
+        self.navigationItem.title = "主页"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.barTintColor = FlatWhite()
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor.black.cgColor
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSize.init(width: 5, height: 5)
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.2
+        self.navigationController?.hidesNavigationBarHairline = true
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "主页"
-        self.navigationController?.navigationBar.prefersLargeTitles = false
-        self.navigationItem.largeTitleDisplayMode = .never
-        
+        self.customization()
+        self.setupNavBar()
             self.myScrollView.contentInsetAdjustmentBehavior = .automatic
         // Do any additional setup after loading the view.
     }
@@ -28,7 +52,7 @@ class HomePageViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -36,6 +60,6 @@ class HomePageViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+ 
 
 }

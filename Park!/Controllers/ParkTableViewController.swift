@@ -8,6 +8,7 @@
 
 import UIKit
 import FoldingCell
+import MJRefresh
 
 class ParkTableViewController: UITableViewController {
 
@@ -15,6 +16,11 @@ class ParkTableViewController: UITableViewController {
     let kOpenCellHeight: CGFloat = 488
     let kRowsCount = 10
     var cellHeights: [CGFloat] = []
+    
+    // 顶部刷新
+    let header = MJRefreshNormalHeader()
+    // 底部刷新
+    let footer = MJRefreshAutoNormalFooter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +32,14 @@ class ParkTableViewController: UITableViewController {
         tableView.estimatedRowHeight = kCloseCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.backgroundColor = UIColor.lightGray
+        // 下拉刷新
+        header.setRefreshingTarget(self, refreshingAction: Selector(("headerRefresh")))
+        // 现在的版本要用mj_header
+        tableView.mj_header = header
+        
+        // 上拉刷新
+        footer.setRefreshingTarget(self, refreshingAction: Selector(("footerRefresh")))
+        tableView.mj_footer = footer
         
     }
     @IBAction func addSpaceAction(_ sender: Any) {
@@ -48,6 +62,24 @@ class ParkTableViewController: UITableViewController {
     
     func pushToAddSpaceVC() {
         
+    }
+    
+    func headerRefresh(){
+        print("下拉刷新")
+        // 结束刷新
+        tableView.mj_header.endRefreshing()
+    }
+    
+    // 底部刷新
+    var index = 0
+    func footerRefresh(){
+        print("上拉刷新")
+        tableView.mj_footer.endRefreshing()
+        // 2次后模拟没有更多数据
+        index = index + 1
+        if index > 2 {
+            footer.endRefreshingWithNoMoreData()
+        }
     }
     
 }

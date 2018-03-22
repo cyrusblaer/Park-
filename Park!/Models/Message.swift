@@ -18,30 +18,31 @@ class Message {
     var image: UIImage?
     private var toID: String?
     private var fromID: String?
-    
+
     //MARK: Methods
     class func downloadAllMessages(forUserID: String, completion: @escaping (Message) -> Swift.Void) {
-        if let currentUserID = FIRAuth.auth()?.currentUser?.uid {
-            FIRDatabase.database().reference().child("users").child(currentUserID).child("conversations").child(forUserID).observe(.value, with: { (snapshot) in
+        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
+            let phone = userInformation["phone"] as! String
+            Database.database().reference().child("users").child(phone).child("conversations").child(forUserID).observe(.value, with: { (snapshot) in
                 if snapshot.exists() {
                     let data = snapshot.value as! [String: String]
                     let location = data["location"]!
-                    FIRDatabase.database().reference().child("conversations").child(location).observe(.childAdded, with: { (snap) in
+                    Database.database().reference().child("conversations").child(location).observe(.childAdded, with: { (snap) in
                         if snap.exists() {
                             let receivedMessage = snap.value as! [String: Any]
                             let messageType = receivedMessage["type"] as! String
                             var type = MessageType.text
                             switch messageType {
-                                case "photo":
+                            case "photo":
                                 type = .photo
-                                case "location":
+                            case "location":
                                 type = .location
                             default: break
                             }
                             let content = receivedMessage["content"] as! String
                             let fromID = receivedMessage["fromID"] as! String
                             let timestamp = receivedMessage["timestamp"] as! Int
-                            if fromID == currentUserID {
+                            if fromID == phone {
                                 let message = Message.init(type: type, content: content, owner: .receiver, timestamp: timestamp, isRead: true)
                                 completion(message)
                             } else {
@@ -69,18 +70,19 @@ class Message {
     }
     
     class func markMessagesRead(forUserID: String)  {
-        if let currentUserID = FIRAuth.auth()?.currentUser?.uid {
-            FIRDatabase.database().reference().child("users").child(currentUserID).child("conversations").child(forUserID).observeSingleEvent(of: .value, with: { (snapshot) in
+        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
+            let phone = userInformation["phone"] as! String
+            Database.database().reference().child("users").child(phone).child("conversations").child(forUserID).observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.exists() {
                     let data = snapshot.value as! [String: String]
                     let location = data["location"]!
-                    FIRDatabase.database().reference().child("conversations").child(location).observeSingleEvent(of: .value, with: { (snap) in
+                    Database.database().reference().child("conversations").child(location).observeSingleEvent(of: .value, with: { (snap) in
                         if snap.exists() {
                             for item in snap.children {
-                                let receivedMessage = (item as! FIRDataSnapshot).value as! [String: Any]
+                                let receivedMessage = (item as! DataSnapshot).value as! [String: Any]
                                 let fromID = receivedMessage["fromID"] as! String
-                                if fromID != currentUserID {
-                                    FIRDatabase.database().reference().child("conversations").child(location).child((item as! FIRDataSnapshot).key).child("isRead").setValue(true)
+                                if fromID != phone {
+                                    Database.database().reference().child("conversations").child(location).child((item as! DataSnapshot).key).child("isRead").setValue(true)
                                 }
                             }
                         }
@@ -91,11 +93,12 @@ class Message {
     }
    
     func downloadLastMessage(forLocation: String, completion: @escaping () -> Swift.Void) {
-        if let currentUserID = FIRAuth.auth()?.currentUser?.uid {
-            FIRDatabase.database().reference().child("conversations").child(forLocation).observe(.value, with: { (snapshot) in
+        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
+            let phone = userInformation["phone"] as! String
+            Database.database().reference().child("conversations").child(forLocation).observe(.value, with: { (snapshot) in
                 if snapshot.exists() {
                     for snap in snapshot.children {
-                        let receivedMessage = (snap as! FIRDataSnapshot).value as! [String: Any]
+                        let receivedMessage = (snap as! DataSnapshot).value as! [String: Any]
                         self.content = receivedMessage["content"]!
                         self.timestamp = receivedMessage["timestamp"] as! Int
                         let messageType = receivedMessage["type"] as! String
@@ -112,7 +115,7 @@ class Message {
                         default: break
                         }
                         self.type = type
-                        if currentUserID == fromID {
+                        if phone == fromID {
                             self.owner = .receiver
                         } else {
                             self.owner = .sender
@@ -125,27 +128,28 @@ class Message {
     }
 
     class func send(message: Message, toID: String, completion: @escaping (Bool) -> Swift.Void)  {
-        if let currentUserID = FIRAuth.auth()?.currentUser?.uid {
+        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
+            let phone = userInformation["phone"] as! String
             switch message.type {
             case .location:
-                let values = ["type": "location", "content": message.content, "fromID": currentUserID, "toID": toID, "timestamp": message.timestamp, "isRead": false]
+                let values = ["type": "location", "content": message.content, "fromID": phone, "toID": toID, "timestamp": message.timestamp, "isRead": false]
                 Message.uploadMessage(withValues: values, toID: toID, completion: { (status) in
                     completion(status)
                 })
             case .photo:
                 let imageData = UIImageJPEGRepresentation((message.content as! UIImage), 0.5)
                 let child = UUID().uuidString
-                FIRStorage.storage().reference().child("messagePics").child(child).put(imageData!, metadata: nil, completion: { (metadata, error) in
+                Storage.storage().reference().child("messagePics").child(child).putData(imageData!, metadata: nil, completion: { (metadata, error) in
                     if error == nil {
                         let path = metadata?.downloadURL()?.absoluteString
-                        let values = ["type": "photo", "content": path!, "fromID": currentUserID, "toID": toID, "timestamp": message.timestamp, "isRead": false] as [String : Any]
+                        let values = ["type": "photo", "content": path!, "fromID": phone, "toID": toID, "timestamp": message.timestamp, "isRead": false] as [String : Any]
                         Message.uploadMessage(withValues: values, toID: toID, completion: { (status) in
                             completion(status)
                         })
                     }
                 })
             case .text:
-                let values = ["type": "text", "content": message.content, "fromID": currentUserID, "toID": toID, "timestamp": message.timestamp, "isRead": false]
+                let values = ["type": "text", "content": message.content, "fromID": phone, "toID": toID, "timestamp": message.timestamp, "isRead": false]
                 Message.uploadMessage(withValues: values, toID: toID, completion: { (status) in
                     completion(status)
                 })
@@ -154,12 +158,13 @@ class Message {
     }
     
     class func uploadMessage(withValues: [String: Any], toID: String, completion: @escaping (Bool) -> Swift.Void) {
-        if let currentUserID = FIRAuth.auth()?.currentUser?.uid {
-            FIRDatabase.database().reference().child("users").child(currentUserID).child("conversations").child(toID).observeSingleEvent(of: .value, with: { (snapshot) in
+        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
+            let phone = userInformation["phone"] as! String
+            Database.database().reference().child("users").child(phone).child("conversations").child(toID).observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.exists() {
                     let data = snapshot.value as! [String: String]
                     let location = data["location"]!
-                    FIRDatabase.database().reference().child("conversations").child(location).childByAutoId().setValue(withValues, withCompletionBlock: { (error, _) in
+                    Database.database().reference().child("conversations").child(location).childByAutoId().setValue(withValues, withCompletionBlock: { (error, _) in
                         if error == nil {
                             completion(true)
                         } else {
@@ -167,17 +172,17 @@ class Message {
                         }
                     })
                 } else {
-                    FIRDatabase.database().reference().child("conversations").childByAutoId().childByAutoId().setValue(withValues, withCompletionBlock: { (error, reference) in
+                    Database.database().reference().child("conversations").childByAutoId().childByAutoId().setValue(withValues, withCompletionBlock: { (error, reference) in
                         let data = ["location": reference.parent!.key]
-                        FIRDatabase.database().reference().child("users").child(currentUserID).child("conversations").child(toID).updateChildValues(data)
-                        FIRDatabase.database().reference().child("users").child(toID).child("conversations").child(currentUserID).updateChildValues(data)
+                        Database.database().reference().child("users").child(phone).child("conversations").child(toID).updateChildValues(data)
+                        Database.database().reference().child("users").child(toID).child("conversations").child(phone).updateChildValues(data)
                         completion(true)
                     })
                 }
             })
         }
     }
-    
+
     //MARK: Inits
     init(type: MessageType, content: Any, owner: MessageOwner, timestamp: Int, isRead: Bool) {
         self.type = type

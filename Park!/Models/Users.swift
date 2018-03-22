@@ -15,12 +15,27 @@ class User: NSObject {
     
     //MARK: Properties
     let name: String
-    let password: String
     let phone: String
-    let userID: String
     var profilePic: UIImage
     
     //MARK: Methods
+    
+    class func info(_ phone: String, completion: @escaping (User) -> Swift.Void) {
+        Database.database().reference().child("users").child(phone).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let data = snapshot.value as? [String: String] {
+                let name = data["name"]!
+                let phone = data["phone"]!
+                let link = URL.init(string: data["profilePicLink"]!)
+                URLSession.shared.dataTask(with: link!, completionHandler: { (data, response, error) in
+                    if error == nil {
+                        let profilePic = UIImage.init(data: data!)
+                        let user = User.init(name: name, phone: phone, profilePic: profilePic!)
+                        completion(user)
+                    }
+                }).resume()
+            }
+        })
+    }
     
     class func registerUser(withName: String, phone: String, password: String,  profilePic: UIImage, completion: @escaping (Bool) -> Swift.Void) {
         
@@ -102,7 +117,6 @@ class User: NSObject {
     
     class func loginUser(withPhone: String, password: String, completion: @escaping (Bool) -> Swift.Void) {
         
-        
         let currentUserRef =  Database.database().reference().child("users").child(withPhone)
         
         //  读取key对应value使用以下方法
@@ -139,11 +153,9 @@ class User: NSObject {
     }
     
     //MARK: Inits
-    init(name: String, password: String, phone: String, userID: String, profilePic: UIImage) {
+    init(name: String,  phone: String,  profilePic: UIImage) {
         self.name = name
-        self.password = password
         self.phone = phone
-        self.userID = userID
         self.profilePic = profilePic
     }
 }

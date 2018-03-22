@@ -91,8 +91,8 @@ class NavVC: UINavigationController, UICollectionViewDelegate, UICollectionViewD
         self.mapPreviewView.bottomAnchor.constraint(equalTo: extraViewsContainer.bottomAnchor).isActive = true
         //NotificationCenter for showing extra views
         NotificationCenter.default.addObserver(self, selector: #selector(self.showExtraViews(notification:)), name: NSNotification.Name(rawValue: "showExtraView"), object: nil)
-        self.fetchUsers()
-        self.fetchUserInfo()
+//        self.fetchUsers()
+//        self.fetchUserInfo()
 
     }
     
@@ -160,7 +160,7 @@ class NavVC: UINavigationController, UICollectionViewDelegate, UICollectionViewD
         zoomRect.origin.y = newCenter.y - (zoomRect.size.height / 2.0)
         return zoomRect
     }
-    
+    /**
     //Downloads users list for Contacts View
     func fetchUsers()  {
         if let id = FIRAuth.auth()?.currentUser?.uid {
@@ -172,21 +172,22 @@ class NavVC: UINavigationController, UICollectionViewDelegate, UICollectionViewD
             })
         }
     }
-    
+    */
     //Downloads current user credentials
     func fetchUserInfo() {
-        if let id = FIRAuth.auth()?.currentUser?.uid {
-            User.info(forUserID: id, completion: {[weak weakSelf = self] (user) in
+        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
+            let phone = userInformation["phone"] as! String
+            User.info(_: phone, completion: {[weak weakSelf = self] (user) in
                 DispatchQueue.main.async {
                     weakSelf?.nameLabel.text = user.name
-                    weakSelf?.emailLabel.text = user.email
+                    weakSelf?.emailLabel.text = user.phone
                     weakSelf?.profilePicView.image = user.profilePic
                     weakSelf = nil
                 }
             })
         }
     }
-    
+ 
     //Extra gesture to allow user double tap for zooming of preview view scrollview
     @IBAction func doubleTapGesture(_ sender: UITapGestureRecognizer) {
         if self.scrollView.zoomScale == 1 {

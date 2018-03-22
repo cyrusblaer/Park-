@@ -14,4 +14,7 @@ pod 'FoldingCell'
 pod 'Hero'
 pod 'ChameleonFramework/Swift'
 pod 'MJRefresh'
+pod 'TLYShyNavBar'
+pod 'Eureka'
+
 end

@@ -35,6 +35,7 @@
 		888A263D20628EB000C45ED4 /* ConversationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A263A20628EB000C45ED4 /* ConversationsVC.swift */; };
 		888A263E20628EB000C45ED4 /* NavVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A263B20628EB000C45ED4 /* NavVC.swift */; };
 		88AE23642060AF510051DBC5 /* AddLotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE23632060AF510051DBC5 /* AddLotViewController.swift */; };
+		88D814532063A44000B4C53D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D814522063A44000B4C53D /* TabBarViewController.swift */; };
 		88E829E1205E9C9E00DC4CE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88E829E0205E9C9D00DC4CE7 /* GoogleService-Info.plist */; };
 		88EDCD3820567309006E6119 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EDCD3720567309006E6119 /* MapViewController.swift */; };
 		88F7CE2520611CB800FD7067 /* SearchLotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F7CE2420611CB800FD7067 /* SearchLotTableViewCell.swift */; };
@@ -73,6 +74,7 @@
 		888A263A20628EB000C45ED4 /* ConversationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsVC.swift; sourceTree = "<group>"; };
 		888A263B20628EB000C45ED4 /* NavVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavVC.swift; sourceTree = "<group>"; };
 		88AE23632060AF510051DBC5 /* AddLotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLotViewController.swift; sourceTree = "<group>"; };
+		88D814522063A44000B4C53D /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		88E829E0205E9C9D00DC4CE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88EDCD3720567309006E6119 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		88EDCD3920567543006E6119 /* AMap-Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AMap-Bridge-Header.h"; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				8834B856205B931A00D22E31 /* AddParkSpaceViewController.swift */,
 				88AE23632060AF510051DBC5 /* AddLotViewController.swift */,
 				88180E992062592E00A64A83 /* HomePageViewController.swift */,
+				88D814522063A44000B4C53D /* TabBarViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				8834B859205BB0BB00D22E31 /* HomePageTableViewCell.swift in Sources */,
 				8834B857205B931A00D22E31 /* AddParkSpaceViewController.swift in Sources */,
 				888A263D20628EB000C45ED4 /* ConversationsVC.swift in Sources */,
+				88D814532063A44000B4C53D /* TabBarViewController.swift in Sources */,
 				8816DEEA205AB0DA00CC8219 /* ParkingSpace.swift in Sources */,
 				8834B8412057709400D22E31 /* WelcomeViewController.swift in Sources */,
 				88566BB12059481700C9141D /* AccountTableViewController.swift in Sources */,

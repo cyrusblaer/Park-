@@ -90,13 +90,13 @@ class ConversationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     //Show EmailVerification on the bottom
     @objc func showEmailAlert() {
-        User.checkUserVerification {[weak weakSelf = self] (status) in
-            status == true ? (weakSelf?.alertBottomConstraint.constant = -40) : (weakSelf?.alertBottomConstraint.constant = 0)
-            UIView.animate(withDuration: 0.3) {
-                weakSelf?.view.layoutIfNeeded()
-                weakSelf = nil
-            }
-        }
+//        User.checkUserVerification {[weak weakSelf = self] (status) in
+//            status == true ? (weakSelf?.alertBottomConstraint.constant = -40) : (weakSelf?.alertBottomConstraint.constant = 0)
+//            UIView.animate(withDuration: 0.3) {
+//                weakSelf?.view.layoutIfNeeded()
+//                weakSelf = nil
+//            }
+//        }
     }
     
     //Shows Chat viewcontroller with given user
@@ -120,7 +120,7 @@ class ConversationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segue" {
             let vc = segue.destination as! ChatVC
-            vc.currentUser = self.selectedUser
+//            vc.currentUser = self.selectedUser
         }
     }
 

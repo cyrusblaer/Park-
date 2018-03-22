@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class AccountTableViewController: UITableViewController {
     
@@ -24,6 +25,8 @@ class AccountTableViewController: UITableViewController {
         else {
             self.navigationItem.title = "您好"
         }
+        
+        self.setupNavBar()
         
         self.logoutButton = RoundedButton.init(frame: CGRect.init(x: 10, y: GlobalVariables.kScreenHeight - 109 - 96 - 40 - 20, width: 120, height: 40))
         self.logoutButton.titleLabel?.font = UIFont.init(name: "Avenir Book", size: 17)
@@ -58,6 +61,11 @@ class AccountTableViewController: UITableViewController {
         self.present(vc, animated: true, completion: nil)
     }
     
+    
+    func setupNavBar() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.barTintColor = FlatWhite()
+    }
     
     
 }

@@ -41,6 +41,7 @@ class RoundedView: UIView {
         let radius: CGFloat = self.bounds.size.height / 2.0
         self.layer.cornerRadius = radius
         self.clipsToBounds = true
+
     }
 }
 
@@ -50,6 +51,19 @@ class RoundedButton: UIButton {
         let radius: CGFloat = self.bounds.size.height / 2.0
         self.layer.cornerRadius = radius
         self.clipsToBounds = true
+//        self.layer.shadowOffset = CGSize.init(width: 10, height: 10)
+//        self.layer.shadowOpacity = 0.5
+//        self.layer.shadowColor = UIColor.black.cgColor
+        
+        let sublayer = CALayer()
+        sublayer.frame = self.frame
+        sublayer.backgroundColor = UIColor.black.cgColor
+        sublayer.shadowOffset = CGSize.init(width: 10, height: 10)
+        sublayer.shadowRadius = radius;
+        sublayer.shadowOpacity = 0.8
+        self.layer.addSublayer(sublayer)
+        
+        self.layer.masksToBounds = true
     }
 }
 

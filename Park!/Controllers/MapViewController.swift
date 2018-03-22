@@ -1,5 +1,5 @@
 //
-//  MapViewController.swift
+//  MapVC.swift
 //  Park!
 //
 //  Created by Blaer on 12/03/2018.
@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class MapViewController: UIViewController {
     
@@ -28,6 +29,12 @@ class MapViewController: UIViewController {
         
     }
     
+    func setupNavBar() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.barTintColor = FlatWhite()
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +42,8 @@ class MapViewController: UIViewController {
         
         self.initSearchController()
         self.initAmap()
+        
+        self.setupNavBar()
         
         self.view.bringSubview(toFront: self.locateButton)
 
