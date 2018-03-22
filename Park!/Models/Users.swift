@@ -138,7 +138,7 @@ class User: NSObject {
             }
         })
         
-        
+        // need jump out when network fail
         
     }
     

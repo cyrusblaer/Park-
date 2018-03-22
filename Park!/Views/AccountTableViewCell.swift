@@ -30,6 +30,20 @@ class AccountTableViewCell: UITableViewCell {
             }
         }
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        for item in self.contentView.superview!.subviews {
+            var subview = item as! UIView
+            if NSStringFromClass(subview.classForCoder).hasSuffix("SeparatorView") {
+                subview.isHidden = false
+                var frame = subview.frame
+                frame.origin.x += self.separatorInset.left
+                frame.size.width -= self.separatorInset.right
+                subview.frame  = frame
+            }
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -67,6 +67,20 @@ class RoundedButton: UIButton {
     }
 }
 
+class RoundedButtonWithBorder: UIButton {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let radius: CGFloat = self.bounds.size.height / 2.0
+        self.layer.cornerRadius = radius
+        self.clipsToBounds = true
+        //        self.layer.shadowOffset = CGSize.init(width: 10, height: 10)
+        //        self.layer.shadowOpacity = 0.5
+        //        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.masksToBounds = true
+        self.layer.borderWidth = 1
+    }
+}
+
 //Enums
 enum ViewControllerType {
     case tabVC

@@ -12,8 +12,6 @@ import ChameleonFramework
 
 class LandingViewController: UIViewController {
     
-    @IBOutlet weak var launchView: UIView!
-    
     //MARK: Properties
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         get {
@@ -68,8 +66,7 @@ class LandingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.launchView.backgroundColor = FlatOrange()
+
     }
 
     override func didReceiveMemoryWarning() {

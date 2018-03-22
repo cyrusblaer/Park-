@@ -9,6 +9,7 @@
 import UIKit
 import FoldingCell
 import MJRefresh
+import ChameleonFramework
 
 class ParkTableViewController: UITableViewController {
 
@@ -31,7 +32,7 @@ class ParkTableViewController: UITableViewController {
         cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
         tableView.estimatedRowHeight = kCloseCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.backgroundColor = UIColor.lightGray
+        tableView.backgroundColor = FlatWhiteDark()
         // 下拉刷新
         header.setRefreshingTarget(self, refreshingAction: Selector(("headerRefresh")))
         // 现在的版本要用mj_header

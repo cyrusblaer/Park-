@@ -18,6 +18,12 @@ class HomePageViewController: UIViewController {
     
     @IBOutlet var  myScrollView: UIScrollView!
     
+    @IBOutlet weak var thridViewTopLayout: NSLayoutConstraint!
+    
+    @IBOutlet weak var firstMoreButton: RoundedButtonWithBorder!
+    
+    @IBOutlet weak var startOrderButton: RoundedButtonWithBorder!
+    @IBOutlet weak var seeMoreButton: RoundedButtonWithBorder!
     func customization() {
         
         self.firstView.backgroundColor = FlatBlackDark()
@@ -25,12 +31,17 @@ class HomePageViewController: UIViewController {
         self.thirdView.backgroundColor = FlatWhite()
         self.fourthView.backgroundColor = FlatWhite()
         
+        self.firstMoreButton.layer.borderColor = UIColor.white.cgColor
+        self.startOrderButton.layer.borderColor = FlatMint().cgColor
+        self.seeMoreButton.layer.borderColor = FlatMint().cgColor
+        
+        
     }
 
     func setupNavBar() {
         self.navigationItem.title = "主页"
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.navigationBar.barTintColor = FlatWhite()
+//        self.navigationController?.navigationBar.barTintColor = FlatWhite()
         self.navigationController?.navigationBar.layer.shadowColor = UIColor.black.cgColor
         self.navigationController?.navigationBar.layer.shadowOffset = CGSize.init(width: 5, height: 5)
         self.navigationController?.navigationBar.layer.shadowOpacity = 0.2

@@ -31,7 +31,6 @@ class MapViewController: UIViewController {
     
     func setupNavBar() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.navigationBar.barTintColor = FlatWhite()
         
     }
     

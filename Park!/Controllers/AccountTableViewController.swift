@@ -13,10 +13,16 @@ class AccountTableViewController: UITableViewController {
     
     var logoutButton: RoundedButton!
     
+    var tableItems : [String] = [
+        "个人信息","消费记录","会员等级","设置","关于软件"
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        
+        self.view.backgroundColor = FlatWhite()
         
         if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
             let displayName = userInformation["name"] as! String
@@ -64,7 +70,6 @@ class AccountTableViewController: UITableViewController {
     
     func setupNavBar() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.navigationBar.barTintColor = FlatWhite()
     }
     
     
@@ -75,8 +80,8 @@ extension AccountTableViewController {
         guard case let cell as AccountTableViewCell = cell else {
             return
         }
-        cell.backgroundColor = .clear
-        cell.type = indexPath.row
+        cell.backgroundColor = FlatWhite()
+        cell.titleTextLabel.text = tableItems[indexPath.row]
         
     }
     
@@ -89,7 +94,7 @@ extension AccountTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return tableItems.count
     }
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -125,6 +130,7 @@ extension AccountTableViewController {
     
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+
         let footer = UIView.init()
         
         return footer
