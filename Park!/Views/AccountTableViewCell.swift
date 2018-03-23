@@ -19,14 +19,19 @@ class AccountTableViewCell: UITableViewCell {
             switch type {
             case 0:
                 titleTextLabel.text = "个人信息"
+                imageIcon.image = UIImage.init(named: "profile")
             case 1:
-                titleTextLabel.text = "使用记录"
+                titleTextLabel.text = "消费记录"
+                imageIcon.image = UIImage.init(named: "orders")
             case 2:
-                titleTextLabel.text = "设置"
+                titleTextLabel.text = "会员"
+                imageIcon.image = UIImage.init(named: "club")
             case 3:
-                titleTextLabel.text = "安全"
+                titleTextLabel.text = "设置"
+                imageIcon.image = UIImage.init(named: "setting")
             default:
-                titleTextLabel.text = ""
+                titleTextLabel.text = "关于软件"
+                imageIcon.image = UIImage.init(named: "about")
             }
         }
     }

@@ -11,11 +11,7 @@ import ChameleonFramework
 
 class AccountTableViewController: UITableViewController {
     
-    var logoutButton: RoundedButton!
-    
-    var tableItems : [String] = [
-        "个人信息","消费记录","会员等级","设置","关于软件"
-    ]
+    var logoutButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +30,12 @@ class AccountTableViewController: UITableViewController {
         
         self.setupNavBar()
         
-        self.logoutButton = RoundedButton.init(frame: CGRect.init(x: 10, y: GlobalVariables.kScreenHeight - 109 - 96 - 40 - 20, width: 120, height: 40))
+        self.logoutButton = UIButton.init(frame: CGRect.init(x: self.view.bounds.width/2 - 100, y: GlobalVariables.kScreenHeight - 109 - 96 - 40 - 20, width: 200, height: 40))
         self.logoutButton.titleLabel?.font = UIFont.init(name: "Avenir Book", size: 17)
-        self.logoutButton.setTitle("登出", for: .normal)
+        self.logoutButton.setTitle("退出登录", for: .normal)
         self.logoutButton.setTitleColor(.white, for: .normal)
-        self.logoutButton.setBackgroundImage(#imageLiteral(resourceName: "button"), for: .normal)
+        self.logoutButton.backgroundColor = FlatRed()
+        self.logoutButton.layer.cornerRadius = 4
         self.logoutButton.addTarget(self, action: #selector(logoutButtonAction(button:)), for: .touchUpInside)
         
         self.view.addSubview(self.logoutButton)
@@ -70,6 +67,7 @@ class AccountTableViewController: UITableViewController {
     
     func setupNavBar() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        
     }
     
     
@@ -81,7 +79,7 @@ extension AccountTableViewController {
             return
         }
         cell.backgroundColor = FlatWhite()
-        cell.titleTextLabel.text = tableItems[indexPath.row]
+        cell.type = indexPath.row
         
     }
     
@@ -94,7 +92,7 @@ extension AccountTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return tableItems.count
+        return 5
     }
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

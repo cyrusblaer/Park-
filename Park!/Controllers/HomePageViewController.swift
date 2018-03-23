@@ -8,6 +8,7 @@
 
 import UIKit
 import ChameleonFramework
+import SVProgressHUD
 
 class HomePageViewController: UIViewController {
 
@@ -17,13 +18,28 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var fourthView: UIView!
     
     @IBOutlet var  myScrollView: UIScrollView!
+    @IBOutlet weak var spaceIdTextField: UITextField!
     
+    @IBOutlet weak var presentInfoLabel: UILabel!
+    @IBOutlet weak var countTimeLabel: UILabel!
     @IBOutlet weak var thridViewTopLayout: NSLayoutConstraint!
     
     @IBOutlet weak var firstMoreButton: RoundedButtonWithBorder!
     
     @IBOutlet weak var startOrderButton: RoundedButtonWithBorder!
     @IBOutlet weak var seeMoreButton: RoundedButtonWithBorder!
+    
+    @IBOutlet weak var stopOrderButton: RoundedButtonWithBorder!
+    
+    var currentUser: String!
+    
+    var timer: Timer!
+    var count: Int = 0
+    
+    var hour: Int = 0
+    var minute: Int = 0
+    var second: Int = 0
+    
     func customization() {
         
         self.firstView.backgroundColor = FlatBlackDark()
@@ -34,7 +50,9 @@ class HomePageViewController: UIViewController {
         self.firstMoreButton.layer.borderColor = UIColor.white.cgColor
         self.startOrderButton.layer.borderColor = FlatMint().cgColor
         self.seeMoreButton.layer.borderColor = FlatMint().cgColor
+        self.stopOrderButton.layer.borderColor = FlatMint().cgColor
         
+        self.countTimeLabel.textColor = FlatSandDark()
         
     }
 
@@ -46,23 +64,170 @@ class HomePageViewController: UIViewController {
         self.navigationController?.navigationBar.layer.shadowOffset = CGSize.init(width: 5, height: 5)
         self.navigationController?.navigationBar.layer.shadowOpacity = 0.2
         self.navigationController?.hidesNavigationBarHairline = true
-
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.customization()
         self.setupNavBar()
-            self.myScrollView.contentInsetAdjustmentBehavior = .automatic
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.myScrollView.contentInsetAdjustmentBehavior = .automatic
+        self.myScrollView.delegate = self
+        self.spaceIdTextField.delegate = self
+        
+        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
+            currentUser = userInformation["phone"] as! String
+        }
+        
+        Orders.checkUnfinishedOrder(currentUser) { (free) in
+            self.displayConvertWithStatus(free)
+        }
     }
     
+    func displayConvertWithStatus(_ status: Bool) {
 
+        
+        if status {
+            self.presentInfoLabel.text = "当前停车时间为"
+            
+            Orders.getTimeFromStart(currentUser, completion: { (time) in
+                self.hour = Int(time/3600);
+                self.minute = Int(time - self.hour * 3600) / 60
+                self.second = Int(time - self.hour * 3600 - self.minute * 60)
+            })
+            
+            UIView.animate(withDuration: 0.8, animations: {
+                self.spaceIdTextField.alpha = 0
+                self.countTimeLabel.alpha = 1
+                self.startOrderButton.alpha = 0
+                self.stopOrderButton.alpha = 1
+            }, completion: { (status) in
+                self.spaceIdTextField.isHidden = true
+                self.countTimeLabel.isHidden = false
+                self.startOrderButton.isHidden = true
+                self.stopOrderButton.isHidden = false
+            })
+        }
+        else {
+            self.presentInfoLabel.text = "使用共享车位服务"
+            UIView.animate(withDuration: 0.8, animations: {
+                self.spaceIdTextField.alpha = 1
+                self.countTimeLabel.alpha = 0
+                self.startOrderButton.alpha = 1
+                self.stopOrderButton.alpha = 0
+            }, completion: { (status) in
+                self.spaceIdTextField.isHidden = false
+                self.countTimeLabel.isHidden = true
+                self.startOrderButton.isHidden = false
+                self.stopOrderButton.isHidden = true
+            })
+        }
+        
+    }
+    
+    @IBAction func startParkAction(_ sender: Any) {
+        
+        self.spaceIdTextField.resignFirstResponder()
+        
+            Orders.checkUnfinishedOrder(currentUser, completion: { (status) in
+                if status {
+                    // need to finish currentOrder
+                    
+                    SVProgressHUD.showError(withStatus: "暂不支持同时使用多车位")
+                }
+                else {
+                    SVProgressHUD.show()
+                    Orders.createOrderWith(spaceId: self.spaceIdTextField.text!, tenantId: self.currentUser, completion: { (status) in
+                        if status {
+                            print("车位解锁成功")
+                            self.displayConvertWithStatus(false)
+                            SVProgressHUD.dismiss()
+                            SVProgressHUD.showSuccess(withStatus: "车位解锁成功")
+                            self.startTimer()
+                        }
+                        else {
+                            print("失败，请重试")
+                            SVProgressHUD.dismiss()
+                            SVProgressHUD.showSuccess(withStatus: "请重试")
+                        }
+                    })
+                }
+            })
+        
+    }
+    
+    @IBAction func stopOrderAction(_ sender: Any) {
+        
+        SVProgressHUD.show(withStatus: "")
+        Orders.endUnfinishedOrder(currentUser) { (status, payment) in
+            if status {
+                SVProgressHUD.dismiss()
+                // display payment view
+            }
+            else {
+                SVProgressHUD.dismiss()
+                SVProgressHUD.showError(withStatus: "请重试")
+                
+            }
+        }
+    }
+    
+    
+    // MARK: - Timer methods
+    
+    // 实例化方法
+    func createTimer()
+    {
+        // init方法
+        //        self.timer = NSTimer.init(timeInterval: 0.1, target: self, selector: #selector(ViewController.countdown), userInfo: nil, repeats: true);
+        // scheduled方法
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (timer) in
+            self.countdown()
+        })
+        
+        RunLoop.current.add(self.timer, forMode: RunLoopMode.commonModes)
+        self.stopTimer()
+    }
+
+    // 开始计数
+    func startTimer()
+    {
+        if self.timer == nil
+        {
+            self.createTimer();
+        }
+        self.timer.fireDate = Date.distantPast
+    }
+    
+    func stopTimer() {
+        self.timer.fireDate = Date.distantFuture
+    }
+    
+    func killTimer() {
+        if (self.timer != nil)
+        {
+            if self.timer.isValid
+            {
+                self.timer.invalidate()
+                self.timer = nil
+            }
+        }
+        self.count = 0
+    }
+    
+    // 计数方法
+    func countdown()
+    {
+        self.second += 1
+        
+        if(self.second == 60){
+            self.minute = self.minute + 1
+            self.second = 0
+        }
+        if (self.minute == 60) {
+            self.hour = self.hour + 1
+            self.minute = 0
+        }
+    }
     
     // MARK: - Navigation
 
@@ -71,6 +236,16 @@ class HomePageViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
- 
+}
 
+extension HomePageViewController: UIScrollViewDelegate,  UITextFieldDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.spaceIdTextField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.spaceIdTextField.resignFirstResponder()
+        return true
+    }
 }

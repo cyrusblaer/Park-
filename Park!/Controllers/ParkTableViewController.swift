@@ -32,7 +32,7 @@ class ParkTableViewController: UITableViewController {
         cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
         tableView.estimatedRowHeight = kCloseCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.backgroundColor = FlatWhiteDark()
+        tableView.backgroundColor = UIColor.init(hexString: "ECF3F9")
         // 下拉刷新
         header.setRefreshingTarget(self, refreshingAction: Selector(("headerRefresh")))
         // 现在的版本要用mj_header
@@ -41,6 +41,8 @@ class ParkTableViewController: UITableViewController {
         // 上拉刷新
         footer.setRefreshingTarget(self, refreshingAction: Selector(("footerRefresh")))
         tableView.mj_footer = footer
+        
+//        self.shyNavBarManager.scrollView = self.tableView;
         
     }
     @IBAction func addSpaceAction(_ sender: Any) {
