@@ -151,10 +151,12 @@ extension MapViewController : UISearchBarDelegate,UISearchResultsUpdating, AMapS
     }
     
     func onPOISearchDone(_ request: AMapPOISearchBaseRequest!, response: AMapPOISearchResponse!) {
+        
         if response.count == 0 {
             return
         }
         
+        mapView.removeAnnotations(mapView.annotations)
         var annos = Array<MAPointAnnotation>()
         
         for aPOI in response.pois {

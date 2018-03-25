@@ -17,7 +17,6 @@
 		8834B8432057713700D22E31 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B8422057713700D22E31 /* LandingViewController.swift */; };
 		8834B8452057756D00D22E31 /* Helper Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B8442057756D00D22E31 /* Helper Files.swift */; };
 		8834B848205778EA00D22E31 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B847205778EA00D22E31 /* Users.swift */; };
-		8834B84A2057A86600D22E31 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B8492057A86600D22E31 /* HomeViewController.swift */; };
 		8834B84E20581DDE00D22E31 /* ParkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B84D20581DDE00D22E31 /* ParkTableViewController.swift */; };
 		8834B853205A4AF500D22E31 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B852205A4AF500D22E31 /* AccountTableViewCell.swift */; };
 		8834B855205A58EB00D22E31 /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B854205A58EB00D22E31 /* AccountInfoViewController.swift */; };
@@ -25,6 +24,10 @@
 		8834B859205BB0BB00D22E31 /* HomePageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B858205BB0BB00D22E31 /* HomePageTableViewCell.swift */; };
 		8834B85B205BB4FD00D22E31 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B85A205BB4FD00D22E31 /* HomeTableViewCell.swift */; };
 		88566BB12059481700C9141D /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88566BB02059481700C9141D /* AccountTableViewController.swift */; };
+		885B2D162065492800DFFACD /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B2D152065492800DFFACD /* RecordTableViewController.swift */; };
+		885B2D1A206549B600DFFACD /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B2D19206549B600DFFACD /* AboutViewController.swift */; };
+		885B2D1C206549CF00DFFACD /* ClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B2D1B206549CF00DFFACD /* ClubViewController.swift */; };
+		885B2D1E2065586300DFFACD /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B2D1D2065586300DFFACD /* SettingViewController.swift */; };
 		885D2CEE203FFB290095D581 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885D2CED203FFB290095D581 /* AppDelegate.swift */; };
 		885D2CF3203FFB290095D581 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885D2CF1203FFB290095D581 /* Main.storyboard */; };
 		885D2CF5203FFB290095D581 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 885D2CF4203FFB290095D581 /* Assets.xcassets */; };
@@ -54,7 +57,6 @@
 		8834B8422057713700D22E31 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		8834B8442057756D00D22E31 /* Helper Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper Files.swift"; sourceTree = "<group>"; };
 		8834B847205778EA00D22E31 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
-		8834B8492057A86600D22E31 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8834B84D20581DDE00D22E31 /* ParkTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkTableViewController.swift; sourceTree = "<group>"; };
 		8834B852205A4AF500D22E31 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		8834B854205A58EB00D22E31 /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +64,10 @@
 		8834B858205BB0BB00D22E31 /* HomePageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageTableViewCell.swift; sourceTree = "<group>"; };
 		8834B85A205BB4FD00D22E31 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		88566BB02059481700C9141D /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
+		885B2D152065492800DFFACD /* RecordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
+		885B2D19206549B600DFFACD /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		885B2D1B206549CF00DFFACD /* ClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewController.swift; sourceTree = "<group>"; };
+		885B2D1D2065586300DFFACD /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		885D2CEA203FFB290095D581 /* Park!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Park!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		885D2CED203FFB290095D581 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		885D2CF2203FFB290095D581 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -187,7 +193,6 @@
 				8834B83E2057708600D22E31 /* LoginViewController.swift */,
 				8834B8402057709400D22E31 /* WelcomeViewController.swift */,
 				8834B8422057713700D22E31 /* LandingViewController.swift */,
-				8834B8492057A86600D22E31 /* HomeViewController.swift */,
 				8834B84D20581DDE00D22E31 /* ParkTableViewController.swift */,
 				88566BB02059481700C9141D /* AccountTableViewController.swift */,
 				8834B854205A58EB00D22E31 /* AccountInfoViewController.swift */,
@@ -195,6 +200,10 @@
 				88AE23632060AF510051DBC5 /* AddLotViewController.swift */,
 				88180E992062592E00A64A83 /* HomePageViewController.swift */,
 				88D814522063A44000B4C53D /* TabBarViewController.swift */,
+				885B2D152065492800DFFACD /* RecordTableViewController.swift */,
+				885B2D19206549B600DFFACD /* AboutViewController.swift */,
+				885B2D1B206549CF00DFFACD /* ClubViewController.swift */,
+				885B2D1D2065586300DFFACD /* SettingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -376,17 +385,20 @@
 				888A263C20628EB000C45ED4 /* ChatVC.swift in Sources */,
 				8834B855205A58EB00D22E31 /* AccountInfoViewController.swift in Sources */,
 				8816DEEE205ABF7200CC8219 /* Orders.swift in Sources */,
-				8834B84A2057A86600D22E31 /* HomeViewController.swift in Sources */,
 				88F7CE2520611CB800FD7067 /* SearchLotTableViewCell.swift in Sources */,
 				8834B84E20581DDE00D22E31 /* ParkTableViewController.swift in Sources */,
 				88AE23642060AF510051DBC5 /* AddLotViewController.swift in Sources */,
+				885B2D1A206549B600DFFACD /* AboutViewController.swift in Sources */,
 				88EDCD3820567309006E6119 /* MapViewController.swift in Sources */,
 				888A263E20628EB000C45ED4 /* NavVC.swift in Sources */,
 				888A263520628C7400C45ED4 /* Conversation.swift in Sources */,
 				888A263620628C7400C45ED4 /* Message.swift in Sources */,
+				885B2D1C206549CF00DFFACD /* ClubViewController.swift in Sources */,
 				8834B8432057713700D22E31 /* LandingViewController.swift in Sources */,
 				8834B853205A4AF500D22E31 /* AccountTableViewCell.swift in Sources */,
 				888A263820628D1300C45ED4 /* VCCells.swift in Sources */,
+				885B2D1E2065586300DFFACD /* SettingViewController.swift in Sources */,
+				885B2D162065492800DFFACD /* RecordTableViewController.swift in Sources */,
 				8816DEEC205ABF6600CC8219 /* ParkingLot.swift in Sources */,
 				885D2CEE203FFB290095D581 /* AppDelegate.swift in Sources */,
 				8834B848205778EA00D22E31 /* Users.swift in Sources */,

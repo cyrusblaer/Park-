@@ -81,6 +81,35 @@ class ParkingSpace {
         
     }
     
+    // 设定返回值，0位为isRent，1为notRent，2车位不存在
+    class func checkSpaceStatus(_ spaceId: String, completion: @escaping (Int) -> Swift.Void) {
+        
+        Database.database().reference().child("spaces").child(spaceId).observeSingleEvent(of: .value) { (snap) in
+            if snap.exists() {
+                let dict = snap.value as? NSDictionary
+                let isRent = dict!["isRent"] as! Bool
+                let isReady = dict!["isReady"] as! Bool
+                
+                if isReady {
+                    if isRent {
+                        completion(0)
+                    }
+                    else {
+                        completion(1)
+                    }
+                }
+                else {
+                    completion(2)
+                }
+                
+            }
+            else {
+                completion(3)
+            }
+        }
+        
+    }
+    
     init(ownerId: String?, lotId: String?, createTime: String?, isRent: Bool, tenantId: String?) {
         self.ownerId = ownerId
         self.lotId = ownerId

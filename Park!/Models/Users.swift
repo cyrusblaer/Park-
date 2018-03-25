@@ -17,19 +17,21 @@ class User: NSObject {
     let name: String
     let phone: String
     var profilePic: UIImage
+    let userType: Int
     
     //MARK: Methods
     
     class func info(_ phone: String, completion: @escaping (User) -> Swift.Void) {
         Database.database().reference().child("users").child(phone).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let data = snapshot.value as? [String: String] {
-                let name = data["name"]!
-                let phone = data["phone"]!
-                let link = URL.init(string: data["profilePicLink"]!)
+            if let data = snapshot.value as? [String: Any] {
+                let name = data["name"] as! String
+                let phone = data["phone"] as! String
+                let type = data["userType"] as! Int
+                let link = URL.init(string: data["profilePicLink"] as! String)
                 URLSession.shared.dataTask(with: link!, completionHandler: { (data, response, error) in
                     if error == nil {
                         let profilePic = UIImage.init(data: data!)
-                        let user = User.init(name: name, phone: phone, profilePic: profilePic!)
+                        let user = User.init(name: name, phone: phone, profilePic: profilePic!, userType: type)
                         completion(user)
                     }
                 }).resume()
@@ -153,9 +155,10 @@ class User: NSObject {
     }
     
     //MARK: Inits
-    init(name: String,  phone: String,  profilePic: UIImage) {
+    init(name: String,  phone: String,  profilePic: UIImage, userType: Int) {
         self.name = name
         self.phone = phone
         self.profilePic = profilePic
+        self.userType = userType
     }
 }

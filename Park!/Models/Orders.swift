@@ -50,13 +50,13 @@ class Orders {
         }
     }
     
-    class func checkUnfinishedOrder(_ phone: String, completion: @escaping (Bool) -> Swift.Void) {
+    class func checkUnfinishedOrder(_ phone: String, completion: @escaping (Bool, String) -> Swift.Void) {
         Database.database().reference().child("users").child(phone).child("currentOrder").observeSingleEvent(of: .value) { (snap) in
             if snap.exists() {
-                completion(true)
+                completion(true,(snap.value as! String))
             }
             else {
-                completion(false)
+                completion(false,"")
             }
         }
     }
@@ -94,7 +94,7 @@ class Orders {
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "zh_CN")
                 // 设置时间地域，不然输出的是格林尼制时间
-                dateFormatter.setLocalizedDateFormatFromTemplate("yyyyMMddHHmm")
+                dateFormatter.dateFormat = "yyyyMMddHHmm"
                 // 定义输出的内容格式  yyyy 年， MM 月， dd 日， HH 24小时，mm 分， ss 秒
                 let toTime = dateFormatter.string(from: Date())
                 Database.database().reference().child("orders").child(currentOrder).updateChildValues(["toTime": toTime])
@@ -102,6 +102,7 @@ class Orders {
                     if snap.exists() {
                         let fromTime = snap.value as! String
                         let payment = self.calculatePayment(fromTime: fromTime, toTime: toTime)
+                        
                         completion(true, payment)
                     }
                     else {
@@ -119,9 +120,9 @@ class Orders {
     class func calculatePayment(fromTime: String, toTime: String) -> String {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "zh_CN")
+//        dateFormatter.locale = Locale(identifier: "zh_CN")
         // 设置时间地域，不然输出的是格林尼制时间
-        dateFormatter.setLocalizedDateFormatFromTemplate("yyyyMMddHHmm")
+        dateFormatter.dateFormat = "yyyyMMddHHmm"
         // 定义输出的内容格式  yyyy 年， MM 月， dd 日， HH 24小时，mm 分， ss
         
         let fromDate = dateFormatter.date(from: fromTime)
@@ -130,9 +131,38 @@ class Orders {
         
         let timeGap = toDate?.timeIntervalSince(fromDate!)
         // 金额计算公式在此
-        let payment = String(timeGap! * 0.5)
+        let payment = String(timeGap!/60 * 0.5)
         
         return payment
+    }
+    
+    class func didPayFee(_ user: String, order: String, charged: String, completion: @escaping (Bool) -> Swift.Void) {
+        
+        Database.database().reference().child("orders").child(order).updateChildValues(["charges": charged, "isFinished": true])
+        
+        Database.database().reference().child("users").child(user).child("currentOrder").removeValue()
+        
+        Database.database().reference().child("orders").child(order).child("spaceId").observeSingleEvent(of: .value) { (snap) in
+            if snap.exists() {
+                let spaceId = snap.value! as! String
+                Database.database().reference().child("spaces").child(spaceId).updateChildValues(["isRent": false])
+                Database.database().reference().child("users").child(user).child("finishedOrder").setValue([order: charged]) { (error, ref) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        completion(false)
+                    }
+                    else {
+                        completion(true)
+                    }
+                }
+            }
+            else {
+                completion(false)
+            }
+        }
+        
+        
+        
     }
     
     init(orderId: String?, isFinished: Bool, fromTime: String?, toTime: String?, spaceId: String?, tenantId: String?, owner : String?, supervisorId: String?) {

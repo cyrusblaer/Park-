@@ -60,7 +60,14 @@ class AccountInfoViewController: UIViewController, UITextFieldDelegate, UINaviga
         self.passwordView.layer.cornerRadius = 8
         //UserTypeView Customization
         
-        self.displayNameTextField.text = ""
+        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
+            let userName = userInformation["name"] as! String
+            self.displayNameTextField.text = userName
+            
+        }
+        else {
+            self.displayNameTextField.text = ""
+        }
         self.view.insertSubview(self.userTypeView, belowSubview: self.profileView)
         self.userTypeView.translatesAutoresizingMaskIntoConstraints = false
         self.userTypeView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true

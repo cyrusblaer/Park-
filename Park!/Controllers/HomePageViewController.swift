@@ -31,7 +31,15 @@ class HomePageViewController: UIViewController {
     
     @IBOutlet weak var stopOrderButton: RoundedButtonWithBorder!
     
+    @IBOutlet var payView: UIView!
+    
+    @IBOutlet weak var paymentLabel: UILabel!
+    var topAnchorContraint: NSLayoutConstraint!
+    let darkView = UIView.init()
+    
     var currentUser: String!
+    var currentOrder: String!
+    var payment: String!
     
     var timer: Timer!
     var count: Int = 0
@@ -53,9 +61,79 @@ class HomePageViewController: UIViewController {
         self.stopOrderButton.layer.borderColor = FlatMint().cgColor
         
         self.countTimeLabel.textColor = FlatSandDark()
+        self.paymentLabel.textColor = FlatCoffee()
+        
+        // 由于效果需要暂时将子View加在最顶层Tabbar上，以便将darkView覆盖全屏
+        //DarkView customization
+        self.tabBarController?.view.addSubview(self.darkView)
+        self.darkView.backgroundColor = UIColor.black
+        self.darkView.alpha = 0
+        self.darkView.translatesAutoresizingMaskIntoConstraints = false
+        self.darkView.leadingAnchor.constraint(equalTo: (self.tabBarController?.view.leadingAnchor)!).isActive = true
+        self.darkView.topAnchor.constraint(equalTo: (self.tabBarController?.view.topAnchor)!).isActive = true
+        self.darkView.trailingAnchor.constraint(equalTo: (self.tabBarController?.view.trailingAnchor)!).isActive = true
+        self.darkView.bottomAnchor.constraint(equalTo: (self.tabBarController?.view.bottomAnchor)!).isActive = true
+        self.darkView.isHidden = true
+        //ContainerView customization
+        let extraViewsContainer = UIView.init()
+        extraViewsContainer.translatesAutoresizingMaskIntoConstraints = false
+        self.tabBarController?.view.addSubview(extraViewsContainer)
+        self.topAnchorContraint = NSLayoutConstraint.init(item: extraViewsContainer, attribute: .top, relatedBy: .equal, toItem: self.tabBarController?.view, attribute: .top, multiplier: 1, constant: 1000)
+        self.topAnchorContraint.isActive = true
+        extraViewsContainer.leadingAnchor.constraint(equalTo: (self.tabBarController?.view.leadingAnchor)!).isActive = true
+        extraViewsContainer.trailingAnchor.constraint(equalTo: (self.tabBarController?.view.trailingAnchor)!).isActive = true
+        extraViewsContainer.heightAnchor.constraint(equalTo: (self.tabBarController?.view.heightAnchor)!, multiplier: 1).isActive = true
+        extraViewsContainer.backgroundColor = UIColor.clear
+        
+        //ProfileView Customization
+        extraViewsContainer.addSubview(self.payView)
+        self.payView.translatesAutoresizingMaskIntoConstraints = false
+        self.payView.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width * 0.9)).isActive = true
+        let payViewAspectRatio = NSLayoutConstraint.init(item: self.payView, attribute: .width, relatedBy: .equal, toItem: self.payView, attribute: .height, multiplier: 0.850, constant: 0)
+        payViewAspectRatio.isActive = true
+        self.payView.centerXAnchor.constraint(equalTo: extraViewsContainer.centerXAnchor).isActive = true
+        self.payView.centerYAnchor.constraint(equalTo: extraViewsContainer.centerYAnchor).isActive = true
+        self.payView.layer.cornerRadius = 5
+        self.payView.clipsToBounds = true
+        self.payView.isHidden = true
+       
+        self.view.layoutIfNeeded()
+    }
+    
+    //Hide Extra views
+    func dismissExtraViews() {
+        self.topAnchorContraint.constant = 1000
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+            self.view.layoutIfNeeded()
+            self.darkView.alpha = 0
+            self.tabBarController?.view.transform = CGAffineTransform.identity
+        }, completion:  { (true) in
+            self.darkView.isHidden = true
+            self.payView.isHidden = true
+        })
+    }
+    
+    //Show Pay view
+    func showPayView()  {
+        let transform = CGAffineTransform.init(scaleX: 0.96, y: 0.96)
+        self.topAnchorContraint.constant = 0
+        self.darkView.isHidden = false
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+            self.darkView.alpha = 0.5
+            
+                self.tabBarController?.view.transform = transform
+            
+        })
+        self.payView.isHidden = false
         
     }
-
+    @IBAction func closeView(_ sender: Any) {
+        self.dismissExtraViews()
+        
+    }
+    
     func setupNavBar() {
         self.navigationItem.title = "主页"
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -78,8 +156,9 @@ class HomePageViewController: UIViewController {
             currentUser = userInformation["phone"] as! String
         }
         
-        Orders.checkUnfinishedOrder(currentUser) { (free) in
+        Orders.checkUnfinishedOrder(currentUser) { (free, orderId) in
             self.displayConvertWithStatus(free)
+            self.currentOrder = orderId
         }
     }
     
@@ -93,6 +172,8 @@ class HomePageViewController: UIViewController {
                 self.hour = Int(time/3600);
                 self.minute = Int(time - self.hour * 3600) / 60
                 self.second = Int(time - self.hour * 3600 - self.minute * 60)
+                self.countTimeLabel.text = String.init(format: "%d:%02d:%02d", self.hour,self.minute,self.second)
+                self.startTimer()
             })
             
             UIView.animate(withDuration: 0.8, animations: {
@@ -128,30 +209,48 @@ class HomePageViewController: UIViewController {
         
         self.spaceIdTextField.resignFirstResponder()
         
-            Orders.checkUnfinishedOrder(currentUser, completion: { (status) in
-                if status {
-                    // need to finish currentOrder
-                    
-                    SVProgressHUD.showError(withStatus: "暂不支持同时使用多车位")
-                }
-                else {
-                    SVProgressHUD.show()
-                    Orders.createOrderWith(spaceId: self.spaceIdTextField.text!, tenantId: self.currentUser, completion: { (status) in
-                        if status {
-                            print("车位解锁成功")
-                            self.displayConvertWithStatus(false)
-                            SVProgressHUD.dismiss()
-                            SVProgressHUD.showSuccess(withStatus: "车位解锁成功")
-                            self.startTimer()
-                        }
-                        else {
-                            print("失败，请重试")
-                            SVProgressHUD.dismiss()
-                            SVProgressHUD.showSuccess(withStatus: "请重试")
-                        }
-                    })
-                }
-            })
+        ParkingSpace.checkSpaceStatus(self.spaceIdTextField.text!) { (status) in
+            if status == 0 {
+                SVProgressHUD.showError(withStatus: "该车位已出租")
+            } else if status == 1 {
+                self.successStartPark()
+            } else if status == 2 {
+                SVProgressHUD.showError(withStatus: "该车位暂不开放")
+            } else {
+                SVProgressHUD.showError(withStatus: "车位编号不存在")
+            }
+        }
+        
+    }
+    
+    func successStartPark() {
+        
+        Orders.checkUnfinishedOrder(currentUser, completion: { (status, orderId) in
+            if status {
+                // need to finish currentOrder
+                
+                SVProgressHUD.showError(withStatus: "暂不支持同时使用多车位")
+            }
+            else {
+                SVProgressHUD.show()
+                Orders.createOrderWith(spaceId: self.spaceIdTextField.text!, tenantId: self.currentUser, completion: { (status) in
+                    if status {
+                        print("车位解锁成功")
+                        self.displayConvertWithStatus(false)
+                        SVProgressHUD.dismiss()
+                        SVProgressHUD.showSuccess(withStatus: "车位解锁成功")
+                    }
+                    else {
+                        print("失败，请重试")
+                        SVProgressHUD.dismiss()
+                        SVProgressHUD.showSuccess(withStatus: "请重试")
+                    }
+                })
+            }
+        })
+    }
+    @IBAction func checkClubMore(_ sender: Any) {
+        self.showPayView()
         
     }
     
@@ -162,6 +261,10 @@ class HomePageViewController: UIViewController {
             if status {
                 SVProgressHUD.dismiss()
                 // display payment view
+                self.showPayView()
+                self.payment = payment
+                self.paymentLabel.text = String.init(format: "%.1f元", Float(payment)!)
+                self.displayConvertWithStatus(true)
             }
             else {
                 SVProgressHUD.dismiss()
@@ -171,6 +274,38 @@ class HomePageViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func wechatPayAction(_ sender: Any) {
+        
+        SVProgressHUD.show(withStatus: "支付中")
+        NSLog("Wechat Pay Action")
+        Orders.didPayFee(self.currentUser, order: self.currentOrder, charged: self.payment) { (status) in
+            if status {
+                SVProgressHUD.dismiss()
+                self.dismissExtraViews()
+            }
+            else {
+                SVProgressHUD.dismiss()
+                SVProgressHUD.showError(withStatus: "支付失败,请重试")
+            }
+        }
+        
+    }
+    
+    @IBAction func aliPayAction(_ sender: Any) {
+        SVProgressHUD.show(withStatus: "支付中")
+        NSLog("Ali Pay Action")
+        Orders.didPayFee(self.currentUser, order: self.currentOrder, charged: self.payment) { (status) in
+            if status {
+                SVProgressHUD.dismiss()
+                self.dismissExtraViews()
+            }
+            else {
+                SVProgressHUD.dismiss()
+                SVProgressHUD.showError(withStatus: "支付失败,请重试")
+            }
+        }
+    }
     
     // MARK: - Timer methods
     
@@ -227,6 +362,7 @@ class HomePageViewController: UIViewController {
             self.hour = self.hour + 1
             self.minute = 0
         }
+        self.countTimeLabel.text = String.init(format: "%d:%02d:%02d", self.hour,self.minute,self.second)
     }
     
     // MARK: - Navigation

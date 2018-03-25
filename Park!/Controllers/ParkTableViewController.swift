@@ -18,6 +18,8 @@ class ParkTableViewController: UITableViewController {
     let kRowsCount = 10
     var cellHeights: [CGFloat] = []
     
+    var currentUser: User?
+    
     // 顶部刷新
     let header = MJRefreshNormalHeader()
     // 底部刷新
@@ -25,6 +27,13 @@ class ParkTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
+            let phone = userInformation["phone"] as! String
+            User.info(phone) { (user) in
+                self.currentUser = user
+            }
+        }
         setup()
     }
     
