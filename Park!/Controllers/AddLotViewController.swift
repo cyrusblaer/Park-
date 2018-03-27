@@ -7,27 +7,44 @@
 //
 
 import UIKit
+import DropDown
+import SVProgressHUD
 
 class AddLotViewController: UIViewController {
 
     var amapSearch = AMapSearchAPI()
     var annos = Array<MAPointAnnotation>()
+    var resultsName = Array<String>()
     
     @IBOutlet weak var lotNameTextField: UITextField!
+    
+    
+    @IBOutlet weak var nameFieldSeperator: UIView!
+    
     @IBOutlet weak var numberOfSpaceTextField: UITextField!
     @IBOutlet weak var supervisorPhoneTextField: UITextField!
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet var inputFields: [UITextField]!
     
-    @IBOutlet weak var searchResultTableView: UITableView!
+    var parkingLot : ParkingLot?
+    var lotArr = Array<ParkingLot>()
+    
+    let dropDown = DropDown()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.title = "车场信息登记"
-        self.searchResultTableView.delegate = self
-        self.searchResultTableView.dataSource = self
         self.initAmap()
+        dropDown.anchorView = self.nameFieldSeperator
+
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            print("Selected item: \(item) at index: \(index)")
+            self.parkingLot = self.lotArr[index]
+            self.dropDown.hide()
+            self.lotNameTextField.text = item
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -52,6 +69,37 @@ class AddLotViewController: UIViewController {
         amapSearch?.aMapPOIKeywordsSearch(request)
     }
     
+    @IBAction func confirmAction(_ sender: Any) {
+        
+        if let numberOfSpace = Int(self.numberOfSpaceTextField.text!) {
+            if let supervisor = self.supervisorPhoneTextField.text {
+                ParkingLot.registerParkingLot(withUid: (self.parkingLot?.uid)!, name: (self.parkingLot?.name)!, address: (self.parkingLot?.address)!, location: (self.parkingLot?.location)!, numberOfSpace: numberOfSpace, rentNumber: 0, supervisorId: supervisor) { [unowned self](status) in
+                    if status {
+                        SVProgressHUD.showSuccess(withStatus: "添加成功")
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    else {
+                        SVProgressHUD.showError(withStatus: "添加失败,请重试")
+                    }
+                }
+            }
+            else {
+                SVProgressHUD.showError(withStatus: "请填写管理员手机号")
+            }
+            
+        }
+        else {
+            SVProgressHUD.showError(withStatus: "请填写车位数量")
+        }
+        
+    }
+    
+    
+    @IBAction func closeVC(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -64,21 +112,7 @@ class AddLotViewController: UIViewController {
 
 }
 
-extension AddLotViewController: UITextFieldDelegate,AMapSearchDelegate, MAMapViewDelegate, UITableViewDataSource, UITableViewDelegate {
-    
-    //MARK: - TableView Delegate
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return annos.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchLotTableViewCell", for: indexPath) as! SearchLotTableViewCell
-        
-        cell.title = annos[indexPath.row].title
-        
-        return cell
-    }
+extension AddLotViewController: UITextFieldDelegate,AMapSearchDelegate, MAMapViewDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.tag == 3 {
@@ -104,7 +138,6 @@ extension AddLotViewController: UITextFieldDelegate,AMapSearchDelegate, MAMapVie
             item.resignFirstResponder()
         }
         if textField.tag == 3 {
-            self.searchResultTableView.isHidden = false
             self.searchByKeyword(textField.text!)
             
         }
@@ -130,16 +163,23 @@ extension AddLotViewController: UITextFieldDelegate,AMapSearchDelegate, MAMapVie
             return
         }
         annos.removeAll()
-        
+        resultsName.removeAll()
         for aPOI in response.pois {
-            let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(aPOI.location.latitude), longitude: CLLocationDegrees(aPOI.location.longitude))
-            let anno = MAPointAnnotation()
-            anno.coordinate = coordinate
-            anno.title = aPOI.name
-            anno.subtitle = aPOI.address
-            annos.append(anno)
+            let location = CLLocationCoordinate2D(latitude: CLLocationDegrees(aPOI.location.latitude), longitude: CLLocationDegrees(aPOI.location.longitude))
+//            let enterLocation = CLLocationCoordinate2D(latitude: CLLocationDegrees(aPOI.enterLocation.latitude), longitude: CLLocationDegrees(aPOI.enterLocation.longitude))
+            let lot = ParkingLot.init(aPOI.uid, name: aPOI.name, address: aPOI.address, location: location, numberOfSpace: 0, rentNumber: 0, supervisorId: "", isRegistered: false)
+            lotArr.append(lot)
+            resultsName.append(aPOI.name)
+//            let anno = MAPointAnnotation()
+//            anno.coordinate = coordinate
+//            anno.title = aPOI.name
+//            anno.subtitle = aPOI.address
+//            annos.append(anno)
+//            resultsName.append(aPOI.name)
         }
-        self.searchResultTableView.reloadData()
+        dropDown.dataSource = resultsName
+        dropDown.show()
+        
     }
     
     

@@ -9,6 +9,7 @@
 import UIKit
 import AMapFoundationKit
 import Firebase
+import DropDown
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let auth = WDGAuth.auth()
         
         FirebaseApp.configure()
+        DropDown.startListeningToKeyboard()
 //        //  腾讯云对象存储初始化
 //        var configuration = QCloudServiceConfiguration()
 //        configuration.appID = "1254251493"

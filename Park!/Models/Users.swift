@@ -25,16 +25,17 @@ class User: NSObject {
         Database.database().reference().child("users").child(phone).observeSingleEvent(of: .value, with: { (snapshot) in
             if let data = snapshot.value as? [String: Any] {
                 let name = data["name"] as! String
-                let phone = data["phone"] as! String
+                let phone = data["uid"] as! String
                 let type = data["userType"] as! Int
-                let link = URL.init(string: data["profilePicLink"] as! String)
-                URLSession.shared.dataTask(with: link!, completionHandler: { (data, response, error) in
+                if let link = URL.init(string: data["profilePicLink"] as! String){
+                    URLSession.shared.dataTask(with: link, completionHandler: { (data, response, error) in
                     if error == nil {
                         let profilePic = UIImage.init(data: data!)
                         let user = User.init(name: name, phone: phone, profilePic: profilePic!, userType: type)
                         completion(user)
                     }
                 }).resume()
+                }
             }
         })
     }
