@@ -11,22 +11,92 @@ import UIKit
 
 class HomeTableViewCell: FoldingCell {
 
-    @IBOutlet var closeNumberLabel: UILabel!
-    @IBOutlet var openNumberLabel: UILabel!
-
-    var number: Int = 0 {
+    @IBOutlet var distanceLabel: UILabel!
+    @IBOutlet var foreNameLabel: UILabel!
+    @IBOutlet var titleNameLabel: UILabel!
+    @IBOutlet var profileNameLabel: UILabel!
+    
+    @IBOutlet weak var foreAddressLabel: UILabel!
+    
+    @IBOutlet weak var addressLabel: UILabel!
+    
+    @IBOutlet weak var cityLabel: UILabel!
+    
+    @IBOutlet weak var districtLabel: UILabel!
+    @IBOutlet weak var usedSpaceLabel: UILabel!
+    @IBOutlet weak var estimatedTime: UILabel!
+    
+    @IBOutlet weak var numberOfSpaceLabel: UILabel!
+    @IBOutlet weak var rentNumberLabel: UILabel!
+    @IBOutlet weak var isRegisteredLabel: UILabel!
+    
+    @IBOutlet weak var navButton: UIButton!
+    
+    var name: String = "" {
         didSet {
-            closeNumberLabel.text = String(number)
-            openNumberLabel.text = String(number)
+            foreNameLabel.text = name
+            titleNameLabel.text = name
+            profileNameLabel.text = name
+        }
+    }
+    
+    var address: String = "" {
+        didSet {
+            foreAddressLabel.text = address
+            addressLabel.text = address
+        }
+    }
+    
+    var isRegistered: Bool = false {
+        didSet {
+            if isRegistered {
+                isRegisteredLabel.text = "是"
+            }
+            else {
+                isRegisteredLabel.text = "否"
+            }
+        }
+    }
+    
+    var city: String = "" {
+        didSet {
+            self.cityLabel.text = city
+        }
+    }
+    
+    var district: String = "" {
+        didSet {
+            self.districtLabel.text = district
         }
     }
 
+    var rentNumber: Int = 0 {
+        didSet {
+            self.rentNumberLabel.text = String(rentNumber)
+        }
+    }
+    
+    var numberOfSpace: Int = 0 {
+        didSet {
+            self.numberOfSpaceLabel.text = String(numberOfSpace)
+            self.usedSpaceLabel.text = "\(numberOfSpace - rentNumber)/\(numberOfSpace)"
+        }
+    }
+    
+    var distance : String = "" {
+        
+        didSet {
+            self.distanceLabel.text = distance
+        }
+        
+    }
+    
     override func awakeFromNib() {
         foregroundView.layer.cornerRadius = 10
         foregroundView.layer.masksToBounds = true
         super.awakeFromNib()
     }
-
+    
     override func animationDuration(_ itemIndex: NSInteger, type _: FoldingCell.AnimationType) -> TimeInterval {
         let durations = [0.26, 0.2, 0.2]
         return durations[itemIndex]

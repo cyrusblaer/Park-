@@ -19,7 +19,7 @@ class ParkTableViewController: UIViewController {
     
     let kCloseCellHeight: CGFloat = 179
     let kOpenCellHeight: CGFloat = 488
-    let kRowsCount = 10
+    let kRowsCount = 15
     var cellHeights: [CGFloat] = []
     
     var currentUser: User?
@@ -32,8 +32,6 @@ class ParkTableViewController: UIViewController {
     
     // 顶部刷新
     let header = MJRefreshNormalHeader()
-    // 底部刷新
-    let footer = MJRefreshAutoNormalFooter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,16 +42,13 @@ class ParkTableViewController: UIViewController {
                 self.currentUser = user
             }
         }
-        self.searchNearbyLots()
         setup()
         self.initAmap()
         self.locationManager.delegate = self
         
-        if self.checkLocationPermission() {
-            self.locationManager.startUpdatingLocation()
-        } else {
-            self.locationManager.requestWhenInUseAuthorization()
-        }
+        self.navigationItem.title = "车位信息"
+        
+        self.headerRefresh()
     }
     
     func checkLocationPermission() -> Bool {
@@ -80,13 +75,9 @@ class ParkTableViewController: UIViewController {
         self.foldingTableView.rowHeight = UITableViewAutomaticDimension
         self.foldingTableView.backgroundColor = UIColor.init(hexString: "ECF3F9")
         // 下拉刷新
-        header.setRefreshingTarget(self, refreshingAction: Selector(("headerRefresh")))
+        header.setRefreshingTarget(self, refreshingAction: #selector(self.headerRefresh))
         // 现在的版本要用mj_header
         self.foldingTableView.mj_header = header
-        
-        // 上拉刷新
-        footer.setRefreshingTarget(self, refreshingAction: Selector(("footerRefresh")))
-        self.foldingTableView.mj_footer = footer
         
 //         self.shyNavBarManager.scrollView = self.foldingTableView;
         
@@ -113,23 +104,27 @@ class ParkTableViewController: UIViewController {
         
     }
     
-    func headerRefresh(){
+    @objc func headerRefresh(){
         print("下拉刷新")
-        // 结束刷新
-        self.foldingTableView.mj_header.endRefreshing()
-    }
-    
-    // 底部刷新
-    var index = 0
-    func footerRefresh(){
-        print("上拉刷新")
-        self.foldingTableView.mj_footer.endRefreshing()
-        // 2次后模拟没有更多数据
-        index = index + 1
-        if index > 2 {
-            footer.endRefreshingWithNoMoreData()
+        
+        if self.checkLocationPermission() {
+            self.locationManager.startUpdatingLocation()
+        } else {
+            self.locationManager.requestWhenInUseAuthorization()
         }
     }
+    
+//    // 底部刷新
+//    var index = 0
+//    func footerRefresh(){
+//        print("上拉刷新")
+//        self.foldingTableView.mj_footer.endRefreshing()
+//        // 2次后模拟没有更多数据
+//        index = index + 1
+//        if index > 2 {
+//            footer.endRefreshingWithNoMoreData()
+//        }
+//    }
     
 }
 
@@ -138,7 +133,8 @@ class ParkTableViewController: UIViewController {
 extension ParkTableViewController: UITableViewDelegate, UITableViewDataSource, AMapSearchDelegate, CLLocationManagerDelegate {
     
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return nearbyLotArr.count
+        
+        return self.nearbyLotArr.count
     }
     
     func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -154,7 +150,14 @@ extension ParkTableViewController: UITableViewDelegate, UITableViewDataSource, A
             cell.unfold(true, animated: false, completion: nil)
         }
         
-        cell.number = indexPath.row
+//        cell.number = indexPath.row
+        cell.name = self.nearbyLotArr[indexPath.row].name
+        cell.address = self.nearbyLotArr[indexPath.row].address
+        cell.city = self.nearbyLotArr[indexPath.row].city
+        cell.district = self.nearbyLotArr[indexPath.row].district
+        cell.isRegistered = self.nearbyLotArr[indexPath.row].isRegistered
+        cell.distanceLabel.text = self.distanceToString(distance: self.nearbyLotArr[indexPath.row].distanceFromLocation)
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -219,20 +222,44 @@ extension ParkTableViewController: UITableViewDelegate, UITableViewDataSource, A
         if response.count == 0 {
             return
         }
+        print("number of response : \(response.pois.count)")
+        
+        self.nearbyLotArr.removeAll()
         
         for aPOI in response.pois {
             let location = CLLocationCoordinate2D(latitude: CLLocationDegrees(aPOI.location.latitude), longitude: CLLocationDegrees(aPOI.location.longitude))
             //            let enterLocation = CLLocationCoordinate2D(latitude: CLLocationDegrees(aPOI.enterLocation.latitude), longitude: CLLocationDegrees(aPOI.enterLocation.longitude))
             let lot = ParkingLot.init(aPOI.uid, name: aPOI.name, address: aPOI.address, location: location, numberOfSpace: 0, rentNumber: 0, supervisorId: "", isRegistered: false)
             
+            lot.city = aPOI.city
+            
+            lot.district = aPOI.district
+            
             ParkingLot.searchLotInDatabase(aPOI.uid, completion: { (exist, existLot) in
                 if exist {
+                    existLot?.distanceFromLocation = self.calculateDistanceToCurrentLocation(self.currentLocation!, to: (existLot?.location)!)
+
                     self.nearbyLotArr.append(existLot!)
+                    
                 }
                 else {
+                    lot.distanceFromLocation = self.calculateDistanceToCurrentLocation(self.currentLocation!, to: lot.location)
+                    
                     self.nearbyLotArr.append(lot)
                 }
+                
+                print("array number: \(self.nearbyLotArr.count)")
+                
+//                if self.nearbyLotArr.count == response.pois.count {
+                    self.cellHeights = Array(repeating: self.kCloseCellHeight, count: self.nearbyLotArr.count)
+                    self.foldingTableView.reloadData()
+                    self.foldingTableView.mj_header.endRefreshing()
+                    
+//                }
+                
             })
+            
+            
 //            let anno = MAPointAnnotation()
 //            anno.coordinate = coordinate
 //            anno.title = aPOI.name
@@ -245,7 +272,36 @@ extension ParkTableViewController: UITableViewDelegate, UITableViewDataSource, A
         self.locationManager.stopUpdatingLocation()
         if let lastLocation = locations.last {
             currentLocation = lastLocation.coordinate
+            let locationAge = -lastLocation.timestamp.timeIntervalSinceNow
+            if locationAge > 1.0 {
+                return
+            }
+            
+            else {
+                self.searchNearbyLots()
+            }
         }
+    }
+    
+    func calculateDistanceToCurrentLocation(_ from : CLLocationCoordinate2D, to : CLLocationCoordinate2D) -> CLLocationDistance{
+        let from = MAMapPointForCoordinate(CLLocationCoordinate2D(latitude: 39.989612, longitude: 116.480972))
+        let to = MAMapPointForCoordinate(CLLocationCoordinate2D(latitude: 39.990347, longitude: 116.480441))
+    
+        let distance = MAMetersBetweenMapPoints(from, to);
+        
+        return distance
+    }
+    
+    func distanceToString (distance : CLLocationDistance) -> String {
+        var distanceString = ""
+        
+        if distance / 1000.0 > 1 {
+            distanceString = String.init(format: "%.1fkm", distance / 1000.0)
+        } else {
+            distanceString = String.init(format: "%dm", Int(distance))
+        }
+        
+        return distanceString
     }
 }
 

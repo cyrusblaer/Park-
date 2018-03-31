@@ -167,7 +167,10 @@ extension AddLotViewController: UITextFieldDelegate,AMapSearchDelegate, MAMapVie
         for aPOI in response.pois {
             let location = CLLocationCoordinate2D(latitude: CLLocationDegrees(aPOI.location.latitude), longitude: CLLocationDegrees(aPOI.location.longitude))
 //            let enterLocation = CLLocationCoordinate2D(latitude: CLLocationDegrees(aPOI.enterLocation.latitude), longitude: CLLocationDegrees(aPOI.enterLocation.longitude))
-            let lot = ParkingLot.init(aPOI.uid, name: aPOI.name, address: aPOI.address, location: location, numberOfSpace: 0, rentNumber: 0, supervisorId: "", isRegistered: false)
+            let lot = ParkingLot.init(aPOI.uid, name: aPOI.name, address: aPOI.address, location: location, numberOfSpace: 0, rentNumber: 0, supervisorId: "", isRegistered: true)
+            lot.city = aPOI.city
+            
+            lot.district = aPOI.district
             lotArr.append(lot)
             resultsName.append(aPOI.name)
 //            let anno = MAPointAnnotation()
