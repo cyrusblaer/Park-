@@ -34,6 +34,9 @@ class HomePageViewController: UIViewController {
     @IBOutlet var payView: UIView!
     
     @IBOutlet weak var paymentLabel: UILabel!
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     var topAnchorContraint: NSLayoutConstraint!
     let darkView = UIView.init()
     
@@ -47,6 +50,8 @@ class HomePageViewController: UIViewController {
     var hour: Int = 0
     var minute: Int = 0
     var second: Int = 0
+    
+    var cities = City.cities
     
     func customization() {
         
@@ -151,12 +156,14 @@ class HomePageViewController: UIViewController {
         self.myScrollView.contentInsetAdjustmentBehavior = .automatic
         self.myScrollView.delegate = self
         self.spaceIdTextField.delegate = self
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
         
         if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
             currentUser = userInformation["phone"] as! String
         }
         
-        Orders.checkUnfinishedOrder(currentUser) { (free, orderId) in
+        Order.checkUnfinishedOrder(currentUser) { (free, orderId) in
             self.displayConvertWithStatus(free)
             self.currentOrder = orderId
         }
@@ -168,7 +175,7 @@ class HomePageViewController: UIViewController {
         if status {
             self.presentInfoLabel.text = "当前停车时间为"
             
-            Orders.getTimeFromStart(currentUser, completion: { (time) in
+            Order.getTimeFromStart(currentUser, completion: { (time) in
                 self.hour = Int(time/3600);
                 self.minute = Int(time - self.hour * 3600) / 60
                 self.second = Int(time - self.hour * 3600 - self.minute * 60)
@@ -225,7 +232,7 @@ class HomePageViewController: UIViewController {
     
     func successStartPark() {
         
-        Orders.checkUnfinishedOrder(currentUser, completion: { (status, orderId) in
+        Order.checkUnfinishedOrder(currentUser, completion: { (status, orderId) in
             if status {
                 // need to finish currentOrder
                 
@@ -233,7 +240,7 @@ class HomePageViewController: UIViewController {
             }
             else {
                 SVProgressHUD.show()
-                Orders.createOrderWith(spaceId: self.spaceIdTextField.text!, tenantId: self.currentUser, completion: { (status) in
+                Order.createOrderWith(spaceId: self.spaceIdTextField.text!, user: self.currentUser, completion: { (status) in
                     if status {
                         print("车位解锁成功")
                         self.displayConvertWithStatus(false)
@@ -250,14 +257,23 @@ class HomePageViewController: UIViewController {
         })
     }
     @IBAction func checkClubMore(_ sender: Any) {
-        self.showPayView()
-        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ClubNav") as! UINavigationController
+        self.present(vc, animated: true, completion: nil)
     }
     
+    @IBAction func checkInfoMore(_ sender: Any) {
+        
+        let storyBoard = "AppleHomePage"
+        let vc = UIStoryboard(name: storyBoard, bundle: nil).instantiateInitialViewController()!
+        DispatchQueue.main.async {
+            self.present(vc, animated: true, completion: nil)
+        }
+        
+    }
     @IBAction func stopOrderAction(_ sender: Any) {
         
         SVProgressHUD.show(withStatus: "")
-        Orders.endUnfinishedOrder(currentUser) { (status, payment) in
+        Order.endUnfinishedOrder(currentUser) { (status, payment) in
             if status {
                 SVProgressHUD.dismiss()
                 // display payment view
@@ -279,7 +295,7 @@ class HomePageViewController: UIViewController {
         
         SVProgressHUD.show(withStatus: "支付中")
         NSLog("Wechat Pay Action")
-        Orders.didPayFee(self.currentUser, order: self.currentOrder, charged: self.payment) { (status) in
+        Order.didPayFee(self.currentUser, order: self.currentOrder, charged: self.payment) { (status) in
             if status {
                 SVProgressHUD.dismiss()
                 self.dismissExtraViews()
@@ -295,7 +311,7 @@ class HomePageViewController: UIViewController {
     @IBAction func aliPayAction(_ sender: Any) {
         SVProgressHUD.show(withStatus: "支付中")
         NSLog("Ali Pay Action")
-        Orders.didPayFee(self.currentUser, order: self.currentOrder, charged: self.payment) { (status) in
+        Order.didPayFee(self.currentUser, order: self.currentOrder, charged: self.payment) { (status) in
             if status {
                 SVProgressHUD.dismiss()
                 self.dismissExtraViews()
@@ -368,13 +384,24 @@ class HomePageViewController: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if let dest = segue.destination as? QRCodeViewController{
+            dest.completion = {[unowned self](result)in
+                let alert = UIAlertController(title: "扫描结果", message: result, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+        if let currentCell = sender as? CityCell,
+            let vc = segue.destination as? CityViewController,
+            let currentCellIndex = collectionView.indexPath(for: currentCell) {
+            vc.selectedIndex = currentCellIndex
+        }
     }
 }
 
-extension HomePageViewController: UIScrollViewDelegate,  UITextFieldDelegate {
+extension HomePageViewController: UIScrollViewDelegate,  UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.spaceIdTextField.resignFirstResponder()
@@ -383,5 +410,15 @@ extension HomePageViewController: UIScrollViewDelegate,  UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.spaceIdTextField.resignFirstResponder()
         return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return cities.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: "item", for: indexPath) as? CityCell)!
+        cell.city = cities[indexPath.item]
+        return cell
     }
 }

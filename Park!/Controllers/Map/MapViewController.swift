@@ -8,12 +8,15 @@
 
 import UIKit
 import ChameleonFramework
+import MapKit
 
 class MapViewController: UIViewController {
     
     var searchController: UISearchController!
     var mapView : MAMapView!
     var amapSearch = AMapSearchAPI()
+    var destinationTitle: String = ""
+    var optionMenu = UIAlertController()
     
     @IBOutlet var locateButton: RoundedButton!
     var locateButtonTopConstraint: NSLayoutConstraint!
@@ -118,7 +121,14 @@ extension MapViewController : UISearchBarDelegate,UISearchResultsUpdating, AMapS
     }
     
     func mapView(_ mapView: MAMapView!, annotationView view: MAAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        print("name: \(view.annotation.title)")
+        print("name: \(String(describing: view.annotation.title))")
+        
+        self.destinationTitle = view.annotation.title!
+        
+        self.creatOptionMenu()
+        
+        self.present(self.optionMenu, animated: true, completion: nil)
+        
     }
     
     func mapView(_ mapView: MAMapView!, viewFor annotation: MAAnnotation!) -> MAAnnotationView! {
@@ -140,6 +150,51 @@ extension MapViewController : UISearchBarDelegate,UISearchResultsUpdating, AMapS
         }
         
         return nil
+    }
+    
+    
+    func creatOptionMenu(){
+        optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        if(UIApplication.shared.canOpenURL(URL(string: "qqmap://")!) == true){
+            let qqAction = UIAlertAction(title: "腾讯地图", style: .default, handler: {
+                (alert: UIAlertAction!) -> Void in
+                let urlString = "qqmap://map/routeplan?from=我的位置&type=drive&tocoord=\(self.mapView.userLocation.coordinate.latitude),\(self.mapView.userLocation.coordinate.longitude)&to=\(self.destinationTitle)&coord_type=1&policy=0"
+                let url = URL(string:urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
+                UIApplication.shared.openURL(url!)
+                
+            })
+            optionMenu.addAction(qqAction)
+        }
+        
+        if(UIApplication.shared.canOpenURL(URL(string: "iosamap://")!) == true){
+            let gaodeAction = UIAlertAction(title: "高德地图", style: .default, handler: {
+                (alert: UIAlertAction!) -> Void in
+                let urlString = "iosamap://navi?sourceApplication=app名&backScheme=iosamap://&lat=\(self.mapView.userLocation.coordinate.latitude)&lon=\(self.mapView.userLocation.coordinate.longitude)&dev=0&style=2"
+                let url = URL(string:urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
+                
+                UIApplication.shared.openURL(url!)
+            })
+            optionMenu.addAction(gaodeAction)
+        }
+        
+        
+        let appleAction = UIAlertAction(title: "苹果地图", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            let loc = self.mapView.userLocation.coordinate
+            let currentLocation = MKMapItem.forCurrentLocation()
+            let toLocation = MKMapItem(placemark:MKPlacemark(coordinate:loc,addressDictionary:nil))
+            toLocation.name = self.destinationTitle
+            MKMapItem.openMaps(with: [currentLocation,toLocation], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving,MKLaunchOptionsShowsTrafficKey: NSNumber(value: true)])
+            
+        })
+        optionMenu.addAction(appleAction)
+        
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+        })
+        optionMenu.addAction(cancelAction)
     }
     
     //MARK: - AMapSearchDelegate

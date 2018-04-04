@@ -10,6 +10,7 @@ import UIKit
 import FoldingCell
 import MJRefresh
 import ChameleonFramework
+import MapKit
 
 class ParkTableViewController: UIViewController {
     
@@ -33,6 +34,9 @@ class ParkTableViewController: UIViewController {
     // 顶部刷新
     let header = MJRefreshNormalHeader()
     
+    var optionMenu = UIAlertController()
+    var destinationTitle = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,6 +53,8 @@ class ParkTableViewController: UIViewController {
         self.navigationItem.title = "车位信息"
         
         self.headerRefresh()
+        
+        self.creatOptionMenu()
     }
     
     func checkLocationPermission() -> Bool {
@@ -79,6 +85,11 @@ class ParkTableViewController: UIViewController {
         // 现在的版本要用mj_header
         self.foldingTableView.mj_header = header
         
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor.black.cgColor
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSize.init(width: 5, height: 5)
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.2
+        self.navigationController?.hidesNavigationBarHairline = true
+        
 //         self.shyNavBarManager.scrollView = self.foldingTableView;
         
     }
@@ -100,6 +111,50 @@ class ParkTableViewController: UIViewController {
         
     }
     
+    func creatOptionMenu(){
+        optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        if(UIApplication.shared.canOpenURL(URL(string: "qqmap://")!) == true){
+            let qqAction = UIAlertAction(title: "腾讯地图", style: .default, handler: {
+                (alert: UIAlertAction!) -> Void in
+                let urlString = "qqmap://map/routeplan?from=我的位置&type=drive&tocoord=\(self.currentLocation?.latitude),\(self.currentLocation?.longitude)&to=\(self.destinationTitle)&coord_type=1&policy=0"
+                let url = URL(string:urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
+                UIApplication.shared.openURL(url!)
+                
+            })
+            optionMenu.addAction(qqAction)
+        }
+        
+        if(UIApplication.shared.canOpenURL(URL(string: "iosamap://")!) == true){
+            let gaodeAction = UIAlertAction(title: "高德地图", style: .default, handler: {
+                (alert: UIAlertAction!) -> Void in
+                let urlString = "iosamap://navi?sourceApplication=app名&backScheme=iosamap://&lat=\(self.currentLocation?.latitude)&lon=\(self.currentLocation?.longitude)&dev=0&style=2"
+                let url = URL(string:urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
+                
+                UIApplication.shared.openURL(url!)
+            })
+            optionMenu.addAction(gaodeAction)
+        }
+        
+        
+        let appleAction = UIAlertAction(title: "苹果地图", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            let loc = self.currentLocation
+            let currentLocation = MKMapItem.forCurrentLocation()
+            let toLocation = MKMapItem(placemark:MKPlacemark(coordinate:loc!,addressDictionary:nil))
+            toLocation.name = self.destinationTitle
+            MKMapItem.openMaps(with: [currentLocation,toLocation], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving,MKLaunchOptionsShowsTrafficKey: NSNumber(value: true)])
+            
+        })
+        optionMenu.addAction(appleAction)
+        
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+        })
+        optionMenu.addAction(cancelAction)
+    }
+    
     func pushToAddSpaceVC() {
         
     }
@@ -107,6 +162,7 @@ class ParkTableViewController: UIViewController {
     @objc func headerRefresh(){
         print("下拉刷新")
         
+        SVProgressHUD.show(withStatus: "正在获取车场信息")
         if self.checkLocationPermission() {
             self.locationManager.startUpdatingLocation()
         } else {
@@ -130,7 +186,13 @@ class ParkTableViewController: UIViewController {
 
 // MARK: - TableView
 
-extension ParkTableViewController: UITableViewDelegate, UITableViewDataSource, AMapSearchDelegate, CLLocationManagerDelegate {
+extension ParkTableViewController: UITableViewDelegate, UITableViewDataSource, AMapSearchDelegate, CLLocationManagerDelegate, NaviButtonPressDelegate {
+    
+    func naviButtonPress(destinationTitle: String) {
+        self.destinationTitle = destinationTitle
+        self.present(optionMenu, animated: true, completion: nil)
+    }
+    
     
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         
@@ -142,6 +204,7 @@ extension ParkTableViewController: UITableViewDelegate, UITableViewDataSource, A
             return
         }
         
+        cell.delegate = self
         cell.backgroundColor = .clear
         
         if cellHeights[indexPath.row] == kCloseCellHeight {
@@ -162,6 +225,7 @@ extension ParkTableViewController: UITableViewDelegate, UITableViewDataSource, A
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath) as! FoldingCell
+        
         let durations: [TimeInterval] = [0.26, 0.2, 0.2]
         cell.durationsForExpandedState = durations
         cell.durationsForCollapsedState = durations
@@ -254,7 +318,7 @@ extension ParkTableViewController: UITableViewDelegate, UITableViewDataSource, A
                     self.cellHeights = Array(repeating: self.kCloseCellHeight, count: self.nearbyLotArr.count)
                     self.foldingTableView.reloadData()
                     self.foldingTableView.mj_header.endRefreshing()
-                    
+                    SVProgressHUD.dismiss()
 //                }
                 
             })
@@ -270,24 +334,42 @@ extension ParkTableViewController: UITableViewDelegate, UITableViewDataSource, A
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.locationManager.stopUpdatingLocation()
-        if let lastLocation = locations.last {
-            currentLocation = lastLocation.coordinate
-            let locationAge = -lastLocation.timestamp.timeIntervalSinceNow
-            if locationAge > 1.0 {
-                return
+        
+        if self.nearbyLotArr.count == 0 {
+             if let lastLocation = locations.last {
+                self.currentLocation = locations.last?.coordinate
+                let locationAge = -lastLocation.timestamp.timeIntervalSinceNow
+                if locationAge > 1.0 {
+                    self.searchNearbyLots()
+                }
             }
-            
-            else {
-                self.searchNearbyLots()
+        }
+        else {
+            if let lastLocation = locations.last {
+                
+                self.currentLocation = lastLocation.coordinate
+                let locationAge = -lastLocation.timestamp.timeIntervalSinceNow
+                if locationAge > 10.0 {
+                    return
+                }
+                else if lastLocation.horizontalAccuracy < 0 {
+                    return
+                }
+                    
+                else {
+                    self.searchNearbyLots()
+                }
             }
         }
     }
     
-    func calculateDistanceToCurrentLocation(_ from : CLLocationCoordinate2D, to : CLLocationCoordinate2D) -> CLLocationDistance{
-        let from = MAMapPointForCoordinate(CLLocationCoordinate2D(latitude: 39.989612, longitude: 116.480972))
-        let to = MAMapPointForCoordinate(CLLocationCoordinate2D(latitude: 39.990347, longitude: 116.480441))
     
-        let distance = MAMetersBetweenMapPoints(from, to);
+    
+    func calculateDistanceToCurrentLocation(_ from : CLLocationCoordinate2D, to : CLLocationCoordinate2D) -> CLLocationDistance{
+        let fromCoor = MAMapPointForCoordinate(CLLocationCoordinate2D(latitude: from.latitude, longitude: from.longitude))
+        let toCoor = MAMapPointForCoordinate(CLLocationCoordinate2D(latitude: to.latitude, longitude: to.longitude))
+    
+        let distance = MAMetersBetweenMapPoints(fromCoor, toCoor);
         
         return distance
     }

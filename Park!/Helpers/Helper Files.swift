@@ -81,6 +81,20 @@ class RoundedButtonWithBorder: UIButton {
     }
 }
 
+extension DateFormatter {
+    class func timeConvertor(_ date: String) -> String? {
+        let dateFormattor1 = DateFormatter()
+        dateFormattor1.dateFormat = "yyyyMMddHHmm"
+        
+        let dateFormattor2 = DateFormatter()
+        dateFormattor2.dateFormat = "yyyy年MM月dd日HH时"
+        
+        let formattedDate = dateFormattor2.string(from: dateFormattor1.date(from: date)!)
+        
+        return formattedDate
+    }
+}
+
 //Enums
 enum ViewControllerType {
     case tabVC

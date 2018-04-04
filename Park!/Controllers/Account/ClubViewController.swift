@@ -7,13 +7,28 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class ClubViewController: UIViewController {
 
+    @IBOutlet weak var backgroundView: UIView!
+    
+    @IBOutlet weak var usedLabel: UILabel!
+    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var statusBar: UIView!
+    @IBOutlet weak var backgroudStatusBar: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.setup()
         // Do any additional setup after loading the view.
+    }
+    
+    func setup() {
+        
+        self.navigationController?.navigationBar.backgroundColor = FlatGrayDark()
+        self.backgroundView.backgroundColor = FlatBlackDark()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,7 +36,11 @@ class ClubViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func dismissVC(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

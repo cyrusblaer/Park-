@@ -9,6 +9,10 @@
 import FoldingCell
 import UIKit
 
+protocol NaviButtonPressDelegate {
+    func naviButtonPress(destinationTitle: String)
+}
+
 class HomeTableViewCell: FoldingCell {
 
     @IBOutlet var distanceLabel: UILabel!
@@ -16,6 +20,7 @@ class HomeTableViewCell: FoldingCell {
     @IBOutlet var titleNameLabel: UILabel!
     @IBOutlet var profileNameLabel: UILabel!
     
+    @IBOutlet weak var smallEstimatedTime: UILabel!
     @IBOutlet weak var foreAddressLabel: UILabel!
     
     @IBOutlet weak var addressLabel: UILabel!
@@ -31,6 +36,8 @@ class HomeTableViewCell: FoldingCell {
     @IBOutlet weak var isRegisteredLabel: UILabel!
     
     @IBOutlet weak var navButton: UIButton!
+    
+    var delegate: NaviButtonPressDelegate?
     
     var name: String = "" {
         didSet {
@@ -91,6 +98,13 @@ class HomeTableViewCell: FoldingCell {
         
     }
     
+    var time: String = "" {
+        didSet {
+            self.estimatedTime.text = time
+            self.smallEstimatedTime.text = time
+        }
+    }
+    
     override func awakeFromNib() {
         foregroundView.layer.cornerRadius = 10
         foregroundView.layer.masksToBounds = true
@@ -109,5 +123,8 @@ extension HomeTableViewCell {
 
     @IBAction func buttonHandler(_: AnyObject) {
         print("tap")
+        if delegate != nil {
+            delegate?.naviButtonPress(destinationTitle: self.name)
+        }
     }
 }

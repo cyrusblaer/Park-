@@ -8,6 +8,7 @@
 
 import UIKit
 import ChameleonFramework
+import Hero
 
 class AccountTableViewController: UITableViewController {
     
@@ -39,11 +40,12 @@ class AccountTableViewController: UITableViewController {
         self.logoutButton.addTarget(self, action: #selector(logoutButtonAction(button:)), for: .touchUpInside)
         
         self.view.addSubview(self.logoutButton)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
         
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor.black.cgColor
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSize.init(width: 5, height: 5)
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.2
+        self.navigationController?.hidesNavigationBarHairline = true
+
     }
     
     @objc func logoutButtonAction(button: UIButton) {
@@ -116,6 +118,29 @@ extension AccountTableViewController {
             vc.modalPresentationStyle = .overFullScreen
             
             self.navigationController?.tabBarController?.present(vc, animated: true, completion: nil)
+            
+        case 1:
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecordNav") as! UINavigationController
+            
+            vc.hero.isEnabled = true
+            vc.hero.modalAnimationType = .push(direction: .left)
+            
+            self.present(vc, animated: true, completion: nil)
+            
+        case 2:
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ClubNav") as! UINavigationController
+            self.present(vc, animated: true, completion: nil)
+        
+        case 3:
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingNav") as! UINavigationController
+            
+            vc.hero.isEnabled = true
+            vc.hero.modalAnimationType = .push(direction: .left)
+            self.present(vc, animated: true, completion: nil)
+        
+        case 4:
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "AboutVC") as! UIViewController
+            self.present(vc, animated: true, completion: nil)
         default:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "RedView") as! UIViewController
             

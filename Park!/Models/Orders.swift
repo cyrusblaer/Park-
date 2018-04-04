@@ -10,18 +10,20 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 
-class Orders {
+class Order {
     
     var orderId: String?
     var isFinished: Bool
     var fromTime: String?
     var toTime: String?
     var spaceId: String?
-    var tenantId: String?
+    var user: String?
     var owner: String?
     var supervisorId: String?
+    var charged: String?
+    var lotName: String?
     
-    class func createOrderWith(spaceId: String, tenantId: String, completion: @escaping (Bool) -> Swift.Void) {
+    class func createOrderWith(spaceId: String, user: String, completion: @escaping (Bool) -> Swift.Void) {
         
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "zh_CN")
@@ -37,7 +39,21 @@ class Orders {
             
             let orderRef = Database.database().reference().child("orders")
             
-            let orderInfo = ["orderId" : orderId, "isFinished" : false, "tenantId": tenantId, "spaceId" : spaceId, "fromTime": timeString, "owner": owner] as [String : Any]
+            var lotName = ""
+            Database.database().reference().child("spaces").child(spaceId).observeSingleEvent(of: .value) { (snapshot) in
+                if let data = snapshot.value as? [String: Any]
+                {
+                    let lotId = data["lotId"] as! String
+                    Database.database().reference().child("parkinglot").child(lotId).observeSingleEvent(of: .value, with: { (snapshot) in
+                        if let data = snapshot.value as? [String: Any]
+                        {
+                            lotName = data["name"] as! String
+                        }
+                    })
+                }
+            }
+            
+            let orderInfo = ["orderId" : orderId, "isFinished" : false, "user": user, "spaceId" : spaceId, "fromTime": timeString, "owner": owner, "lot": lotName] as [String : Any]
             orderRef.setValue(orderInfo, withCompletionBlock: { (error, ref) in
                 if let error = error {
                     print(error.localizedDescription)
@@ -138,7 +154,7 @@ class Orders {
     
     class func didPayFee(_ user: String, order: String, charged: String, completion: @escaping (Bool) -> Swift.Void) {
         
-        Database.database().reference().child("orders").child(order).updateChildValues(["charges": charged, "isFinished": true])
+        Database.database().reference().child("orders").child(order).updateChildValues(["charged": charged, "isFinished": true])
         
         Database.database().reference().child("users").child(user).child("currentOrder").removeValue()
         
@@ -161,19 +177,67 @@ class Orders {
             }
         }
         
+    }
+    
+    class func info(_ orderId: String, completion: @escaping (Order) -> Swift.Void) {
+        Database.database().reference().child("orders").child(orderId).observeSingleEvent(of: .value) { (snapshot) in
+            if let data = snapshot.value as? [String: Any] {
+                let isFinished = data["isFinished"] as! Bool
+                let fromTime = data["fromTime"] as! String
+                let toTime = data["toTime"] as! String
+                let spaceId = data["spaceId"] as! String
+                let user = data["user"] as! String
+                let owner = data["owner"] as! String
+                let supervisorId = data["supervisorId"] as! String
+                let lotName = data["lotName"] as! String
+                
+                let order = Order.init(orderId: orderId, isFinished: isFinished, fromTime: fromTime, toTime: toTime, spaceId: spaceId, user: user, owner: owner, supervisorId: supervisorId, lotName: lotName)
+                
+                if isFinished {
+                    let charged = data["charged"] as! String
+                    order.charged = charged
+                }
+                completion(order)
+            }
+        }
+    }
+    
+    class func getAllFinishedOrder(_ userId: String, completion: @escaping ([Order]) -> Swift.Void) {
         
+       var finishedOrders : [Order] = []
+        Database.database().reference().child("users").child(userId).child("finishedOrder").observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.exists() {
+                let data = snapshot.value as? [String: String]
+                
+                var count = 0
+                for item in data! {
+                    
+                    Order.info(item.value, completion: { (order) in
+                        
+                        finishedOrders.append(order)
+                        count = count + 1
+                        if count == data?.count {
+                            completion(finishedOrders)
+                        }
+                    })
+                }
+            }
+    
+        }
         
     }
     
-    init(orderId: String?, isFinished: Bool, fromTime: String?, toTime: String?, spaceId: String?, tenantId: String?, owner : String?, supervisorId: String?) {
+    init(orderId: String?, isFinished: Bool, fromTime: String?, toTime: String?, spaceId: String?, user: String?, owner : String?, supervisorId: String?, lotName: String?) {
         self.orderId = orderId
         self.isFinished = isFinished
         self.fromTime = fromTime
         self.toTime = toTime
         self.spaceId = spaceId
-        self.tenantId =  tenantId
+        self.user =  user
         self.owner = owner
         self.supervisorId = supervisorId
+        self.charged = ""
+        self.lotName = lotName
     }
     
 }

@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LSApplicationQueriesSchems</key>
+	<array>
+		<string>qqmap</string>
+		<string>comgooglemaps</string>
+		<string>iosamap</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -54,5 +60,11 @@
 	<string>使用应用期间允许访问位置信息</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>始终允许访问位置信息</string>
+	<key>NSCameraUsageDescription</key>
+	<string>允许应用使用相机</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>允许应用使用相册</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string></string>
 </dict>
 </plist>

@@ -12,6 +12,12 @@
 		8816DEEC205ABF6600CC8219 /* ParkingLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816DEEB205ABF6600CC8219 /* ParkingLot.swift */; };
 		8816DEEE205ABF7200CC8219 /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816DEED205ABF7200CC8219 /* Orders.swift */; };
 		88180E9A2062592E00A64A83 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88180E992062592E00A64A83 /* HomePageViewController.swift */; };
+		881F91CC20722A7200DA0727 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F91CB20722A7200DA0727 /* OrderDetailViewController.swift */; };
+		881F91D320722D7400DA0727 /* QRCodeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F91CE20722D7400DA0727 /* QRCodeReader.swift */; };
+		881F91D420722D7500DA0727 /* QRCodeReaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881F91CF20722D7400DA0727 /* QRCodeReaderView.xib */; };
+		881F91D520722D7500DA0727 /* QRCodeReader.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 881F91D020722D7400DA0727 /* QRCodeReader.xcassets */; };
+		881F91D620722D7500DA0727 /* QRCodeReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F91D120722D7400DA0727 /* QRCodeReaderView.swift */; };
+		881F91D720722D7500DA0727 /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F91D220722D7400DA0727 /* QRCodeViewController.swift */; };
 		8834B83F2057708600D22E31 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B83E2057708600D22E31 /* LoginViewController.swift */; };
 		8834B8412057709400D22E31 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B8402057709400D22E31 /* WelcomeViewController.swift */; };
 		8834B8432057713700D22E31 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B8422057713700D22E31 /* LandingViewController.swift */; };
@@ -23,6 +29,13 @@
 		8834B857205B931A00D22E31 /* AddParkSpaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B856205B931A00D22E31 /* AddParkSpaceViewController.swift */; };
 		8834B859205BB0BB00D22E31 /* HomePageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B858205BB0BB00D22E31 /* HomePageTableViewCell.swift */; };
 		8834B85B205BB4FD00D22E31 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B85A205BB4FD00D22E31 /* HomeTableViewCell.swift */; };
+		883B099E2074B740001EAB2B /* AppleProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B099C2074B740001EAB2B /* AppleProductViewController.swift */; };
+		883B099F2074B740001EAB2B /* AppleHomePage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 883B099D2074B740001EAB2B /* AppleHomePage.storyboard */; };
+		883B09A62074BC50001EAB2B /* CityGuide.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 883B09A12074BC50001EAB2B /* CityGuide.storyboard */; };
+		883B09A72074BC50001EAB2B /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B09A22074BC50001EAB2B /* City.swift */; };
+		883B09A82074BC50001EAB2B /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B09A32074BC50001EAB2B /* CityViewController.swift */; };
+		883B09A92074BC50001EAB2B /* CityGuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B09A42074BC50001EAB2B /* CityGuideCell.swift */; };
+		883B09AA2074BC50001EAB2B /* CityGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B09A52074BC50001EAB2B /* CityGuideViewController.swift */; };
 		88566BB12059481700C9141D /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88566BB02059481700C9141D /* AccountTableViewController.swift */; };
 		885B2D162065492800DFFACD /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B2D152065492800DFFACD /* RecordTableViewController.swift */; };
 		885B2D1A206549B600DFFACD /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B2D19206549B600DFFACD /* AboutViewController.swift */; };
@@ -53,6 +66,12 @@
 		8816DEEB205ABF6600CC8219 /* ParkingLot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLot.swift; sourceTree = "<group>"; };
 		8816DEED205ABF7200CC8219 /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
 		88180E992062592E00A64A83 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		881F91CB20722A7200DA0727 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
+		881F91CE20722D7400DA0727 /* QRCodeReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReader.swift; sourceTree = "<group>"; };
+		881F91CF20722D7400DA0727 /* QRCodeReaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCodeReaderView.xib; sourceTree = "<group>"; };
+		881F91D020722D7400DA0727 /* QRCodeReader.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = QRCodeReader.xcassets; sourceTree = "<group>"; };
+		881F91D120722D7400DA0727 /* QRCodeReaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReaderView.swift; sourceTree = "<group>"; };
+		881F91D220722D7400DA0727 /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		8834B83E2057708600D22E31 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8834B8402057709400D22E31 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		8834B8422057713700D22E31 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +83,13 @@
 		8834B856205B931A00D22E31 /* AddParkSpaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddParkSpaceViewController.swift; sourceTree = "<group>"; };
 		8834B858205BB0BB00D22E31 /* HomePageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageTableViewCell.swift; sourceTree = "<group>"; };
 		8834B85A205BB4FD00D22E31 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		883B099C2074B740001EAB2B /* AppleProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleProductViewController.swift; sourceTree = "<group>"; };
+		883B099D2074B740001EAB2B /* AppleHomePage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AppleHomePage.storyboard; sourceTree = "<group>"; };
+		883B09A12074BC50001EAB2B /* CityGuide.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CityGuide.storyboard; sourceTree = "<group>"; };
+		883B09A22074BC50001EAB2B /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		883B09A32074BC50001EAB2B /* CityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
+		883B09A42074BC50001EAB2B /* CityGuideCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityGuideCell.swift; sourceTree = "<group>"; };
+		883B09A52074BC50001EAB2B /* CityGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityGuideViewController.swift; sourceTree = "<group>"; };
 		88566BB02059481700C9141D /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
 		885B2D152065492800DFFACD /* RecordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
 		885B2D19206549B600DFFACD /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +135,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		881F91CD20722D7400DA0727 /* QRCodeReader */ = {
+			isa = PBXGroup;
+			children = (
+				881F91CE20722D7400DA0727 /* QRCodeReader.swift */,
+				881F91CF20722D7400DA0727 /* QRCodeReaderView.xib */,
+				881F91D020722D7400DA0727 /* QRCodeReader.xcassets */,
+				881F91D120722D7400DA0727 /* QRCodeReaderView.swift */,
+				881F91D220722D7400DA0727 /* QRCodeViewController.swift */,
+			);
+			path = QRCodeReader;
+			sourceTree = "<group>";
+		};
 		8834B83C20576F8500D22E31 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +163,7 @@
 		8834B83D20576F9300D22E31 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				881F91CD20722D7400DA0727 /* QRCodeReader */,
 				88EDCD3920567543006E6119 /* AMap-Bridge-Header.h */,
 				8834B8442057756D00D22E31 /* Helper Files.swift */,
 			);
@@ -142,6 +181,89 @@
 				8816DEED205ABF7200CC8219 /* Orders.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		883B09952074AC6A001EAB2B /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				888A263920628EB000C45ED4 /* ChatVC.swift */,
+				888A263A20628EB000C45ED4 /* ConversationsVC.swift */,
+				888A263B20628EB000C45ED4 /* NavVC.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		883B09962074AC81001EAB2B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8834B83E2057708600D22E31 /* LoginViewController.swift */,
+				8834B8402057709400D22E31 /* WelcomeViewController.swift */,
+				8834B8422057713700D22E31 /* LandingViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		883B09972074AC9E001EAB2B /* Park */ = {
+			isa = PBXGroup;
+			children = (
+				8834B84D20581DDE00D22E31 /* ParkTableViewController.swift */,
+				8834B856205B931A00D22E31 /* AddParkSpaceViewController.swift */,
+				88AE23632060AF510051DBC5 /* AddLotViewController.swift */,
+			);
+			path = Park;
+			sourceTree = "<group>";
+		};
+		883B09982074ACB3001EAB2B /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				88566BB02059481700C9141D /* AccountTableViewController.swift */,
+				8834B854205A58EB00D22E31 /* AccountInfoViewController.swift */,
+				885B2D19206549B600DFFACD /* AboutViewController.swift */,
+				885B2D1B206549CF00DFFACD /* ClubViewController.swift */,
+				885B2D1D2065586300DFFACD /* SettingViewController.swift */,
+				885B2D152065492800DFFACD /* RecordTableViewController.swift */,
+				881F91CB20722A7200DA0727 /* OrderDetailViewController.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		883B09992074ACBF001EAB2B /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				88EDCD3720567309006E6119 /* MapViewController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		883B099A2074ACC6001EAB2B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				883B09A02074BC50001EAB2B /* CityGuide */,
+				88180E992062592E00A64A83 /* HomePageViewController.swift */,
+				88D814522063A44000B4C53D /* TabBarViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		883B099B2074B740001EAB2B /* AppleHomePage */ = {
+			isa = PBXGroup;
+			children = (
+				883B099C2074B740001EAB2B /* AppleProductViewController.swift */,
+				883B099D2074B740001EAB2B /* AppleHomePage.storyboard */,
+			);
+			path = AppleHomePage;
+			sourceTree = "<group>";
+		};
+		883B09A02074BC50001EAB2B /* CityGuide */ = {
+			isa = PBXGroup;
+			children = (
+				883B09A12074BC50001EAB2B /* CityGuide.storyboard */,
+				883B09A22074BC50001EAB2B /* City.swift */,
+				883B09A32074BC50001EAB2B /* CityViewController.swift */,
+				883B09A42074BC50001EAB2B /* CityGuideCell.swift */,
+				883B09A52074BC50001EAB2B /* CityGuideViewController.swift */,
+			);
+			path = CityGuide;
 			sourceTree = "<group>";
 		};
 		885D2CE1203FFB290095D581 = {
@@ -189,24 +311,13 @@
 		88EDCD312056718E006E6119 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				888A263920628EB000C45ED4 /* ChatVC.swift */,
-				888A263A20628EB000C45ED4 /* ConversationsVC.swift */,
-				888A263B20628EB000C45ED4 /* NavVC.swift */,
-				88EDCD3720567309006E6119 /* MapViewController.swift */,
-				8834B83E2057708600D22E31 /* LoginViewController.swift */,
-				8834B8402057709400D22E31 /* WelcomeViewController.swift */,
-				8834B8422057713700D22E31 /* LandingViewController.swift */,
-				8834B84D20581DDE00D22E31 /* ParkTableViewController.swift */,
-				88566BB02059481700C9141D /* AccountTableViewController.swift */,
-				8834B854205A58EB00D22E31 /* AccountInfoViewController.swift */,
-				8834B856205B931A00D22E31 /* AddParkSpaceViewController.swift */,
-				88AE23632060AF510051DBC5 /* AddLotViewController.swift */,
-				88180E992062592E00A64A83 /* HomePageViewController.swift */,
-				88D814522063A44000B4C53D /* TabBarViewController.swift */,
-				885B2D152065492800DFFACD /* RecordTableViewController.swift */,
-				885B2D19206549B600DFFACD /* AboutViewController.swift */,
-				885B2D1B206549CF00DFFACD /* ClubViewController.swift */,
-				885B2D1D2065586300DFFACD /* SettingViewController.swift */,
+				883B099B2074B740001EAB2B /* AppleHomePage */,
+				883B09952074AC6A001EAB2B /* Chat */,
+				883B09992074ACBF001EAB2B /* Map */,
+				883B09962074AC81001EAB2B /* Login */,
+				883B09972074AC9E001EAB2B /* Park */,
+				883B09982074ACB3001EAB2B /* Account */,
+				883B099A2074ACC6001EAB2B /* Home */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -283,8 +394,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				88E829E1205E9C9E00DC4CE7 /* GoogleService-Info.plist in Resources */,
+				883B09A62074BC50001EAB2B /* CityGuide.storyboard in Resources */,
+				881F91D420722D7500DA0727 /* QRCodeReaderView.xib in Resources */,
 				885D2CF5203FFB290095D581 /* Assets.xcassets in Resources */,
+				881F91D520722D7500DA0727 /* QRCodeReader.xcassets in Resources */,
 				885D2CF3203FFB290095D581 /* Main.storyboard in Resources */,
+				883B099F2074B740001EAB2B /* AppleHomePage.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,19 +493,27 @@
 			files = (
 				8834B83F2057708600D22E31 /* LoginViewController.swift in Sources */,
 				8834B859205BB0BB00D22E31 /* HomePageTableViewCell.swift in Sources */,
+				883B099E2074B740001EAB2B /* AppleProductViewController.swift in Sources */,
+				881F91D320722D7400DA0727 /* QRCodeReader.swift in Sources */,
 				8834B857205B931A00D22E31 /* AddParkSpaceViewController.swift in Sources */,
+				881F91D620722D7500DA0727 /* QRCodeReaderView.swift in Sources */,
 				888A263D20628EB000C45ED4 /* ConversationsVC.swift in Sources */,
+				881F91D720722D7500DA0727 /* QRCodeViewController.swift in Sources */,
 				88D814532063A44000B4C53D /* TabBarViewController.swift in Sources */,
 				8816DEEA205AB0DA00CC8219 /* ParkingSpace.swift in Sources */,
 				8834B8412057709400D22E31 /* WelcomeViewController.swift in Sources */,
 				88566BB12059481700C9141D /* AccountTableViewController.swift in Sources */,
 				8834B85B205BB4FD00D22E31 /* HomeTableViewCell.swift in Sources */,
+				883B09A92074BC50001EAB2B /* CityGuideCell.swift in Sources */,
 				8834B8452057756D00D22E31 /* Helper Files.swift in Sources */,
+				883B09A82074BC50001EAB2B /* CityViewController.swift in Sources */,
 				88180E9A2062592E00A64A83 /* HomePageViewController.swift in Sources */,
 				888A263C20628EB000C45ED4 /* ChatVC.swift in Sources */,
 				8834B855205A58EB00D22E31 /* AccountInfoViewController.swift in Sources */,
 				8816DEEE205ABF7200CC8219 /* Orders.swift in Sources */,
+				883B09AA2074BC50001EAB2B /* CityGuideViewController.swift in Sources */,
 				88F7CE2520611CB800FD7067 /* SearchLotTableViewCell.swift in Sources */,
+				881F91CC20722A7200DA0727 /* OrderDetailViewController.swift in Sources */,
 				8834B84E20581DDE00D22E31 /* ParkTableViewController.swift in Sources */,
 				88AE23642060AF510051DBC5 /* AddLotViewController.swift in Sources */,
 				885B2D1A206549B600DFFACD /* AboutViewController.swift in Sources */,
@@ -407,6 +530,7 @@
 				885B2D162065492800DFFACD /* RecordTableViewController.swift in Sources */,
 				8816DEEC205ABF6600CC8219 /* ParkingLot.swift in Sources */,
 				885D2CEE203FFB290095D581 /* AppDelegate.swift in Sources */,
+				883B09A72074BC50001EAB2B /* City.swift in Sources */,
 				8834B848205778EA00D22E31 /* Users.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
