@@ -258,7 +258,9 @@ class HomePageViewController: UIViewController {
     }
     @IBAction func checkClubMore(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ClubNav") as! UINavigationController
-        self.present(vc, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
     @IBAction func checkInfoMore(_ sender: Any) {
@@ -274,18 +276,20 @@ class HomePageViewController: UIViewController {
         
         SVProgressHUD.show(withStatus: "")
         Order.endUnfinishedOrder(currentUser) { (status, payment) in
-            if status {
-                SVProgressHUD.dismiss()
-                // display payment view
-                self.showPayView()
-                self.payment = payment
-                self.paymentLabel.text = String.init(format: "%.1f元", Float(payment)!)
-                self.displayConvertWithStatus(true)
-            }
-            else {
-                SVProgressHUD.dismiss()
-                SVProgressHUD.showError(withStatus: "请重试")
-                
+            DispatchQueue.main.async {
+                if status {
+                    SVProgressHUD.dismiss()
+                    // display payment view
+                    self.showPayView()
+                    self.payment = payment
+                    self.paymentLabel.text = String.init(format: "%.1f元", Float(payment)!)
+                    self.displayConvertWithStatus(true)
+                }
+                else {
+                    SVProgressHUD.dismiss()
+                    SVProgressHUD.showError(withStatus: "请重试")
+                    
+                }
             }
         }
     }

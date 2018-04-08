@@ -43,13 +43,16 @@ class RecordTableViewController: UITableViewController {
             Order.getAllFinishedOrder(phone) { (orderArr) in
                 self.orders = orderArr
                 print("orders count\(orderArr.count)")
-                if orderArr.count == 0 {
-                    SVProgressHUD.showInfo(withStatus: "暂无消费记录")
+                DispatchQueue.main.async {
+                    if orderArr.count == 0 {
+                        SVProgressHUD.showInfo(withStatus: "暂无消费记录")
+                    }
+                    else {
+                        SVProgressHUD.dismiss()
+                        self.tableView.reloadData()
+                    }
                 }
-                else {
-                    SVProgressHUD.dismiss()
-                    self.tableView.reloadData()
-                }
+                
                 
             }
         }

@@ -49,15 +49,18 @@ class AddParkSpaceViewController: UIViewController,  UITextFieldDelegate, UINavi
                 isReady = false
             }
             ParkingSpace.addParkingSpaceWith(ownerId: phone, lotId: self.lotTextField.text!, isReady: isReady, completion: { [weak weakSelf = self](status) in
-                if status {
-                    weakSelf?.dismiss(animated: true, completion: nil)
-                }
-                else {
-                    for item in (weakSelf?.waringLabels)! {
-                        item.isHidden = false
+                DispatchQueue.main.async {
+                    if status {
+                        weakSelf?.dismiss(animated: true, completion: nil)
                     }
+                    else {
+                        for item in (weakSelf?.waringLabels)! {
+                            item.isHidden = false
+                        }
+                    }
+                    weakSelf = nil
                 }
-                weakSelf = nil
+                
             })
         }
         

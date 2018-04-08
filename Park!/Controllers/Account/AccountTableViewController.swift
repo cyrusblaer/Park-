@@ -51,11 +51,13 @@ class AccountTableViewController: UITableViewController {
     @objc func logoutButtonAction(button: UIButton) {
         
         User.logOutUser { [weak weakSelf = self](state) in
-            if state {
-                weakSelf?.pushToWelcomeVC()
-            }
-            else {
-                print("Log out error")
+            DispatchQueue.main.async {
+                if state {
+                    weakSelf?.pushToWelcomeVC()
+                }
+                else {
+                    print("Log out error")
+                }
             }
         }
         
@@ -163,7 +165,7 @@ extension AccountTableViewController {
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
      // Return false if you do not want the specified item to be editable.
-     return false
+        return false
      }
     
     

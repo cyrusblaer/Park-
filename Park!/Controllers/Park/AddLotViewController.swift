@@ -45,8 +45,6 @@ class AddLotViewController: UIViewController {
             self.dropDown.hide()
             self.lotNameTextField.text = item
         }
-
-        // Do any additional setup after loading the view.
     }
     
     func initAmap() {
@@ -74,13 +72,17 @@ class AddLotViewController: UIViewController {
         if let numberOfSpace = Int(self.numberOfSpaceTextField.text!) {
             if let supervisor = self.supervisorPhoneTextField.text {
                 ParkingLot.registerParkingLot(withUid: (self.parkingLot?.uid)!, name: (self.parkingLot?.name)!, address: (self.parkingLot?.address)!, location: (self.parkingLot?.location)!, numberOfSpace: numberOfSpace, rentNumber: 0, supervisorId: supervisor) { [unowned self](status) in
-                    if status {
-                        SVProgressHUD.showSuccess(withStatus: "添加成功")
-                        self.dismiss(animated: true, completion: nil)
+                    DispatchQueue.main.async {
+                        if status {
+                            SVProgressHUD.showSuccess(withStatus: "添加成功")
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                        else {
+                            SVProgressHUD.showError(withStatus: "添加失败,请重试")
+                        }
                     }
-                    else {
-                        SVProgressHUD.showError(withStatus: "添加失败,请重试")
-                    }
+                    
+                    
                 }
             }
             else {

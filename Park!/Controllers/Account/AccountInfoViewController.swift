@@ -178,16 +178,19 @@ class AccountInfoViewController: UIViewController, UITextFieldDelegate, UINaviga
     @IBAction func confirmChangeUserInfo(_ sender: Any) {
         
         User.updateUserInfoWith(userType: self.userTypeSeg.selectedSegmentIndex, name: self.displayNameTextField.text!) { [weak weakSelf = self](state) in
-            if state {
-                // pop out
-                weakSelf?.dismiss(animated: true, completion: nil)
-            }
-            else {
-                for item in (weakSelf?.waringLabels)! {
-                    item.isHidden = false
+            DispatchQueue.main.async {
+                if state {
+                    // pop out
+                    weakSelf?.dismiss(animated: true, completion: nil)
                 }
+                else {
+                    for item in (weakSelf?.waringLabels)! {
+                        item.isHidden = false
+                    }
+                }
+                weakSelf = nil
             }
-            weakSelf = nil
+            
         }
     }
     

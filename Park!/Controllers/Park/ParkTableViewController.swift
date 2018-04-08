@@ -299,7 +299,7 @@ extension ParkTableViewController: UITableViewDelegate, UITableViewDataSource, A
             
             lot.district = aPOI.district
             
-            ParkingLot.searchLotInDatabase(aPOI.uid, completion: { (exist, existLot) in
+            ParkingLot.searchLotInDatabase(aPOI.uid, completion: { [weak weakSelf = self] (exist, existLot) in
                 if exist {
                     existLot?.distanceFromLocation = self.calculateDistanceToCurrentLocation(self.currentLocation!, to: (existLot?.location)!)
 
@@ -314,12 +314,12 @@ extension ParkTableViewController: UITableViewDelegate, UITableViewDataSource, A
                 
                 print("array number: \(self.nearbyLotArr.count)")
                 
-//                if self.nearbyLotArr.count == response.pois.count {
                     self.cellHeights = Array(repeating: self.kCloseCellHeight, count: self.nearbyLotArr.count)
-                    self.foldingTableView.reloadData()
-                    self.foldingTableView.mj_header.endRefreshing()
+                DispatchQueue.main.async {
+                    weakSelf.foldingTableView.reloadData()
+                    weakSelf.foldingTableView.mj_header.endRefreshing()
                     SVProgressHUD.dismiss()
-//                }
+                }
                 
             })
             
