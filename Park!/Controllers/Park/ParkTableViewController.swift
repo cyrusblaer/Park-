@@ -117,7 +117,7 @@ class ParkTableViewController: UIViewController {
         if(UIApplication.shared.canOpenURL(URL(string: "qqmap://")!) == true){
             let qqAction = UIAlertAction(title: "腾讯地图", style: .default, handler: {
                 (alert: UIAlertAction!) -> Void in
-                let urlString = "qqmap://map/routeplan?from=我的位置&type=drive&tocoord=\(self.currentLocation?.latitude),\(self.currentLocation?.longitude)&to=\(self.destinationTitle)&coord_type=1&policy=0"
+                let urlString = "qqmap://map/routeplan?from=我的位置&type=drive&tocoord=\(String(describing: self.currentLocation?.latitude)),\(String(describing: self.currentLocation?.longitude))&to=\(self.destinationTitle)&coord_type=1&policy=0"
                 let url = URL(string:urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
                 UIApplication.shared.openURL(url!)
                 
@@ -128,7 +128,7 @@ class ParkTableViewController: UIViewController {
         if(UIApplication.shared.canOpenURL(URL(string: "iosamap://")!) == true){
             let gaodeAction = UIAlertAction(title: "高德地图", style: .default, handler: {
                 (alert: UIAlertAction!) -> Void in
-                let urlString = "iosamap://navi?sourceApplication=app名&backScheme=iosamap://&lat=\(self.currentLocation?.latitude)&lon=\(self.currentLocation?.longitude)&dev=0&style=2"
+                let urlString = "iosamap://navi?sourceApplication=app名&backScheme=iosamap://&lat=\(String(describing: self.currentLocation?.latitude))&lon=\(String(describing: self.currentLocation?.longitude))&dev=0&style=2"
                 let url = URL(string:urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
                 
                 UIApplication.shared.openURL(url!)
@@ -316,8 +316,8 @@ extension ParkTableViewController: UITableViewDelegate, UITableViewDataSource, A
                 
                     self.cellHeights = Array(repeating: self.kCloseCellHeight, count: self.nearbyLotArr.count)
                 DispatchQueue.main.async {
-                    weakSelf.foldingTableView.reloadData()
-                    weakSelf.foldingTableView.mj_header.endRefreshing()
+                    weakSelf?.foldingTableView.reloadData()
+                    weakSelf?.foldingTableView.mj_header.endRefreshing()
                     SVProgressHUD.dismiss()
                 }
                 

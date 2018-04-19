@@ -114,6 +114,7 @@ extension AccountTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        tableView.deselectRow(at: indexPath, animated: false)
         switch indexPath.row {
         case 0:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "userInfo") as! UIViewController
@@ -122,7 +123,7 @@ extension AccountTableViewController {
             self.navigationController?.tabBarController?.present(vc, animated: true, completion: nil)
             
         case 1:
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecordNav") as! UINavigationController
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecordNav") as! BaseNavigationController
             
             vc.hero.isEnabled = true
             vc.hero.modalAnimationType = .push(direction: .left)
@@ -130,11 +131,11 @@ extension AccountTableViewController {
             self.present(vc, animated: true, completion: nil)
             
         case 2:
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ClubNav") as! UINavigationController
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ClubNav") as! BaseNavigationController
             self.present(vc, animated: true, completion: nil)
         
         case 3:
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingNav") as! UINavigationController
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingNav") as! BaseNavigationController
             
             vc.hero.isEnabled = true
             vc.hero.modalAnimationType = .push(direction: .left)
@@ -146,9 +147,8 @@ extension AccountTableViewController {
         default:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "RedView") as! UIViewController
             
-            DispatchQueue.main.async {
-                self.present(vc, animated: true, completion: nil)
-            }
+            self.present(vc, animated: true, completion: nil)
+            
         }
         
     }

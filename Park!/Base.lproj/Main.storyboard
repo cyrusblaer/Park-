@@ -2412,9 +2412,24 @@
         <scene sceneID="neY-Pj-S5l">
             <objects>
                 <viewController storyboardIdentifier="AddSpaceVC" id="Jaq-OR-y8t" customClass="AddParkSpaceViewController" customModule="Park_" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pkh-Qg-cTx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Tca-aE-kqs"/>
+                    </view>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="accountTextField" destination="l85-WG-zaP" id="kmu-xE-6F2"/>
+                        <outlet property="lotTextField" destination="c1K-yh-LDA" id="Nrs-QO-hvC"/>
+                        <outlet property="spaceInfoView" destination="QBs-Qc-0kt" id="Jgt-EK-lHe"/>
+                        <outlet property="startRentSeg" destination="KCw-cX-os1" id="QK6-aC-szB"/>
+                        <outletCollection property="inputFields" destination="c1K-yh-LDA" collectionClass="NSMutableArray" id="JlP-KK-Nqu"/>
+                        <outletCollection property="inputFields" destination="l85-WG-zaP" collectionClass="NSMutableArray" id="oOQ-1X-hSP"/>
+                        <outletCollection property="waringLabels" destination="DRU-2V-fwa" collectionClass="NSMutableArray" id="6ij-OG-XtU"/>
+                    </connections>
                 </viewController>
                 <view contentMode="scaleToFill" id="QBs-Qc-0kt">
                     <rect key="frame" x="0.0" y="0.0" width="489" height="548"/>
@@ -2437,7 +2452,6 @@
                             </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="confirmAddParkSpace:" destination="Jaq-OR-y8t" eventType="touchUpInside" id="a9o-cp-QRZ"/>
-                                <action selector="login:" destination="7Za-9i-7tb" eventType="touchUpInside" id="Alk-PP-E7Q"/>
                             </connections>
                         </button>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="录入失败，请重试" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DRU-2V-fwa">
@@ -2482,9 +2496,6 @@
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardAppearance="alert" secureTextEntry="YES"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="7Za-9i-7tb" id="XH9-uX-q6v"/>
-                                            </connections>
                                         </textField>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PB9-su-r1v">
                                             <rect key="frame" x="0.0" y="126.5" width="391" height="1"/>
@@ -2524,9 +2535,6 @@
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="7Za-9i-7tb" id="XRw-Xd-HSp"/>
-                                            </connections>
                                         </textField>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aof-K9-UcY">
                                             <rect key="frame" x="0.0" y="126" width="391" height="1"/>
@@ -2598,7 +2606,7 @@
                 </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CJP-5V-jAq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3281" y="-1466"/>
+            <point key="canvasLocation" x="3280.8000000000002" y="-1466.7166416791606"/>
         </scene>
         <!--Park Table View Controller-->
         <scene sceneID="HCc-m3-bk7">

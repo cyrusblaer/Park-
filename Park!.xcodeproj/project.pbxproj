@@ -50,6 +50,7 @@
 		888A263C20628EB000C45ED4 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A263920628EB000C45ED4 /* ChatVC.swift */; };
 		888A263D20628EB000C45ED4 /* ConversationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A263A20628EB000C45ED4 /* ConversationsVC.swift */; };
 		888A263E20628EB000C45ED4 /* NavVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A263B20628EB000C45ED4 /* NavVC.swift */; };
+		88A54D7D2088920300CA5DFF /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A54D7C2088920300CA5DFF /* BaseNavigationController.swift */; };
 		88AE23642060AF510051DBC5 /* AddLotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE23632060AF510051DBC5 /* AddLotViewController.swift */; };
 		88CCD474206E454100C86F8A /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CCD473206E454100C86F8A /* RecordTableViewCell.swift */; };
 		88D814532063A44000B4C53D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D814522063A44000B4C53D /* TabBarViewController.swift */; };
@@ -106,6 +107,7 @@
 		888A263920628EB000C45ED4 /* ChatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		888A263A20628EB000C45ED4 /* ConversationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsVC.swift; sourceTree = "<group>"; };
 		888A263B20628EB000C45ED4 /* NavVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavVC.swift; sourceTree = "<group>"; };
+		88A54D7C2088920300CA5DFF /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		88AE23632060AF510051DBC5 /* AddLotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLotViewController.swift; sourceTree = "<group>"; };
 		88CCD473206E454100C86F8A /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		88D814522063A44000B4C53D /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				88E829E0205E9C9D00DC4CE7 /* GoogleService-Info.plist */,
 				885D2CF1203FFB290095D581 /* Main.storyboard */,
 				885D2CED203FFB290095D581 /* AppDelegate.swift */,
+				88A54D7B2088920300CA5DFF /* Base */,
 				88EDCD312056718E006E6119 /* Controllers */,
 				8834B846205778C600D22E31 /* Models */,
 				8834B83C20576F8500D22E31 /* Views */,
@@ -306,6 +309,15 @@
 				885D2CF9203FFB290095D581 /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88A54D7B2088920300CA5DFF /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				88A54D7C2088920300CA5DFF /* BaseNavigationController.swift */,
+			);
+			name = Base;
+			path = ../../../Downloads/Base;
 			sourceTree = "<group>";
 		};
 		88EDCD312056718E006E6119 /* Controllers */ = {
@@ -361,7 +373,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = Blaer;
 				TargetAttributes = {
 					885D2CE9203FFB290095D581 = {
@@ -423,7 +435,6 @@
 				"${BUILT_PRODUCTS_DIR}/RAMAnimatedTabBarController/RAMAnimatedTabBarController.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/TLYShyNavBar/TLYShyNavBar.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -439,7 +450,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RAMAnimatedTabBarController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TLYShyNavBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -499,6 +509,7 @@
 				881F91D620722D7500DA0727 /* QRCodeReaderView.swift in Sources */,
 				888A263D20628EB000C45ED4 /* ConversationsVC.swift in Sources */,
 				881F91D720722D7500DA0727 /* QRCodeViewController.swift in Sources */,
+				88A54D7D2088920300CA5DFF /* BaseNavigationController.swift in Sources */,
 				88D814532063A44000B4C53D /* TabBarViewController.swift in Sources */,
 				8816DEEA205AB0DA00CC8219 /* ParkingSpace.swift in Sources */,
 				8834B8412057709400D22E31 /* WelcomeViewController.swift in Sources */,
@@ -563,6 +574,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -570,6 +582,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -597,7 +610,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -620,6 +633,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -627,6 +641,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -648,7 +663,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
