@@ -13,6 +13,13 @@ import Hero
 class AccountTableViewController: UITableViewController {
     
     var logoutButton: UIButton!
+    var userType: Int!
+    
+    var normalUserTable : [String] = ["个人信息","消费记录","会员","设置","关于软件"]
+    
+    var ownerUserTable : [String] = ["个人信息","车位管理","消费记录","会员","设置","关于软件"]
+    
+    var adminUserTable: [String] = ["个人信息","设置","关于软件"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +30,7 @@ class AccountTableViewController: UITableViewController {
         
         if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
             let displayName = userInformation["name"] as! String
+            self.userType = userInformation["userType"] as! Int
             self.navigationItem.title = "您好," + displayName
         }
         else {
@@ -83,20 +91,31 @@ extension AccountTableViewController {
             return
         }
         cell.backgroundColor = FlatWhite()
-        cell.type = indexPath.row
+        if self.userType == 0 {
+            cell.type = normalUserTable[indexPath.row]
+        }else if self.userType == 2 || self.userType == 3 {
+            cell.type = ownerUserTable[indexPath.row]
+        } else {
+            cell.type = adminUserTable[indexPath.row]
+        }
         
     }
     
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 5
+        
+        if self.userType == 0 {
+            return self.normalUserTable.count
+        }else if self.userType == 2 || self.userType == 3 {
+            return self.ownerUserTable.count
+        } else {
+            return adminUserTable.count
+        }
     }
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -114,34 +133,50 @@ extension AccountTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        var usingTable : [String] = []
+        
+        if self.userType == 0 {
+            usingTable = normalUserTable
+        }else if self.userType == 2 || self.userType == 3 {
+            usingTable = ownerUserTable
+        } else {
+            usingTable = adminUserTable
+        }
+        
         tableView.deselectRow(at: indexPath, animated: false)
-        switch indexPath.row {
-        case 0:
+        switch usingTable[indexPath.row] {
+        case "个人信息":
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "userInfo") as! UIViewController
             vc.modalPresentationStyle = .overFullScreen
             
             self.navigationController?.tabBarController?.present(vc, animated: true, completion: nil)
             
-        case 1:
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecordNav") as! BaseNavigationController
+        case "消费记录":
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecordNav") as! UINavigationController
             
             vc.hero.isEnabled = true
             vc.hero.modalAnimationType = .push(direction: .left)
             
             self.present(vc, animated: true, completion: nil)
             
-        case 2:
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ClubNav") as! BaseNavigationController
+        case "会员":
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ClubNav") as! UINavigationController
             self.present(vc, animated: true, completion: nil)
         
-        case 3:
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingNav") as! BaseNavigationController
+        case "设置":
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingNav") as! UINavigationController
             
             vc.hero.isEnabled = true
             vc.hero.modalAnimationType = .push(direction: .left)
             self.present(vc, animated: true, completion: nil)
         
-        case 4:
+        case "车位管理":
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "parkManageNav") as! UINavigationController
+            vc.hero.isEnabled = true
+            vc.hero.modalAnimationType = .push(direction: .left)
+            self.present(vc, animated: true, completion: nil)
+            
+        case "关于软件":
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "AboutVC") as! UIViewController
             self.present(vc, animated: true, completion: nil)
         default:

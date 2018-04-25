@@ -53,6 +53,36 @@ class HomePageViewController: UIViewController {
     
     var cities = City.cities
     
+    // MARK: - Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.customization()
+        self.setupNavBar()
+        self.myScrollView.contentInsetAdjustmentBehavior = .automatic
+        self.myScrollView.delegate = self
+        self.spaceIdTextField.delegate = self
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        
+        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
+            currentUser = userInformation["phone"] as! String
+        }
+        
+        //        Order.checkUnfinishedOrder(currentUser) { (free, orderId) in
+        //            self.displayConvertWithStatus(free)
+        //            self.currentOrder = orderId
+        //        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Order.checkUnfinishedOrder(currentUser) { (free, orderId) in
+            self.displayConvertWithStatus(free)
+            self.currentOrder = orderId
+        }
+    }
+    
+    // MARK: - setup
     func customization() {
         
         self.firstView.backgroundColor = FlatBlackDark()
@@ -134,43 +164,19 @@ class HomePageViewController: UIViewController {
         self.payView.isHidden = false
         
     }
-    @IBAction func closeView(_ sender: Any) {
-        self.dismissExtraViews()
-        
-    }
     
     func setupNavBar() {
         self.navigationItem.title = "主页"
         self.navigationController?.navigationBar.prefersLargeTitles = true
-//        self.navigationController?.navigationBar.barTintColor = FlatWhite()
+        //        self.navigationController?.navigationBar.barTintColor = FlatWhite()
         self.navigationController?.navigationBar.layer.shadowColor = UIColor.black.cgColor
         self.navigationController?.navigationBar.layer.shadowOffset = CGSize.init(width: 5, height: 5)
         self.navigationController?.navigationBar.layer.shadowOpacity = 0.2
         self.navigationController?.hidesNavigationBarHairline = true
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.customization()
-        self.setupNavBar()
-        self.myScrollView.contentInsetAdjustmentBehavior = .automatic
-        self.myScrollView.delegate = self
-        self.spaceIdTextField.delegate = self
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-        
-        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
-            currentUser = userInformation["phone"] as! String
-        }
-        
-        Order.checkUnfinishedOrder(currentUser) { (free, orderId) in
-            self.displayConvertWithStatus(free)
-            self.currentOrder = orderId
-        }
-    }
     
     func displayConvertWithStatus(_ status: Bool) {
-
         
         if status {
             self.presentInfoLabel.text = "当前停车时间为"
@@ -212,19 +218,37 @@ class HomePageViewController: UIViewController {
         
     }
     
+    // MARK: - Action
+    
+    
+    
+    @IBAction func closeView(_ sender: Any) {
+        self.dismissExtraViews()
+        
+    }
+    
     @IBAction func startParkAction(_ sender: Any) {
         
         self.spaceIdTextField.resignFirstResponder()
         
+        if self.spaceIdTextField.text! == "" {
+            SVProgressHUD.showError(withStatus: "车位编号不能为空!")
+            SVProgressHUD.dismiss(withDelay: 1.0)
+            return
+        }
+        
         ParkingSpace.checkSpaceStatus(self.spaceIdTextField.text!) { (status) in
             if status == 0 {
                 SVProgressHUD.showError(withStatus: "该车位已出租")
+                SVProgressHUD.dismiss(withDelay: 1.0)
             } else if status == 1 {
                 self.successStartPark()
             } else if status == 2 {
                 SVProgressHUD.showError(withStatus: "该车位暂不开放")
+                SVProgressHUD.dismiss(withDelay: 1.0)
             } else {
                 SVProgressHUD.showError(withStatus: "车位编号不存在")
+                SVProgressHUD.dismiss(withDelay: 1.0)
             }
         }
         
@@ -237,20 +261,23 @@ class HomePageViewController: UIViewController {
                 // need to finish currentOrder
                 
                 SVProgressHUD.showError(withStatus: "暂不支持同时使用多车位")
+                SVProgressHUD.dismiss(withDelay: 1.0)
             }
             else {
                 SVProgressHUD.show()
                 Order.createOrderWith(spaceId: self.spaceIdTextField.text!, user: self.currentUser, completion: { (status) in
                     if status {
                         print("车位解锁成功")
-                        self.displayConvertWithStatus(false)
+                        self.displayConvertWithStatus(true)
                         SVProgressHUD.dismiss()
                         SVProgressHUD.showSuccess(withStatus: "车位解锁成功")
+                        SVProgressHUD.dismiss(withDelay: 1.0)
                     }
                     else {
                         print("失败，请重试")
                         SVProgressHUD.dismiss()
                         SVProgressHUD.showSuccess(withStatus: "请重试")
+                        SVProgressHUD.dismiss(withDelay: 1.0)
                     }
                 })
             }
@@ -283,12 +310,12 @@ class HomePageViewController: UIViewController {
                     self.showPayView()
                     self.payment = payment
                     self.paymentLabel.text = String.init(format: "%.1f元", Float(payment)!)
-                    self.displayConvertWithStatus(true)
+                    self.displayConvertWithStatus(false)
                 }
                 else {
                     SVProgressHUD.dismiss()
                     SVProgressHUD.showError(withStatus: "请重试")
-                    
+                    SVProgressHUD.dismiss(withDelay: 1.0)
                 }
             }
         }
@@ -390,12 +417,13 @@ class HomePageViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if let dest = segue.destination as? QRCodeViewController{
-            dest.completion = {[unowned self](result)in
-                let alert = UIAlertController(title: "扫描结果", message: result, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
+        if let dest = segue.destination as? ScanViewController{
+            dest.currentUser = self.currentOrder
+//            dest.completion = {[unowned self](result)in
+//                let alert = UIAlertController(title: "扫描结果", message: result, preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
+//                self.present(alert, animated: true, completion: nil)
+//            }
         }
         if let currentCell = sender as? CityCell,
             let vc = segue.destination as? CityViewController,

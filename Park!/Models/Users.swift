@@ -25,7 +25,7 @@ class User: NSObject {
         Database.database().reference().child("users").child(phone).observeSingleEvent(of: .value, with: { (snapshot) in
             if let data = snapshot.value as? [String: Any] {
                 let name = data["name"] as! String
-                let phone = data["uid"] as! String
+//                let phone = data["uid"] as! String
                 let type = data["userType"] as! Int
                 if let link = URL.init(string: data["profilePicLink"] as! String){
                     URLSession.shared.dataTask(with: link, completionHandler: { (data, response, error) in

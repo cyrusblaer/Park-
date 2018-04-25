@@ -14,24 +14,29 @@ class AccountTableViewCell: UITableViewCell {
     
     @IBOutlet var imageIcon: UIImageView!
     
-    var type: Int = 0 {
+    var type: String = "" {
         didSet {
             switch type {
-            case 0:
+            case "个人信息":
                 titleTextLabel.text = "个人信息"
                 imageIcon.image = UIImage.init(named: "profile")
-            case 1:
+            case "消费记录":
                 titleTextLabel.text = "消费记录"
                 imageIcon.image = UIImage.init(named: "orders")
-            case 2:
+            case "会员":
                 titleTextLabel.text = "会员"
                 imageIcon.image = UIImage.init(named: "club")
-            case 3:
+            case "设置":
                 titleTextLabel.text = "设置"
                 imageIcon.image = UIImage.init(named: "setting")
-            default:
+            case "关于软件":
                 titleTextLabel.text = "关于软件"
                 imageIcon.image = UIImage.init(named: "about")
+            case "车位管理":
+                titleTextLabel.text = "车位管理"
+                imageIcon.image = UIImage.init(named: "about")
+            default:
+                titleTextLabel.text = ""
             }
         }
     }
@@ -39,7 +44,7 @@ class AccountTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         for item in self.contentView.superview!.subviews {
-            var subview = item as! UIView
+            let subview = item
             if NSStringFromClass(subview.classForCoder).hasSuffix("SeparatorView") {
                 subview.isHidden = false
                 var frame = subview.frame

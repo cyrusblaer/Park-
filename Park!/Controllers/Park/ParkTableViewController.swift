@@ -57,6 +57,12 @@ class ParkTableViewController: UIViewController {
         self.creatOptionMenu()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        SVProgressHUD.dismiss()
+    }
+    
     func checkLocationPermission() -> Bool {
         var state = false
         switch CLLocationManager.authorizationStatus() {

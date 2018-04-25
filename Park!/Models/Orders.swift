@@ -28,41 +28,47 @@ class Order {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "zh_CN")
         // 设置时间地域，不然输出的是格林尼制时间
-        dateFormatter.setLocalizedDateFormatFromTemplate("yyyyMMddHHmm")
+        dateFormatter.dateFormat = "yyyyMMddHHmm"
         // 定义输出的内容格式  yyyy 年， MM 月， dd 日， HH 24小时，mm 分， ss 秒
         let timeString = dateFormatter.string(from: Date())
         
         let orderId = timeString + spaceId
         
         if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
-            let owner = userInformation["phone"] as! String
+//            let owner = userInformation["phone"] as! String
             
             let orderRef = Database.database().reference().child("orders")
             
-            var lotName = ""
+            
             Database.database().reference().child("spaces").child(spaceId).observeSingleEvent(of: .value) { (snapshot) in
                 if let data = snapshot.value as? [String: Any]
                 {
                     let lotId = data["lotId"] as! String
+                    let owner = data["owner"] as! String
                     Database.database().reference().child("parkinglot").child(lotId).observeSingleEvent(of: .value, with: { (snapshot) in
-                        if let data = snapshot.value as? [String: Any]
+                        if snapshot.exists()
                         {
-                            lotName = data["name"] as! String
+                            let data = snapshot.value as! [String: Any]
+                            let lotName = data["name"] as! String
+                            let supervisorId = data["supervisorId"]! as! String
+                            
+                            
+                            let orderInfo = ["isFinished" : false, "user": user, "spaceId" : spaceId, "fromTime": timeString, "supervisorId": supervisorId, "lot": lotName, "owner": owner] as [String : Any]
+                            orderRef.child(orderId).setValue(orderInfo, withCompletionBlock: { (error, ref) in
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                    completion(false)
+                                }
+                                else {
+                                    completion(true)
+                                    Database.database().reference().child("users").child(user).updateChildValues(["currentOrder" : orderId])
+                                    Database.database().reference().child("spaces").child(spaceId).updateChildValues(["isRent": true])
+                                }
+                            })
                         }
                     })
                 }
             }
-            
-            let orderInfo = ["orderId" : orderId, "isFinished" : false, "user": user, "spaceId" : spaceId, "fromTime": timeString, "owner": owner, "lot": lotName] as [String : Any]
-            orderRef.setValue(orderInfo, withCompletionBlock: { (error, ref) in
-                if let error = error {
-                    print(error.localizedDescription)
-                    completion(false)
-                }
-                else {
-                    completion(true)
-                }
-            })
         }
     }
     
@@ -162,7 +168,8 @@ class Order {
             if snap.exists() {
                 let spaceId = snap.value! as! String
                 Database.database().reference().child("spaces").child(spaceId).updateChildValues(["isRent": false])
-                Database.database().reference().child("users").child(user).child("finishedOrder").setValue([order: charged]) { (error, ref) in
+                
+                Database.database().reference().child("users").child(user).child("finishedOrder").child(order).setValue(charged) { (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                         completion(false)
@@ -189,7 +196,7 @@ class Order {
                 let user = data["user"] as! String
                 let owner = data["owner"] as! String
                 let supervisorId = data["supervisorId"] as! String
-                let lotName = data["lotName"] as! String
+                let lotName = data["lot"] as! String
                 
                 let order = Order.init(orderId: orderId, isFinished: isFinished, fromTime: fromTime, toTime: toTime, spaceId: spaceId, user: user, owner: owner, supervisorId: supervisorId, lotName: lotName)
                 
@@ -212,7 +219,7 @@ class Order {
                 var count = 0
                 for item in data! {
                     
-                    Order.info(item.value, completion: { (order) in
+                    Order.info(item.key, completion: { (order) in
                         
                         finishedOrders.append(order)
                         count = count + 1

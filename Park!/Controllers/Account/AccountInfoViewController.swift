@@ -82,10 +82,13 @@ class AccountInfoViewController: UIViewController, UITextFieldDelegate, UINaviga
         if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
             self.phoneLabel.text = (userInformation["phone"] as! String)
             self.displayNameLabel.text = (userInformation["name"] as! String)
+            self.profilePic.image = UIImage.init(named: "profile pic")
             if let userType = userInformation["userType"] as? Int {
                 switch userType {
+                case 4:
+                    self.userTypeLabel.text = "客服员"
                 case 3:
-                    self.userTypeLabel.text = "管理员"
+                    self.userTypeLabel.text = "超级管理员"
                 case 2:
                     self.userTypeLabel.text = "物业公司"
                 case 1:

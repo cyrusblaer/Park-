@@ -37,25 +37,26 @@ class ConversationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         //left bar button image fetching
         self.navigationItem.leftBarButtonItem = self.leftButton
         self.tableView.tableFooterView = UIView.init(frame: CGRect.zero)
-//        if let id = FIRAuth.auth()?.currentUser?.uid {
-//            User.info(forUserID: id, completion: { [weak weakSelf = self] (user) in
-//                let image = user.profilePic
-//                let contentSize = CGSize.init(width: 30, height: 30)
-//                UIGraphicsBeginImageContextWithOptions(contentSize, false, 0.0)
-//                let _  = UIBezierPath.init(roundedRect: CGRect.init(origin: CGPoint.zero, size: contentSize), cornerRadius: 14).addClip()
-//                image.draw(in: CGRect(origin: CGPoint.zero, size: contentSize))
-//                let path = UIBezierPath.init(roundedRect: CGRect.init(origin: CGPoint.zero, size: contentSize), cornerRadius: 14)
-//                path.lineWidth = 2
-//                UIColor.white.setStroke()
-//                path.stroke()
-//                let finalImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!.withRenderingMode(.alwaysOriginal)
-//                UIGraphicsEndImageContext()
-//                DispatchQueue.main.async {
-//                    weakSelf?.leftButton.image = finalImage
-//                    weakSelf = nil
-//                }
-//            })
-//        }
+        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
+            let phone = userInformation["phone"] as! String
+            User.info(phone, completion: { [weak weakSelf = self] (user) in
+                let image = user.profilePic
+                let contentSize = CGSize.init(width: 30, height: 30)
+                UIGraphicsBeginImageContextWithOptions(contentSize, false, 0.0)
+                let _  = UIBezierPath.init(roundedRect: CGRect.init(origin: CGPoint.zero, size: contentSize), cornerRadius: 14).addClip()
+                image.draw(in: CGRect(origin: CGPoint.zero, size: contentSize))
+                let path = UIBezierPath.init(roundedRect: CGRect.init(origin: CGPoint.zero, size: contentSize), cornerRadius: 14)
+                path.lineWidth = 2
+                UIColor.white.setStroke()
+                path.stroke()
+                let finalImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!.withRenderingMode(.alwaysOriginal)
+                UIGraphicsEndImageContext()
+                DispatchQueue.main.async {
+                    weakSelf?.leftButton.image = finalImage
+                    weakSelf = nil
+                }
+            })
+        }
     }
     
     //Downloads conversations
@@ -196,7 +197,7 @@ class ConversationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.showEmailAlert()
+//        self.showEmailAlert()
     }
     
     override func viewWillAppear(_ animated: Bool) {

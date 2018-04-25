@@ -93,6 +93,44 @@ extension DateFormatter {
         
         return formattedDate
     }
+    
+    class func timeConvertorToDay(_ date: String) -> String? {
+        let dateFormattor1 = DateFormatter()
+        dateFormattor1.dateFormat = "yyyyMMddHHmm"
+        
+        let dateFormattor2 = DateFormatter()
+        dateFormattor2.dateFormat = "yyyy年MM月dd日"
+        
+        let formattedDate = dateFormattor2.string(from: dateFormattor1.date(from: date)!)
+        
+        return formattedDate
+    }
+    
+    class func timeConvertorToMin(_ date: String) -> String? {
+        let dateFormattor1 = DateFormatter()
+        dateFormattor1.dateFormat = "yyyyMMddHHmm"
+        
+        let dateFormattor2 = DateFormatter()
+        dateFormattor2.dateFormat = "MM月dd日HH时mm分"
+        
+        let formattedDate = dateFormattor2.string(from: dateFormattor1.date(from: date)!)
+        
+        return formattedDate
+    }
+    class func calculateDateGap(_ fromTime: String, toTime: String) -> String? {
+        let dateFormattor1 = DateFormatter()
+        dateFormattor1.dateFormat = "yyyyMMddHHmm"
+        
+        let fromDate = dateFormattor1.date(from: fromTime)
+        
+        let toDate = dateFormattor1.date(from: toTime)
+        
+        let timeGap = toDate?.timeIntervalSince(fromDate!)
+        
+        let dateGap = String(timeGap!/60) + "分钟"
+        
+        return dateGap
+    }
 }
 
 //Enums

@@ -50,9 +50,9 @@
 		888A263C20628EB000C45ED4 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A263920628EB000C45ED4 /* ChatVC.swift */; };
 		888A263D20628EB000C45ED4 /* ConversationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A263A20628EB000C45ED4 /* ConversationsVC.swift */; };
 		888A263E20628EB000C45ED4 /* NavVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A263B20628EB000C45ED4 /* NavVC.swift */; };
-		88A54D7D2088920300CA5DFF /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A54D7C2088920300CA5DFF /* BaseNavigationController.swift */; };
 		88AE23642060AF510051DBC5 /* AddLotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE23632060AF510051DBC5 /* AddLotViewController.swift */; };
 		88CCD474206E454100C86F8A /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CCD473206E454100C86F8A /* RecordTableViewCell.swift */; };
+		88D34B45208ECC8F00E30A2E /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D34B44208ECC8F00E30A2E /* ScanViewController.swift */; };
 		88D814532063A44000B4C53D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D814522063A44000B4C53D /* TabBarViewController.swift */; };
 		88E829E1205E9C9E00DC4CE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88E829E0205E9C9D00DC4CE7 /* GoogleService-Info.plist */; };
 		88EDCD3820567309006E6119 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EDCD3720567309006E6119 /* MapViewController.swift */; };
@@ -107,9 +107,9 @@
 		888A263920628EB000C45ED4 /* ChatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		888A263A20628EB000C45ED4 /* ConversationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsVC.swift; sourceTree = "<group>"; };
 		888A263B20628EB000C45ED4 /* NavVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavVC.swift; sourceTree = "<group>"; };
-		88A54D7C2088920300CA5DFF /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		88AE23632060AF510051DBC5 /* AddLotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLotViewController.swift; sourceTree = "<group>"; };
 		88CCD473206E454100C86F8A /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		88D34B44208ECC8F00E30A2E /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		88D814522063A44000B4C53D /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		88E829E0205E9C9D00DC4CE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88EDCD3720567309006E6119 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -243,6 +243,7 @@
 				883B09A02074BC50001EAB2B /* CityGuide */,
 				88180E992062592E00A64A83 /* HomePageViewController.swift */,
 				88D814522063A44000B4C53D /* TabBarViewController.swift */,
+				88D34B44208ECC8F00E30A2E /* ScanViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -292,7 +293,6 @@
 				88E829E0205E9C9D00DC4CE7 /* GoogleService-Info.plist */,
 				885D2CF1203FFB290095D581 /* Main.storyboard */,
 				885D2CED203FFB290095D581 /* AppDelegate.swift */,
-				88A54D7B2088920300CA5DFF /* Base */,
 				88EDCD312056718E006E6119 /* Controllers */,
 				8834B846205778C600D22E31 /* Models */,
 				8834B83C20576F8500D22E31 /* Views */,
@@ -309,15 +309,6 @@
 				885D2CF9203FFB290095D581 /* Info.plist */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		88A54D7B2088920300CA5DFF /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				88A54D7C2088920300CA5DFF /* BaseNavigationController.swift */,
-			);
-			name = Base;
-			path = ../../../Downloads/Base;
 			sourceTree = "<group>";
 		};
 		88EDCD312056718E006E6119 /* Controllers */ = {
@@ -354,8 +345,8 @@
 				885D2CE6203FFB290095D581 /* Sources */,
 				885D2CE7203FFB290095D581 /* Frameworks */,
 				885D2CE8203FFB290095D581 /* Resources */,
-				37A028DA5EAA17D2C3010CD6 /* [CP] Embed Pods Frameworks */,
-				E8EC08A76C105076411FBED3 /* [CP] Copy Pods Resources */,
+				57CD5509CD2374B3E5223390 /* [CP] Embed Pods Frameworks */,
+				4A52070F468D12481AA20A42 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -418,7 +409,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		37A028DA5EAA17D2C3010CD6 /* [CP] Embed Pods Frameworks */ = {
+		4A52070F468D12481AA20A42 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Park!/Pods-Park!-resources.sh",
+				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Park!/Pods-Park!-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57CD5509CD2374B3E5223390 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -476,24 +485,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E8EC08A76C105076411FBED3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Park!/Pods-Park!-resources.sh",
-				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Park!/Pods-Park!-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -509,7 +500,6 @@
 				881F91D620722D7500DA0727 /* QRCodeReaderView.swift in Sources */,
 				888A263D20628EB000C45ED4 /* ConversationsVC.swift in Sources */,
 				881F91D720722D7500DA0727 /* QRCodeViewController.swift in Sources */,
-				88A54D7D2088920300CA5DFF /* BaseNavigationController.swift in Sources */,
 				88D814532063A44000B4C53D /* TabBarViewController.swift in Sources */,
 				8816DEEA205AB0DA00CC8219 /* ParkingSpace.swift in Sources */,
 				8834B8412057709400D22E31 /* WelcomeViewController.swift in Sources */,
@@ -535,6 +525,7 @@
 				88CCD474206E454100C86F8A /* RecordTableViewCell.swift in Sources */,
 				885B2D1C206549CF00DFFACD /* ClubViewController.swift in Sources */,
 				8834B8432057713700D22E31 /* LandingViewController.swift in Sources */,
+				88D34B45208ECC8F00E30A2E /* ScanViewController.swift in Sources */,
 				8834B853205A4AF500D22E31 /* AccountTableViewCell.swift in Sources */,
 				888A263820628D1300C45ED4 /* VCCells.swift in Sources */,
 				885B2D1E2065586300DFFACD /* SettingViewController.swift in Sources */,
@@ -676,6 +667,7 @@
 			baseConfigurationReference = 48DB69C426D4E2C9A3D88CB9 /* Pods-Park!.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GH9HGGE8DT;
@@ -696,6 +688,7 @@
 			baseConfigurationReference = 3A51C939DBCACB710F5F9FE6 /* Pods-Park!.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GH9HGGE8DT;

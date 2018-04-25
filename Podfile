@@ -4,7 +4,7 @@ use_frameworks!
 target 'Park!' do
 
 pod 'RAMAnimatedTabBarController'
-pod 'SnapKit', '~> 4.0.0'
+pod 'SnapKit'
 pod 'Firebase/Core'
 pod 'Firebase/Database'
 pod 'Firebase/Storage'
