@@ -24,6 +24,7 @@ class ParkTableViewController: UIViewController {
     var cellHeights: [CGFloat] = []
     
     var currentUser: User?
+    var userType: Int?
     var currentLocation: CLLocationCoordinate2D?
     
     var amapSearch = AMapSearchAPI()
@@ -42,9 +43,10 @@ class ParkTableViewController: UIViewController {
         
         if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
             let phone = userInformation["phone"] as! String
-            User.info(phone) { (user) in
-                self.currentUser = user
-            }
+            self.userType = userInformation["userType"] as? Int
+//            User.info(phone) { (user) in
+//                self.currentUser = user
+//            }
         }
         setup()
         self.initAmap()
@@ -96,21 +98,42 @@ class ParkTableViewController: UIViewController {
         self.navigationController?.navigationBar.layer.shadowOpacity = 0.2
         self.navigationController?.hidesNavigationBarHairline = true
         
+        if currentUser?.userType != 1 || currentUser?.userType != 2 {
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        }
+        
 //         self.shyNavBarManager.scrollView = self.foldingTableView;
         
     }
     @IBAction func addSpaceAction(_ sender: Any) {
         
-        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
-            let userType = userInformation["userType"] as! Int
-            
+        if let userType = self.userType {
+        
             if userType == 1 {
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddSpaceVC") as! AddParkSpaceViewController
                 self.present(vc, animated: true, completion: nil)
             }
             else if userType == 2 {
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddLotVC") as! AddLotViewController
-                self.present(vc, animated: true, completion: nil)
+                
+                let actionSheet = UIAlertController(title: "请选择需要进行的操作", message: "", preferredStyle: .actionSheet)
+                let toAddLot = UIAlertAction(title: "录入车场", style: .default) { (action) in
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddLotVC") as! AddLotViewController
+                    self.present(vc, animated: true, completion: nil)
+                }
+                let toAddSpace = UIAlertAction(title: "录入车位", style: .default) { (action) in
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddSpaceVC") as! AddParkSpaceViewController
+                    self.present(vc, animated: true, completion: nil)
+                }
+                
+                let cancel = UIAlertAction(title: "取消", style: .cancel) { (action) in
+                    
+                }
+                
+                actionSheet.addAction(toAddLot)
+                actionSheet.addAction(toAddSpace)
+                actionSheet.addAction(cancel)
+                
+                self.present(actionSheet, animated: true, completion: nil)
             }
         }
         

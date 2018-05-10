@@ -13,11 +13,6 @@
 		8816DEEE205ABF7200CC8219 /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816DEED205ABF7200CC8219 /* Orders.swift */; };
 		88180E9A2062592E00A64A83 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88180E992062592E00A64A83 /* HomePageViewController.swift */; };
 		881F91CC20722A7200DA0727 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F91CB20722A7200DA0727 /* OrderDetailViewController.swift */; };
-		881F91D320722D7400DA0727 /* QRCodeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F91CE20722D7400DA0727 /* QRCodeReader.swift */; };
-		881F91D420722D7500DA0727 /* QRCodeReaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881F91CF20722D7400DA0727 /* QRCodeReaderView.xib */; };
-		881F91D520722D7500DA0727 /* QRCodeReader.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 881F91D020722D7400DA0727 /* QRCodeReader.xcassets */; };
-		881F91D620722D7500DA0727 /* QRCodeReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F91D120722D7400DA0727 /* QRCodeReaderView.swift */; };
-		881F91D720722D7500DA0727 /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F91D220722D7400DA0727 /* QRCodeViewController.swift */; };
 		8834B83F2057708600D22E31 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B83E2057708600D22E31 /* LoginViewController.swift */; };
 		8834B8412057709400D22E31 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B8402057709400D22E31 /* WelcomeViewController.swift */; };
 		8834B8432057713700D22E31 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834B8422057713700D22E31 /* LandingViewController.swift */; };
@@ -36,6 +31,8 @@
 		883B09A82074BC50001EAB2B /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B09A32074BC50001EAB2B /* CityViewController.swift */; };
 		883B09A92074BC50001EAB2B /* CityGuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B09A42074BC50001EAB2B /* CityGuideCell.swift */; };
 		883B09AA2074BC50001EAB2B /* CityGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883B09A52074BC50001EAB2B /* CityGuideViewController.swift */; };
+		885512CB209F132E001841EC /* ParkManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885512CA209F132E001841EC /* ParkManageViewController.swift */; };
+		885512CF20A1E20E001841EC /* SpaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885512CE20A1E20E001841EC /* SpaceTableViewCell.swift */; };
 		88566BB12059481700C9141D /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88566BB02059481700C9141D /* AccountTableViewController.swift */; };
 		885B2D162065492800DFFACD /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B2D152065492800DFFACD /* RecordTableViewController.swift */; };
 		885B2D1A206549B600DFFACD /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B2D19206549B600DFFACD /* AboutViewController.swift */; };
@@ -54,6 +51,11 @@
 		88CCD474206E454100C86F8A /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CCD473206E454100C86F8A /* RecordTableViewCell.swift */; };
 		88D34B45208ECC8F00E30A2E /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D34B44208ECC8F00E30A2E /* ScanViewController.swift */; };
 		88D814532063A44000B4C53D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D814522063A44000B4C53D /* TabBarViewController.swift */; };
+		88E19E722099B56F00AE5448 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E19E712099B56F00AE5448 /* ARViewController.swift */; };
+		88E19E76209AAE7300AE5448 /* Assets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 88E19E75209AAE7300AE5448 /* Assets.scnassets */; };
+		88E19E7C209AEDF600AE5448 /* TextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E19E79209AEDF600AE5448 /* TextNode.swift */; };
+		88E19E7D209AEDF600AE5448 /* ARText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E19E7A209AEDF600AE5448 /* ARText.swift */; };
+		88E19E7E209AEDF600AE5448 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E19E7B209AEDF600AE5448 /* Utilities.swift */; };
 		88E829E1205E9C9E00DC4CE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88E829E0205E9C9D00DC4CE7 /* GoogleService-Info.plist */; };
 		88EDCD3820567309006E6119 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EDCD3720567309006E6119 /* MapViewController.swift */; };
 		88F7CE2520611CB800FD7067 /* SearchLotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F7CE2420611CB800FD7067 /* SearchLotTableViewCell.swift */; };
@@ -68,11 +70,6 @@
 		8816DEED205ABF7200CC8219 /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
 		88180E992062592E00A64A83 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		881F91CB20722A7200DA0727 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
-		881F91CE20722D7400DA0727 /* QRCodeReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReader.swift; sourceTree = "<group>"; };
-		881F91CF20722D7400DA0727 /* QRCodeReaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCodeReaderView.xib; sourceTree = "<group>"; };
-		881F91D020722D7400DA0727 /* QRCodeReader.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = QRCodeReader.xcassets; sourceTree = "<group>"; };
-		881F91D120722D7400DA0727 /* QRCodeReaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReaderView.swift; sourceTree = "<group>"; };
-		881F91D220722D7400DA0727 /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		8834B83E2057708600D22E31 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8834B8402057709400D22E31 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		8834B8422057713700D22E31 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +88,8 @@
 		883B09A32074BC50001EAB2B /* CityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
 		883B09A42074BC50001EAB2B /* CityGuideCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityGuideCell.swift; sourceTree = "<group>"; };
 		883B09A52074BC50001EAB2B /* CityGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityGuideViewController.swift; sourceTree = "<group>"; };
+		885512CA209F132E001841EC /* ParkManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkManageViewController.swift; sourceTree = "<group>"; };
+		885512CE20A1E20E001841EC /* SpaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceTableViewCell.swift; sourceTree = "<group>"; };
 		88566BB02059481700C9141D /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
 		885B2D152065492800DFFACD /* RecordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
 		885B2D19206549B600DFFACD /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +110,11 @@
 		88CCD473206E454100C86F8A /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		88D34B44208ECC8F00E30A2E /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		88D814522063A44000B4C53D /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		88E19E712099B56F00AE5448 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		88E19E75209AAE7300AE5448 /* Assets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Assets.scnassets; sourceTree = "<group>"; };
+		88E19E79209AEDF600AE5448 /* TextNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextNode.swift; sourceTree = "<group>"; };
+		88E19E7A209AEDF600AE5448 /* ARText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARText.swift; sourceTree = "<group>"; };
+		88E19E7B209AEDF600AE5448 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		88E829E0205E9C9D00DC4CE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88EDCD3720567309006E6119 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		88EDCD3920567543006E6119 /* AMap-Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AMap-Bridge-Header.h"; sourceTree = "<group>"; };
@@ -137,18 +141,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		881F91CD20722D7400DA0727 /* QRCodeReader */ = {
-			isa = PBXGroup;
-			children = (
-				881F91CE20722D7400DA0727 /* QRCodeReader.swift */,
-				881F91CF20722D7400DA0727 /* QRCodeReaderView.xib */,
-				881F91D020722D7400DA0727 /* QRCodeReader.xcassets */,
-				881F91D120722D7400DA0727 /* QRCodeReaderView.swift */,
-				881F91D220722D7400DA0727 /* QRCodeViewController.swift */,
-			);
-			path = QRCodeReader;
-			sourceTree = "<group>";
-		};
 		8834B83C20576F8500D22E31 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +150,7 @@
 				8834B858205BB0BB00D22E31 /* HomePageTableViewCell.swift */,
 				88F7CE2420611CB800FD7067 /* SearchLotTableViewCell.swift */,
 				88CCD473206E454100C86F8A /* RecordTableViewCell.swift */,
+				885512CE20A1E20E001841EC /* SpaceTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -165,7 +158,6 @@
 		8834B83D20576F9300D22E31 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				881F91CD20722D7400DA0727 /* QRCodeReader */,
 				88EDCD3920567543006E6119 /* AMap-Bridge-Header.h */,
 				8834B8442057756D00D22E31 /* Helper Files.swift */,
 			);
@@ -225,6 +217,7 @@
 				885B2D1D2065586300DFFACD /* SettingViewController.swift */,
 				885B2D152065492800DFFACD /* RecordTableViewController.swift */,
 				881F91CB20722A7200DA0727 /* OrderDetailViewController.swift */,
+				885512CA209F132E001841EC /* ParkManageViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -240,24 +233,26 @@
 		883B099A2074ACC6001EAB2B /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				883B09A02074BC50001EAB2B /* CityGuide */,
+				885512C7209D9B11001841EC /* ARHelpers */,
+				883B09A02074BC50001EAB2B /* Records */,
 				88180E992062592E00A64A83 /* HomePageViewController.swift */,
 				88D814522063A44000B4C53D /* TabBarViewController.swift */,
 				88D34B44208ECC8F00E30A2E /* ScanViewController.swift */,
+				88E19E712099B56F00AE5448 /* ARViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
 		};
-		883B099B2074B740001EAB2B /* AppleHomePage */ = {
+		883B099B2074B740001EAB2B /* UseGuidePage */ = {
 			isa = PBXGroup;
 			children = (
 				883B099C2074B740001EAB2B /* AppleProductViewController.swift */,
 				883B099D2074B740001EAB2B /* AppleHomePage.storyboard */,
 			);
-			path = AppleHomePage;
+			path = UseGuidePage;
 			sourceTree = "<group>";
 		};
-		883B09A02074BC50001EAB2B /* CityGuide */ = {
+		883B09A02074BC50001EAB2B /* Records */ = {
 			isa = PBXGroup;
 			children = (
 				883B09A12074BC50001EAB2B /* CityGuide.storyboard */,
@@ -266,7 +261,18 @@
 				883B09A42074BC50001EAB2B /* CityGuideCell.swift */,
 				883B09A52074BC50001EAB2B /* CityGuideViewController.swift */,
 			);
-			path = CityGuide;
+			path = Records;
+			sourceTree = "<group>";
+		};
+		885512C7209D9B11001841EC /* ARHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				88E19E7A209AEDF600AE5448 /* ARText.swift */,
+				88E19E79209AEDF600AE5448 /* TextNode.swift */,
+				88E19E7B209AEDF600AE5448 /* Utilities.swift */,
+				88E19E75209AAE7300AE5448 /* Assets.scnassets */,
+			);
+			name = ARHelpers;
 			sourceTree = "<group>";
 		};
 		885D2CE1203FFB290095D581 = {
@@ -314,13 +320,13 @@
 		88EDCD312056718E006E6119 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				883B099B2074B740001EAB2B /* AppleHomePage */,
-				883B09952074AC6A001EAB2B /* Chat */,
-				883B09992074ACBF001EAB2B /* Map */,
-				883B09962074AC81001EAB2B /* Login */,
+				883B099A2074ACC6001EAB2B /* Home */,
 				883B09972074AC9E001EAB2B /* Park */,
 				883B09982074ACB3001EAB2B /* Account */,
-				883B099A2074ACC6001EAB2B /* Home */,
+				883B09992074ACBF001EAB2B /* Map */,
+				883B099B2074B740001EAB2B /* UseGuidePage */,
+				883B09952074AC6A001EAB2B /* Chat */,
+				883B09962074AC81001EAB2B /* Login */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -396,11 +402,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88E19E76209AAE7300AE5448 /* Assets.scnassets in Resources */,
 				88E829E1205E9C9E00DC4CE7 /* GoogleService-Info.plist in Resources */,
 				883B09A62074BC50001EAB2B /* CityGuide.storyboard in Resources */,
-				881F91D420722D7500DA0727 /* QRCodeReaderView.xib in Resources */,
 				885D2CF5203FFB290095D581 /* Assets.xcassets in Resources */,
-				881F91D520722D7500DA0727 /* QRCodeReader.xcassets in Resources */,
 				885D2CF3203FFB290095D581 /* Main.storyboard in Resources */,
 				883B099F2074B740001EAB2B /* AppleHomePage.storyboard in Resources */,
 			);
@@ -440,6 +445,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/RAMAnimatedTabBarController/RAMAnimatedTabBarController.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
@@ -455,6 +461,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RAMAnimatedTabBarController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
@@ -495,11 +502,8 @@
 				8834B83F2057708600D22E31 /* LoginViewController.swift in Sources */,
 				8834B859205BB0BB00D22E31 /* HomePageTableViewCell.swift in Sources */,
 				883B099E2074B740001EAB2B /* AppleProductViewController.swift in Sources */,
-				881F91D320722D7400DA0727 /* QRCodeReader.swift in Sources */,
 				8834B857205B931A00D22E31 /* AddParkSpaceViewController.swift in Sources */,
-				881F91D620722D7500DA0727 /* QRCodeReaderView.swift in Sources */,
 				888A263D20628EB000C45ED4 /* ConversationsVC.swift in Sources */,
-				881F91D720722D7500DA0727 /* QRCodeViewController.swift in Sources */,
 				88D814532063A44000B4C53D /* TabBarViewController.swift in Sources */,
 				8816DEEA205AB0DA00CC8219 /* ParkingSpace.swift in Sources */,
 				8834B8412057709400D22E31 /* WelcomeViewController.swift in Sources */,
@@ -514,9 +518,13 @@
 				8816DEEE205ABF7200CC8219 /* Orders.swift in Sources */,
 				883B09AA2074BC50001EAB2B /* CityGuideViewController.swift in Sources */,
 				88F7CE2520611CB800FD7067 /* SearchLotTableViewCell.swift in Sources */,
+				88E19E722099B56F00AE5448 /* ARViewController.swift in Sources */,
 				881F91CC20722A7200DA0727 /* OrderDetailViewController.swift in Sources */,
 				8834B84E20581DDE00D22E31 /* ParkTableViewController.swift in Sources */,
+				885512CF20A1E20E001841EC /* SpaceTableViewCell.swift in Sources */,
 				88AE23642060AF510051DBC5 /* AddLotViewController.swift in Sources */,
+				885512CB209F132E001841EC /* ParkManageViewController.swift in Sources */,
+				88E19E7D209AEDF600AE5448 /* ARText.swift in Sources */,
 				885B2D1A206549B600DFFACD /* AboutViewController.swift in Sources */,
 				88EDCD3820567309006E6119 /* MapViewController.swift in Sources */,
 				888A263E20628EB000C45ED4 /* NavVC.swift in Sources */,
@@ -527,6 +535,8 @@
 				8834B8432057713700D22E31 /* LandingViewController.swift in Sources */,
 				88D34B45208ECC8F00E30A2E /* ScanViewController.swift in Sources */,
 				8834B853205A4AF500D22E31 /* AccountTableViewCell.swift in Sources */,
+				88E19E7E209AEDF600AE5448 /* Utilities.swift in Sources */,
+				88E19E7C209AEDF600AE5448 /* TextNode.swift in Sources */,
 				888A263820628D1300C45ED4 /* VCCells.swift in Sources */,
 				885B2D1E2065586300DFFACD /* SettingViewController.swift in Sources */,
 				885B2D162065492800DFFACD /* RecordTableViewController.swift in Sources */,
@@ -672,7 +682,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GH9HGGE8DT;
 				INFOPLIST_FILE = "$(SRCROOT)/Park!/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cyrusblaer.Park-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -693,7 +703,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GH9HGGE8DT;
 				INFOPLIST_FILE = "$(SRCROOT)/Park!/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cyrusblaer.Park-";
 				PRODUCT_NAME = "$(TARGET_NAME)";

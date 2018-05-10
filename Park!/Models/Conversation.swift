@@ -18,18 +18,19 @@ class Conversation {
         if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
             let phone = userInformation["phone"] as! String
             var conversations = [Conversation]()
-            Database.database().reference().child("users").child(phone).child("conversations").observe(.childAdded, with: { (snapshot) in
+            Database.database().reference().child("users").child(phone).child("conversations").child("18502093892").observe(.value, with: { (snapshot) in
                 if snapshot.exists() {
                     let fromID = snapshot.key
                     let values = snapshot.value as! [String: String]
-                    let location = values["location"]!
+//                    let location = values["location"]!
                     User.info(fromID, completion: { (user) in
                         let emptyMessage = Message.init(type: .text, content: "loading", owner: .sender, timestamp: 0, isRead: true)
                         let conversation = Conversation.init(user: user, lastMessage: emptyMessage)
                         conversations.append(conversation)
-                        conversation.lastMessage.downloadLastMessage(forLocation: location, completion: {
-                            completion(conversations)
-                        })
+                        completion(conversations)
+//                        conversation.lastMessage.downloadLastMessage(forLocation: location, completion: {
+//                            completion(conversations)
+//                        })
                     })
                 }
             })

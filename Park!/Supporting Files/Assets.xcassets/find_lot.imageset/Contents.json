@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "find_lot.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "lauchScreen6.jpg",
       "scale" : "2x"
     },
     {

@@ -52,7 +52,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UINavigation
     func customization()  {
         self.darkView.alpha = 0
         self.imagePicker.delegate = self
-        self.profilePicView.layer.borderColor = GlobalVariables.blue.cgColor
+//        self.profilePicView.layer.borderColor = GlobalVariables.blue.cgColor
         self.profilePicView.layer.borderWidth = 2
         //LoginView customization
         self.view.insertSubview(self.loginView, belowSubview: self.cloudsView)

@@ -36,7 +36,7 @@ class AccountInfoViewController: UIViewController, UITextFieldDelegate, UINaviga
     
     func customization() {
         self.imagePicker.delegate = self
-        self.profilePic.layer.borderColor = GlobalVariables.blue.cgColor
+//        self.profilePic.layer.borderColor = GlobalVariables.blue.cgColor
         self.profilePic.layer.borderWidth = 2
         
         //ProfileView customization

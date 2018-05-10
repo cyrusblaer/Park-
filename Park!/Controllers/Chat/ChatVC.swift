@@ -35,16 +35,21 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
 
     //MARK: Methods
     func customization() {
+        User.info("13802973828") { (user) in
+            self.currentUser = user
+        }
+        
         self.imagePicker.delegate = self
         self.tableView.estimatedRowHeight = self.barHeight
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.contentInset.bottom = self.barHeight
         self.tableView.scrollIndicatorInsets.bottom = self.barHeight
-        self.navigationItem.title = self.currentUser?.name
+        self.navigationItem.title = "客服咨询"
         self.navigationItem.setHidesBackButton(true, animated: false)
         let icon = UIImage.init(named: "back")?.withRenderingMode(.alwaysOriginal)
         let backButton = UIBarButtonItem.init(image: icon!, style: .plain, target: self, action: #selector(self.dismissSelf))
         self.navigationItem.leftBarButtonItem = backButton
+        
         self.locationManager.delegate = self
     }
     
@@ -290,13 +295,13 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
-        Message.markMessagesRead(forUserID: self.currentUser!.phone)
+//        Message.markMessagesRead(forUserID: self.currentUser!.phone)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.customization()
-        self.fetchData()
+//        self.fetchData()
     }
  
 }

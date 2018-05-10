@@ -16,5 +16,6 @@ pod 'ChameleonFramework/Swift'
 pod 'MJRefresh'
 pod 'SVProgressHUD'
 pod 'DropDown'
+pod 'IQKeyboardManagerSwift'
 
 end

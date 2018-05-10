@@ -46,5 +46,9 @@ class OrderDetailViewController: UIViewController {
         self.exEarnLabel.text = "当前订单已积累1颗星!"
         
     }
+    @IBAction func callService(_ sender: Any) {
+        let url = URL(string: "telprompt://+8618502093892")
+        UIApplication.shared.openURL(url!)
+    }
     
 }

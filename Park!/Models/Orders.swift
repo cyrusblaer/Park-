@@ -139,6 +139,36 @@ class Order {
         
     }
     
+    class func getUnfinishedOrderStartTime(_ phone: String, completion: @escaping (String)-> Swift.Void) {
+        Database.database().reference().child("users").child(phone).child("currentOrder").observeSingleEvent(of: .value) { (snap) in
+            if snap.exists() {
+                let currentOrder = snap.value as! String
+                let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale(identifier: "zh_CN")
+                // 设置时间地域，不然输出的是格林尼制时间
+                dateFormatter.dateFormat = "yyyyMMddHHmm"
+                // 定义输出的内容格式  yyyy 年， MM 月， dd 日， HH 24小时，mm 分， ss 秒
+                let toTime = dateFormatter.string(from: Date())
+                
+                Database.database().reference().child("orders").child(currentOrder).child("fromTime").observeSingleEvent(of: .value, with: { (snap) in
+                    if snap.exists() {
+                        let fromTime = snap.value as! String
+                        let payment = self.calculatePayment(fromTime: fromTime, toTime: toTime)
+                        
+                        completion(payment)
+                    }
+                    else {
+                        completion("")
+                    }
+                })
+            }
+            else {
+                completion("")
+            }
+        }
+    }
+        
+    
     class func calculatePayment(fromTime: String, toTime: String) -> String {
         
         let dateFormatter = DateFormatter()
@@ -153,7 +183,7 @@ class Order {
         
         let timeGap = toDate?.timeIntervalSince(fromDate!)
         // 金额计算公式在此
-        let payment = String(timeGap!/60 * 0.5)
+        let payment = String(timeGap!/60 * 0.1)
         
         return payment
     }

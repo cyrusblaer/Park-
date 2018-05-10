@@ -9,6 +9,7 @@
 import UIKit
 import ChameleonFramework
 import SVProgressHUD
+import FirebaseDatabase
 
 class HomePageViewController: UIViewController {
 
@@ -79,6 +80,21 @@ class HomePageViewController: UIViewController {
         Order.checkUnfinishedOrder(currentUser) { (free, orderId) in
             self.displayConvertWithStatus(free)
             self.currentOrder = orderId
+        }
+        
+        if let orderId = self.currentOrder {
+            Database.database().reference().child("orders").child(self.currentOrder).child("spaceId").observeSingleEvent(of: .value) { (snap) in
+                if snap.exists() {
+                    let spaceId = snap.value! as! String
+                    Database.database().reference().child("spaces").child(spaceId).child("isReady").observe(.value, with: { (shot) in
+                        if shot.exists() {
+                            let ready = shot.value! as! Bool
+                            if ready {
+                                self.scheduleNotification(itemID: spaceId)
+                            }
+                        }
+                    })
+                }}
         }
     }
     
@@ -175,6 +191,49 @@ class HomePageViewController: UIViewController {
         self.navigationController?.hidesNavigationBarHairline = true
     }
     
+    // MARK: - methods
+    
+    func scheduleNotification(itemID:String){
+        //如果已存在该通知消息，则先取消
+        cancelNotification(itemID: itemID)
+        
+        //创建UILocalNotification来进行本地消息通知
+        let localNotification = UILocalNotification()
+        //推送时间（设置为30秒以后）
+        localNotification.fireDate = Date(timeIntervalSinceNow: 0)
+        //时区
+        localNotification.timeZone = NSTimeZone.default
+        //推送内容
+        localNotification.alertBody = "当前使用的车位已被业主收回，请在两小时内结束停车"
+        //声音
+        localNotification.soundName = UILocalNotificationDefaultSoundName
+        //额外信息
+        localNotification.userInfo = ["ItemID":itemID]
+        UIApplication.shared.scheduleLocalNotification(localNotification)
+    }
+    
+    //取消通知消息
+    func cancelNotification(itemID:String){
+        //通过itemID获取已有的消息推送，然后删除掉，以便重新判断
+        let existingNotification = self.notificationForThisItem(itemID: itemID)
+        if existingNotification != nil {
+            //如果existingNotification不为nil，就取消消息推送
+            UIApplication.shared.cancelLocalNotification(existingNotification!)
+        }
+    }
+    
+    //通过遍历所有消息推送，通过itemid的对比，返回UIlocalNotification
+    func notificationForThisItem(itemID:String)-> UILocalNotification? {
+        let allNotifications = UIApplication.shared.scheduledLocalNotifications
+        for notification in allNotifications! {
+            let info = notification.userInfo as! [String:String]
+            let number = info["ItemID"]
+            if number != nil && number == itemID {
+                return notification as UILocalNotification
+            }
+        }
+        return nil
+    }
     
     func displayConvertWithStatus(_ status: Bool) {
         
@@ -353,6 +412,7 @@ class HomePageViewController: UIViewController {
             }
         }
     }
+
     
     // MARK: - Timer methods
     

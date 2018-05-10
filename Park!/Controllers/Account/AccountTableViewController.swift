@@ -11,13 +11,12 @@ import ChameleonFramework
 import Hero
 
 class AccountTableViewController: UITableViewController {
-    
-    var logoutButton: UIButton!
+
     var userType: Int!
     
-    var normalUserTable : [String] = ["个人信息","消费记录","会员","设置","关于软件"]
+    var normalUserTable : [String] = ["个人信息","消费记录","积分","设置","关于软件"]
     
-    var ownerUserTable : [String] = ["个人信息","车位管理","消费记录","会员","设置","关于软件"]
+    var ownerUserTable : [String] = ["个人信息","车位管理","消费记录","积分","设置","关于软件"]
     
     var adminUserTable: [String] = ["个人信息","设置","关于软件"]
     
@@ -39,16 +38,12 @@ class AccountTableViewController: UITableViewController {
         
         self.setupNavBar()
         
-        self.logoutButton = UIButton.init(frame: CGRect.init(x: self.view.bounds.width/2 - 100, y: GlobalVariables.kScreenHeight - 109 - 96 - 40 - 20, width: 200, height: 40))
-        self.logoutButton.titleLabel?.font = UIFont.init(name: "Avenir Book", size: 17)
-        self.logoutButton.setTitle("退出登录", for: .normal)
-        self.logoutButton.setTitleColor(.white, for: .normal)
-        self.logoutButton.backgroundColor = FlatRed()
-        self.logoutButton.layer.cornerRadius = 4
-        self.logoutButton.addTarget(self, action: #selector(logoutButtonAction(button:)), for: .touchUpInside)
         
-        self.view.addSubview(self.logoutButton)
-        
+    }
+    
+    
+    func setupNavBar() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.navigationBar.layer.shadowColor = UIColor.black.cgColor
         self.navigationController?.navigationBar.layer.shadowOffset = CGSize.init(width: 5, height: 5)
         self.navigationController?.navigationBar.layer.shadowOpacity = 0.2
@@ -56,32 +51,11 @@ class AccountTableViewController: UITableViewController {
 
     }
     
-    @objc func logoutButtonAction(button: UIButton) {
+    @IBAction func callCustomerService(_ sender: Any) {
         
-        User.logOutUser { [weak weakSelf = self](state) in
-            DispatchQueue.main.async {
-                if state {
-                    weakSelf?.pushToWelcomeVC()
-                }
-                else {
-                    print("Log out error")
-                }
-            }
-        }
-        
+        let url = URL(string: "telprompt://+8618502093892")
+        UIApplication.shared.openURL(url!)
     }
-    
-    func pushToWelcomeVC() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Welcome") as! UIViewController
-        self.present(vc, animated: true, completion: nil)
-    }
-    
-    
-    func setupNavBar() {
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        
-    }
-    
     
 }
 extension AccountTableViewController {
@@ -159,7 +133,7 @@ extension AccountTableViewController {
             
             self.present(vc, animated: true, completion: nil)
             
-        case "会员":
+        case "积分":
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ClubNav") as! UINavigationController
             self.present(vc, animated: true, completion: nil)
         
@@ -180,7 +154,7 @@ extension AccountTableViewController {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "AboutVC") as! UIViewController
             self.present(vc, animated: true, completion: nil)
         default:
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "RedView") as! UIViewController
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ClubVC") as! UIViewController
             
             self.present(vc, animated: true, completion: nil)
             

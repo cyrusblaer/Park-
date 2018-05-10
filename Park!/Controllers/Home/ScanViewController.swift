@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,
-UIAlertViewDelegate{
+UIAlertViewDelegate {
     
     var currentUser: String!
     
@@ -25,6 +25,7 @@ UIAlertViewDelegate{
         super.viewDidLoad()
         self.fromCamera()
     }
+    
     
     //通过摄像头扫描
     func fromCamera() {
@@ -144,8 +145,11 @@ UIAlertViewDelegate{
             if status {
                 // need to finish currentOrder
                 
-                SVProgressHUD.showError(withStatus: "暂不支持同时使用多车位")
+                SVProgressHUD.showInfo(withStatus: "当前有未完成订单")
                 SVProgressHUD.dismiss(withDelay: 1.0)
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ARVC") as! ARViewController
+                vc.currentUser = self.currentUser
+                self.present(vc, animated: true, completion: nil)
             }
             else {
                 SVProgressHUD.show()

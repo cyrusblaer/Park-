@@ -23,8 +23,8 @@ class AccountTableViewCell: UITableViewCell {
             case "消费记录":
                 titleTextLabel.text = "消费记录"
                 imageIcon.image = UIImage.init(named: "orders")
-            case "会员":
-                titleTextLabel.text = "会员"
+            case "积分":
+                titleTextLabel.text = "积分"
                 imageIcon.image = UIImage.init(named: "club")
             case "设置":
                 titleTextLabel.text = "设置"
