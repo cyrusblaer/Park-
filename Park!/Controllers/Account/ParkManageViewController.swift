@@ -21,6 +21,11 @@ class ParkManageViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    @IBAction func back(_ sender: Any) {
+        self.navigationController?.hero.modalAnimationType = .push(direction: .right)
+        self.dismiss(animated: true, completion: nil)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

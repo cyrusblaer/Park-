@@ -86,6 +86,8 @@ class ARViewController: UIViewController,ARSCNViewDelegate, UIPopoverPresentatio
         // Run the view's session
         sceneView.session.run(configuration)
         
+       
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -109,7 +111,7 @@ class ARViewController: UIViewController,ARSCNViewDelegate, UIPopoverPresentatio
         
         sceneView.preferredFramesPerSecond = 60
         sceneView.contentScaleFactor = 1.3
-        //sceneView.showsStatistics = true
+        sceneView.showsStatistics = true
         
         //        enableEnvironmentMapWithIntensity(25.0)
         
@@ -221,7 +223,7 @@ class ARViewController: UIViewController,ARSCNViewDelegate, UIPopoverPresentatio
         let textDistance = defaults.float(forKey: "textDistance")
         
         let textScn = ARText(text: text, font: UIFont .systemFont(ofSize: fontSize), color: UIColor.yellow, depth: fontSize/10)
-        let textNode = TextNode(distance: textDistance/10, scntext: textScn, sceneView: self.sceneView, scale: 1/100.0, offset: 1.0)
+        let textNode = TextNode(distance: textDistance/10, scntext: textScn, sceneView: self.sceneView, scale: 1/100.0, offset: 0)
         self.sceneView.scene.rootNode.addChildNode(textNode)
     }
     
@@ -373,7 +375,7 @@ class ARViewController: UIViewController,ARSCNViewDelegate, UIPopoverPresentatio
     
     private func resetTracking() {
         let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = .horizontal
+        configuration.planeDetection = .vertical
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
@@ -439,7 +441,7 @@ class ARViewController: UIViewController,ARSCNViewDelegate, UIPopoverPresentatio
         let textDistance = 10.0
 
         let textScn1 = ARText(text: String.init(format: "%02d:%02d:%02d", self.hour,self.minute,self.second), font: UIFont .systemFont(ofSize: fontSize), color: UIColor.yellow, depth: fontSize/10)
-        let textNode1 = TextNode(distance: Float(textDistance/10), scntext: textScn1, sceneView: self.sceneView, scale: 1/100.0, offset: 0.0 )
+        let textNode1 = TextNode(distance: Float(textDistance/10), scntext: textScn1, sceneView: self.sceneView, scale: 1/100.0, offset: 0.5 )
         node1?.geometry = textNode1.geometry
         print(String.init(format: "%02d:%02d:%02d", self.hour,self.minute,self.second))
 //        self.sceneView.scene.rootNode.addChildNode(textNode1)

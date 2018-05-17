@@ -83,18 +83,20 @@ class HomePageViewController: UIViewController {
         }
         
         if let orderId = self.currentOrder {
-            Database.database().reference().child("orders").child(self.currentOrder).child("spaceId").observeSingleEvent(of: .value) { (snap) in
-                if snap.exists() {
-                    let spaceId = snap.value! as! String
-                    Database.database().reference().child("spaces").child(spaceId).child("isReady").observe(.value, with: { (shot) in
-                        if shot.exists() {
-                            let ready = shot.value! as! Bool
-                            if ready {
-                                self.scheduleNotification(itemID: spaceId)
+            if orderId != "" {
+                Database.database().reference().child("orders").child(orderId).child("spaceId").observeSingleEvent(of: .value) { (snap) in
+                    if snap.exists() {
+                        let spaceId = snap.value! as! String
+                        Database.database().reference().child("spaces").child(spaceId).child("isReady").observe(.value, with: { (shot) in
+                            if shot.exists() {
+                                let ready = shot.value! as! Bool
+                                if ready {
+                                    self.scheduleNotification(itemID: spaceId)
+                                }
                             }
-                        }
-                    })
-                }}
+                        })
+                    }}
+            }
         }
     }
     
@@ -279,7 +281,21 @@ class HomePageViewController: UIViewController {
     
     // MARK: - Action
     
-    
+
+    @IBAction func showScanAction(_ sender: Any) {
+        
+        if let currentOrder = self.currentOrder {
+            if currentOrder != "" {
+               let vc = self.storyboard?.instantiateViewController(withIdentifier: "scanVC")
+                self.present(vc!, animated: true, completion: nil)
+            }
+            else {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ARVC")
+                self.present(vc!, animated: true, completion: nil)
+            }
+        }
+        
+    }
     
     @IBAction func closeView(_ sender: Any) {
         self.dismissExtraViews()

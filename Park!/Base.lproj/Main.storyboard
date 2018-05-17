@@ -440,6 +440,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="launchView"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="showScanAction:" destination="SFO-Rn-ajR" eventType="touchUpInside" id="fKK-ej-Mmw"/>
                                     <segue destination="af2-by-HzO" kind="presentation" id="0Xd-wa-0Gx"/>
                                 </connections>
                             </button>
@@ -1174,7 +1175,7 @@
         <!--Scan View Controller-->
         <scene sceneID="N7Y-oZ-Jau">
             <objects>
-                <viewController id="zda-SH-Dal" customClass="ScanViewController" customModule="Park_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="scanVC" id="zda-SH-Dal" customClass="ScanViewController" customModule="Park_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JkV-fm-VNo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1805,6 +1806,12 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="我的车位" id="bq9-31-iuF">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="back" id="dNh-hk-DFh">
+                            <color key="tintColor" red="0.16078431369999999" green="0.73333333329999995" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="back:" destination="hQK-LB-NAY" id="LMn-1S-zTu"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ib4-Po-oNu">
                             <color key="tintColor" red="0.1215686275" green="0.69411764710000001" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
