@@ -52,13 +52,15 @@ class HomePageViewController: UIViewController {
     var minute: Int = 0
     var second: Int = 0
     
-    var cities = City.cities
+    var orders: [Order] = []
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.customization()
         self.setupNavBar()
+        
+        self.getRelatedRecord()
         self.myScrollView.contentInsetAdjustmentBehavior = .automatic
         self.myScrollView.delegate = self
         self.spaceIdTextField.delegate = self
@@ -195,6 +197,32 @@ class HomePageViewController: UIViewController {
     
     // MARK: - methods
     
+    func getRelatedRecord() {
+        
+//        SVProgressHUD.show(withStatus: "加载中")
+        
+        if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
+            let phone = userInformation["phone"] as! String
+            
+            Order.getAllFinishedOrder(phone) { (orderArr) in
+                self.orders = orderArr
+                print("orders count\(orderArr.count)")
+                DispatchQueue.main.async {
+                    if orderArr.count == 0 {
+//                        SVProgressHUD.showInfo(withStatus: "暂无消费记录")
+                    }
+                    else {
+                        SVProgressHUD.dismiss()
+                        self.collectionView.reloadData()
+                    }
+                }
+                
+                
+            }
+        }
+        
+    }
+    
     func scheduleNotification(itemID:String){
         //如果已存在该通知消息，则先取消
         cancelNotification(itemID: itemID)
@@ -286,12 +314,14 @@ class HomePageViewController: UIViewController {
         
         if let currentOrder = self.currentOrder {
             if currentOrder != "" {
-               let vc = self.storyboard?.instantiateViewController(withIdentifier: "scanVC")
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ARVC")
                 self.present(vc!, animated: true, completion: nil)
             }
             else {
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ARVC")
-                self.present(vc!, animated: true, completion: nil)
+                
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "scanVC") as! ScanViewController
+                vc.currentUser = self.currentUser
+                self.present(vc, animated: true, completion: nil)
             }
         }
         
@@ -487,26 +517,6 @@ class HomePageViewController: UIViewController {
         }
         self.countTimeLabel.text = String.init(format: "%d:%02d:%02d", self.hour,self.minute,self.second)
     }
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        if let dest = segue.destination as? ScanViewController{
-            dest.currentUser = self.currentOrder
-//            dest.completion = {[unowned self](result)in
-//                let alert = UIAlertController(title: "扫描结果", message: result, preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-//            }
-        }
-        if let currentCell = sender as? CityCell,
-            let vc = segue.destination as? CityViewController,
-            let currentCellIndex = collectionView.indexPath(for: currentCell) {
-            vc.selectedIndex = currentCellIndex
-        }
-    }
 }
 
 extension HomePageViewController: UIScrollViewDelegate,  UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -521,12 +531,18 @@ extension HomePageViewController: UIScrollViewDelegate,  UITextFieldDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cities.count
+        return self.orders.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: "item", for: indexPath) as? CityCell)!
-        cell.city = cities[indexPath.item]
+        let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: "recordItem", for: indexPath) as? RecordCollectionViewCell)!
+        cell.order = self.orders[indexPath.item]
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "orderDetail") as! OrderDetailViewController
+        vc.currentOrder = self.orders[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

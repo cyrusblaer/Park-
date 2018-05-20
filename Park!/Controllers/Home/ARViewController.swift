@@ -81,12 +81,10 @@ class ARViewController: UIViewController,ARSCNViewDelegate, UIPopoverPresentatio
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = .vertical
+        configuration.planeDetection = .horizontal
         
         // Run the view's session
         sceneView.session.run(configuration)
-        
-       
         
     }
     
@@ -111,7 +109,7 @@ class ARViewController: UIViewController,ARSCNViewDelegate, UIPopoverPresentatio
         
         sceneView.preferredFramesPerSecond = 60
         sceneView.contentScaleFactor = 1.3
-        sceneView.showsStatistics = true
+        //sceneView.showsStatistics = true
         
         //        enableEnvironmentMapWithIntensity(25.0)
         
@@ -289,10 +287,10 @@ class ARViewController: UIViewController,ARSCNViewDelegate, UIPopoverPresentatio
         let textNode1 = TextNode(distance: Float(textDistance/10), scntext: textScn1, sceneView: self.sceneView, scale: 1/100.0, offset: 0.0 )
         self.sceneView.scene.rootNode.addChildNode(textNode1)
         let textScn2 = ARText(text: "         \((self.payment)!)元", font: UIFont .systemFont(ofSize: fontSize), color: UIColor.yellow, depth: fontSize/10)
-        let textNode2 = TextNode(distance: Float(textDistance/10), scntext: textScn2, sceneView: self.sceneView, scale: 1/100.0, offset: -0.3 )
+        let textNode2 = TextNode(distance: Float(textDistance/10), scntext: textScn2, sceneView: self.sceneView, scale: 1/100.0, offset: -0.6 )
         self.sceneView.scene.rootNode.addChildNode(textNode2)
         let textScn3 = ARText(text: self.countToShow, font: UIFont .systemFont(ofSize: fontSize), color: UIColor.yellow, depth: fontSize/10)
-        let textNode3 = TextNode(distance: Float(textDistance/10), scntext: textScn3, sceneView: self.sceneView, scale: 1/100.0, offset: -0.6 )
+        let textNode3 = TextNode(distance: Float(textDistance/10), scntext: textScn3, sceneView: self.sceneView, scale: 1/100.0, offset: -1.2 )
         self.sceneView.scene.rootNode.addChildNode(textNode3)
         
     }
@@ -375,7 +373,7 @@ class ARViewController: UIViewController,ARSCNViewDelegate, UIPopoverPresentatio
     
     private func resetTracking() {
         let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = .vertical
+        configuration.planeDetection = .horizontal
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
@@ -441,9 +439,10 @@ class ARViewController: UIViewController,ARSCNViewDelegate, UIPopoverPresentatio
         let textDistance = 10.0
 
         let textScn1 = ARText(text: String.init(format: "%02d:%02d:%02d", self.hour,self.minute,self.second), font: UIFont .systemFont(ofSize: fontSize), color: UIColor.yellow, depth: fontSize/10)
-        let textNode1 = TextNode(distance: Float(textDistance/10), scntext: textScn1, sceneView: self.sceneView, scale: 1/100.0, offset: 0.5 )
+        let textNode1 = TextNode(distance: Float(textDistance/10), scntext: textScn1, sceneView: self.sceneView, scale: 1/100.0, offset: -1.2 )
         node1?.geometry = textNode1.geometry
         print(String.init(format: "%02d:%02d:%02d", self.hour,self.minute,self.second))
+    
 //        self.sceneView.scene.rootNode.addChildNode(textNode1)
 //        self.countToShow = String.init(format: "%d:%02d:%02d", self.hour,self.minute,self.second)
     }
