@@ -22,6 +22,8 @@ class ARViewController: UIViewController,ARSCNViewDelegate, UIPopoverPresentatio
     
     let session = ARSession()
     
+    var objects: [SCNNode] = []
+    
     var textNode:SCNNode?
     var textSize:CGFloat = 5
     var textDistance:Float = 15
@@ -280,18 +282,23 @@ class ARViewController: UIViewController,ARSCNViewDelegate, UIPopoverPresentatio
         // changes in the plane anchor as plane estimation continues.
         node.addChildNode(planeNode)
         
+        self.removeAllObjects()
+        
         let fontSize = CGFloat.init(18.0)
         let textDistance = 10.0
         
-        let textScn1 = ARText(text: "          当前停车费用", font: UIFont .systemFont(ofSize: fontSize), color: UIColor.yellow, depth: fontSize/10)
+        let textScn1 = ARText(text: "       当前停车费用", font: UIFont .systemFont(ofSize: fontSize - 2.5), color: UIColor.yellow, depth: fontSize/10)
         let textNode1 = TextNode(distance: Float(textDistance/10), scntext: textScn1, sceneView: self.sceneView, scale: 1/100.0, offset: 0.0 )
         self.sceneView.scene.rootNode.addChildNode(textNode1)
+        self.objects.append(textNode1)
         let textScn2 = ARText(text: "         \((self.payment)!)元", font: UIFont .systemFont(ofSize: fontSize), color: UIColor.yellow, depth: fontSize/10)
         let textNode2 = TextNode(distance: Float(textDistance/10), scntext: textScn2, sceneView: self.sceneView, scale: 1/100.0, offset: -0.6 )
         self.sceneView.scene.rootNode.addChildNode(textNode2)
+        self.objects.append(textNode2)
         let textScn3 = ARText(text: self.countToShow, font: UIFont .systemFont(ofSize: fontSize), color: UIColor.yellow, depth: fontSize/10)
         let textNode3 = TextNode(distance: Float(textDistance/10), scntext: textScn3, sceneView: self.sceneView, scale: 1/100.0, offset: -1.2 )
         self.sceneView.scene.rootNode.addChildNode(textNode3)
+        self.objects.append(textNode3)
         
     }
     
@@ -447,4 +454,11 @@ class ARViewController: UIViewController,ARSCNViewDelegate, UIPopoverPresentatio
 //        self.countToShow = String.init(format: "%d:%02d:%02d", self.hour,self.minute,self.second)
     }
     
+    func removeAllObjects() {
+        for object in objects {
+            object.removeFromParentNode()
+        }
+        
+        objects = []
+    }
 }

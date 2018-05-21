@@ -18,13 +18,20 @@ class OrderDetailViewController: UIViewController {
     @IBOutlet weak var endedTimeLabel: UILabel!
     @IBOutlet weak var chargedLabel: UILabel!
     
+    @IBOutlet weak var closeBtn: UIButton!
     var orderId: String?
     var currentOrder : Order?
+    var whenPushed :Bool?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.navigationController?.navigationItem.title = "收据"
+        if let pushed = whenPushed {
+            if !pushed {
+                self.closeBtn.isHidden = false
+            }
+        }
         
         self.setup()
     }
@@ -51,4 +58,8 @@ class OrderDetailViewController: UIViewController {
         UIApplication.shared.openURL(url!)
     }
     
+    @IBAction func closeVC(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
 }

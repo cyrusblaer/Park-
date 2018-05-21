@@ -193,9 +193,9 @@
 		883B09972074AC9E001EAB2B /* Park */ = {
 			isa = PBXGroup;
 			children = (
+				88AE23632060AF510051DBC5 /* AddLotViewController.swift */,
 				8834B84D20581DDE00D22E31 /* ParkTableViewController.swift */,
 				8834B856205B931A00D22E31 /* AddParkSpaceViewController.swift */,
-				88AE23632060AF510051DBC5 /* AddLotViewController.swift */,
 			);
 			path = Park;
 			sourceTree = "<group>";

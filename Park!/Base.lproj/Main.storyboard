@@ -219,8 +219,8 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xyY-KX-Jdg">
-                                                                    <rect key="frame" x="44" y="62" width="45" height="21.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                                    <rect key="frame" x="44" y="63" width="40.5" height="19.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                     <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -238,13 +238,13 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="共消费" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ei-jz-sy8">
-                                                                    <rect key="frame" x="20" y="210" width="52" height="21"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <rect key="frame" x="20" y="210" width="49" height="19.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFm-3T-Lo6">
-                                                                    <rect key="frame" x="79" y="210" width="42" height="21"/>
+                                                                    <rect key="frame" x="79" y="209.5" width="42" height="21"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -313,7 +313,7 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="level"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0Z-se-WeB">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0Z-se-WeB">
                                                 <rect key="frame" x="11" y="48" width="16" height="32"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1341,10 +1341,10 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="level"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rKB-wb-XpV">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rKB-wb-XpV" customClass="RoundedView" customModule="Park_" customModuleProvider="target">
                                         <rect key="frame" x="27" y="263" width="327" height="16"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i6e-58-HCp">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i6e-58-HCp" customClass="RoundedView" customModule="Park_" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="167" height="16"/>
                                                 <color key="backgroundColor" red="0.99942404029999998" green="0.85517703107456644" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
@@ -2084,10 +2084,32 @@
                                     <constraint firstItem="ZJq-hz-Kv4" firstAttribute="leading" secondItem="d41-4k-tzM" secondAttribute="trailing" constant="40" id="zNv-iw-Yly"/>
                                 </constraints>
                             </view>
+                            <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5i-Sj-qX7">
+                                <rect key="frame" x="16" y="20" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="4G5-VF-Taw"/>
+                                    <constraint firstAttribute="height" constant="48" id="bxC-Pi-RSX"/>
+                                </constraints>
+                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="close_b"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="24"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade translate(0, -150)"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="back"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="closeVC:" destination="r91-wV-FgJ" eventType="touchUpInside" id="MlK-F6-NRR"/>
+                                    <action selector="hero_dismissViewController" destination="mjF-hs-8o6" eventType="touchUpInside" id="obA-yx-aGJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="imc-v7-bId" firstAttribute="trailing" secondItem="WHL-wh-cpc" secondAttribute="trailing" id="38h-VU-Jze"/>
+                            <constraint firstItem="o5i-Sj-qX7" firstAttribute="top" secondItem="WHL-wh-cpc" secondAttribute="top" id="IDk-Ds-2JP"/>
+                            <constraint firstItem="o5i-Sj-qX7" firstAttribute="leading" secondItem="WHL-wh-cpc" secondAttribute="leading" constant="16" id="LxT-76-8uK"/>
                             <constraint firstItem="imc-v7-bId" firstAttribute="bottom" secondItem="WHL-wh-cpc" secondAttribute="bottom" id="PI5-3J-xSc"/>
                             <constraint firstItem="zB9-rY-6Et" firstAttribute="leading" secondItem="WHL-wh-cpc" secondAttribute="leading" id="bNo-Lb-WrG"/>
                             <constraint firstItem="zB9-rY-6Et" firstAttribute="top" secondItem="WHL-wh-cpc" secondAttribute="top" constant="44" id="fuQ-SS-8Ad"/>
@@ -2103,6 +2125,7 @@
                     <connections>
                         <outlet property="beginTimeLabel" destination="n7y-3t-akj" id="aek-RD-2GV"/>
                         <outlet property="chargedLabel" destination="Pya-eS-KTp" id="mFa-TV-lin"/>
+                        <outlet property="closeBtn" destination="o5i-Sj-qX7" id="sh7-u9-Jhw"/>
                         <outlet property="endedTimeLabel" destination="nrP-ch-wLT" id="xl4-96-zWk"/>
                         <outlet property="exEarnLabel" destination="zyD-UC-8H7" id="Odd-Ii-kR0"/>
                         <outlet property="lotNameLabel" destination="gXJ-N4-jjH" id="nKe-sK-BxM"/>
@@ -2112,7 +2135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mjF-hs-8o6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4922" y="1366"/>
+            <point key="canvasLocation" x="5390" y="1366"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lfH-ci-KLN">
@@ -2133,7 +2156,7 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="POd-tD-Fdw">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarVC" id="2Wh-Nu-Vki" customClass="TabBarViewController" customModule="Park_" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarVC" hidesBottomBarWhenPushed="YES" id="2Wh-Nu-Vki" customClass="TabBarViewController" customModule="Park_" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="MT2-BL-qMJ"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5Zg-Hx-mTj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -3770,6 +3793,7 @@
                                     <outlet property="foregroundView" destination="811-6b-p6x" id="zQ4-kz-nG1"/>
                                     <outlet property="foregroundViewTop" destination="5Vp-7V-XMZ" id="RKn-Dy-LI3"/>
                                     <outlet property="isRegisteredLabel" destination="ZFC-gP-oZ3" id="oi4-8g-Mw6"/>
+                                    <outlet property="lotImageView" destination="PHm-yd-iDk" id="WIY-Qi-3Zj"/>
                                     <outlet property="navButton" destination="QL8-96-PqN" id="UCG-X1-eNQ"/>
                                     <outlet property="numberOfSpaceLabel" destination="ml8-QC-4eZ" id="zuw-bH-SIx"/>
                                     <outlet property="profileNameLabel" destination="7DS-ds-qG7" id="beE-vo-n1b"/>

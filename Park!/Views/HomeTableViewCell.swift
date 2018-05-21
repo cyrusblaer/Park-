@@ -37,6 +37,7 @@ class HomeTableViewCell: FoldingCell {
     
     @IBOutlet weak var navButton: UIButton!
     
+    @IBOutlet weak var lotImageView: UIImageView!
     var delegate: NaviButtonPressDelegate?
     
     var name: String = "" {
@@ -102,6 +103,12 @@ class HomeTableViewCell: FoldingCell {
         didSet {
             self.estimatedTime.text = time
             self.smallEstimatedTime.text = time
+        }
+    }
+    
+    var lotImage : UIImage = UIImage.init()  {
+        didSet {
+            self.lotImageView.image = lotImage
         }
     }
     

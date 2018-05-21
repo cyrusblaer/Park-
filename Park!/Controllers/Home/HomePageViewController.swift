@@ -59,7 +59,6 @@ class HomePageViewController: UIViewController {
         super.viewDidLoad()
         self.customization()
         self.setupNavBar()
-        
         self.getRelatedRecord()
         self.myScrollView.contentInsetAdjustmentBehavior = .automatic
         self.myScrollView.delegate = self
@@ -543,6 +542,7 @@ extension HomePageViewController: UIScrollViewDelegate,  UITextFieldDelegate, UI
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "orderDetail") as! OrderDetailViewController
         vc.currentOrder = self.orders[indexPath.row]
-        self.navigationController?.pushViewController(vc, animated: true)
+        vc.whenPushed = false
+        self.present(vc, animated: true, completion: nil)
     }
 }

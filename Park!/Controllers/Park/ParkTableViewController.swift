@@ -250,6 +250,7 @@ extension ParkTableViewController: UITableViewDelegate, UITableViewDataSource, A
         cell.isRegistered = self.nearbyLotArr[indexPath.row].isRegistered
         cell.distanceLabel.text = self.distanceToString(distance: self.nearbyLotArr[indexPath.row].distanceFromLocation)
         
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -327,6 +328,7 @@ extension ParkTableViewController: UITableViewDelegate, UITableViewDataSource, A
             lot.city = aPOI.city
             
             lot.district = aPOI.district
+            
             
             ParkingLot.searchLotInDatabase(aPOI.uid, completion: { [weak weakSelf = self] (exist, existLot) in
                 if exist {

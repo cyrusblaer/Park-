@@ -23,6 +23,7 @@ class ParkingLot {
     var distanceFromLocation = CLLocationDistance.init()
     var city = String.init()
     var district = String.init()
+    var image = UIImage.init()
 //    let enterLocation: CLLocationCoordinate2D
     
     class func registerParkingLot(withUid: String, name: String, address: String, location: CLLocationCoordinate2D,  numberOfSpace: Int, rentNumber: Int, supervisorId: String,  completion: @escaping (Bool) -> Swift.Void) {

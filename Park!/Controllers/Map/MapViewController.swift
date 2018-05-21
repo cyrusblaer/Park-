@@ -220,6 +220,7 @@ extension MapViewController : UISearchBarDelegate,UISearchResultsUpdating, AMapS
             anno.coordinate = coordinate
             anno.title = aPOI.name
             anno.subtitle = aPOI.address
+            
             annos.append(anno)
         }
         mapView.addAnnotations(annos)
