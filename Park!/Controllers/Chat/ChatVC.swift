@@ -77,8 +77,10 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     
     func composeMessage(type: MessageType, content: Any)  {
         let message = Message.init(type: type, content: content, owner: .sender, timestamp: Int(Date().timeIntervalSince1970), isRead: false)
-        Message.send(message: message, toID: self.currentUser!.phone, completion: {(_) in
-        })
+//        Message.send(message: message, toID: self.currentUser!.phone, completion: {(_) in
+//        })
+        self.items.append(message)
+        self.tableView.reloadData()
     }
     
     func checkLocationPermission() -> Bool {
@@ -151,6 +153,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
             if text.characters.count > 0 {
                 self.composeMessage(type: .text, content: self.inputTextField.text!)
                 self.inputTextField.text = ""
+                self.inputTextField.resignFirstResponder()
             }
         }
     }
@@ -244,7 +247,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
             if let photo = self.items[indexPath.row].image {
                 let info = ["viewType" : ShowExtraView.preview, "pic": photo] as [String : Any]
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showExtraView"), object: nil, userInfo: info)
-                self.inputAccessoryView?.isHidden = true
+                self.inputAccessoryView?.isHidden = false
             }
         case .location:
             let coordinates = (self.items[indexPath.row].content as! String).components(separatedBy: ":")
@@ -277,8 +280,11 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
             if self.canSendLocation {
                 let coordinate = String(lastLocation.coordinate.latitude) + ":" + String(lastLocation.coordinate.longitude)
                 let message = Message.init(type: .location, content: coordinate, owner: .sender, timestamp: Int(Date().timeIntervalSince1970), isRead: false)
-                Message.send(message: message, toID: self.currentUser!.phone, completion: {(_) in
-                })
+//                Message.send(message: message, toID: self.currentUser!.phone, completion: {(_) in
+//                })
+                self.items.append(message)
+                self.tableView.reloadData()
+                self.inputTextField.resignFirstResponder()
                 self.canSendLocation = false
             }
         }
